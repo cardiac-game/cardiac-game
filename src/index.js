@@ -7,7 +7,7 @@ import Navbar from './components/Navbar/navbar';
 import HomePage from './components/HomePage/homePage';
 import ProjectFooter from './components/ProjectFooter/projectFooter';
 import AboutPage from './components/AboutPage/AboutPage';
-import GamePage from './components/GamePage/gamePage';
+import GamePage from './components/GamePage/GamePage';
 import HealthInput from './components/HealthInput/healthInput';
 import HealthKnowledge from './components/HealthKnowledge/healthKnowledge';
 
