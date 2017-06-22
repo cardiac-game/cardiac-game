@@ -58,6 +58,7 @@ position: absolute;
 background-image: url('./images/Heart - Sketch 01.png');
 background-repeat: no-repeat;
 background-size: cover;
+background-position: center;
 top: 125%;
 width: 100vw;
 height: 400px;
