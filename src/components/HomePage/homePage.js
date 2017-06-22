@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import { Link } from 'react-router-dom'; // Important for linking to the Health page at bottom of homepage
+
 import './homePage.css';
 
 export default class HomePage extends Component {
