@@ -1,0 +1,26 @@
+.footer {
+  color:white;
+  font-family: georgia;
+  font-size: 30px;
+  /*background: black;*/
+  background:linear-gradient(#898d8d 0%,#000 100%);
+  letter-spacing:2px;
+  height:75px;
+  width:100%;
+}
+
+.footer{
+  display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: center;
+   justify-content: center;
+  overflow:auto;
+}
+.textFooter a{
+  text-decoration:none;
+  color:white;
+}
