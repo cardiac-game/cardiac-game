@@ -47,70 +47,44 @@ const images = new function() {
 }
 
 
+
+
+
+
+
 // convert keyboard input to player movement
 function movePlayer (player) {
 
   if (KeyStatus.up) {
-       if (player.dy > -player.maxDy) {
-           player.dy--;
-       }
-   }
-
-   if (KeyStatus.down) {
-       if (player.dy < player.maxDy) {
-           player.dy++;
-       }
+      player.x += player.speed * Math.cos(player.orientation * Math.PI / 180)
+      player.y += player.speed * Math.sin(player.orientation * Math.PI / 180)
+   } else if (KeyStatus.down) {
+      player.x -= player.speed/2 * Math.cos(player.orientation * Math.PI / 180)
+      player.y -= player.speed/2 * Math.sin(player.orientation * Math.PI / 180)
    }
    if (KeyStatus.right) {
-       if (player.dx < player.maxDx) {
-           player.dx++;
-       }
-   }
-   if (KeyStatus.left) {
-       if (player.dx > -player.maxDx) {
-           player.dx--;
-       }
+      player.orientation += player.turnSpeed;
+   } else if (KeyStatus.left) {
+      player.orientation -= player.turnSpeed;
    }
 
-   // apply some friction to y velocity.
-   player.dy *= friction;
-   player.y += player.dy;
 
-   // apply some friction to x velocity.
-   player.dx *= friction;
-   player.x += player.dx;
+
 
    // bounds checking
-   if (player.x >= window.innerwidth + player.width) {
-       player.x = window.innerwidth;
+   if (player.x >= window.innerWidth - player.width) {
+       player.x = window.innerWidth - player.width;
    } else if (player.x <= 0) {
        player.x = 0
    }
 
-   if (player.y > window.innerHeight + player.height) {
-       player.y = window.innerHeight;
+   if (player.y > window.innerHeight - player.height) {
+       player.y = window.innerHeight - player.height;
    } else if (player.y <= 0) {
        player.y = 0
    }
-
-    player.dx *= friction
-    player.dy *= friction
 }
 
-
-// keeps object in canvas
-function keepOnScreen(obj) {
-  let belowTop = obj.y >= 0 ? true : false
-  let aboveBottom = obj.y <= window.innerHeight - obj.height ? true : false
-  let inLeft = obj.x >= 0 ? true : false
-  let inRight = obj.x <= window.innerWidth - obj.width ? true : false;
-
-  if (!belowTop || !aboveBottom) {
-    obj.dy = -obj.dy
-  } else if (!inLeft || !inRight) {
-    obj.dx = -obj.dx
-  }
-}
 
 // player object
 let player = {
@@ -121,19 +95,34 @@ let player = {
   height: images.ship.height,
   dx: 0,
   dy: 0,
-  maxDx: 2,
-  maxDy: 2,
+  speed: 6,
   orientation: 0,
   turnSpeed:  6,
   move: function(ctx) {
     movePlayer(this)
   },
   draw: function(ctx) {
-    ctx.beginPath()
-    ctx.clearRect(this.x-2, this.y-2, this.width*2, this.height*2)
+
+    let xView = this.x + this.width / 2;
+    let yView = this.y + this.height / 2;
+
+    ctx.save();
+    ctx.fillStyle = 'white'
+    ctx.fillRect(this.x-10,this.y-10,this.width+10,this.height+10)
+
     this.move(ctx, window.innerWidth, window.innerHeight)
-    ctx.drawImage(this.img,this.x, this.y)
-    ctx.fill()
+    /// make sure pivot is moved to center
+    ctx.translate(xView, yView);
+
+    /// rotate, you should make new sprite where direction
+    /// points to the right. I'm add 90 here to compensate
+    ctx.rotate((this.orientation + 90) * Math.PI / 180);
+    /// translate back before drawing the sprite
+    ctx.translate(-xView, -yView);
+    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    ctx.restore();
+
+
   }
 }
 
