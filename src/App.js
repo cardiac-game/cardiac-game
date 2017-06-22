@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import HomePage from './components/HomePage/HomePage'
 import GamePage from './components/GamePage/GamePage'
+
 import './App.css';
 
 class App extends Component {
@@ -9,6 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <GamePage />
+       <HomePage></HomePage>
       </div>
     );
   }
