@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom'; // to link to the game
+// import { Link } from 'react-router-dom'; // to link to the game OR Redirect to?
 
 
 export default class HealthInput extends Component {
