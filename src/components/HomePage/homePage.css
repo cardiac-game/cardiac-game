@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
-
 .home-body {
-height: 3000px;
+height: 3546px;
 }
 
 .title {
@@ -18,12 +16,12 @@ text-shadow: 0px 0px 10px white;
 letter-spacing: 50px;
 }
 
-.dark-curtain {
+.dark-curtain-1 {
 position: absolute;
 top: 0px;
 width: 100vw;
-height: 700px;
-opacity: .3;
+height: 900px;
+opacity: .5;
 background: -webkit-linear-gradient(top, #6b0000, white);
 }
 
@@ -34,8 +32,6 @@ top: 50%;
 transform: translate(-50%, -50%);
 width: 80vw;
 z-index: 5;
--webkit-font-smoothing: antialiased;
-
 font-family: georgia;
 font-size: 17px;
 color: black;
@@ -43,11 +39,12 @@ text-shadow: 0px 0px 1px gray;
 letter-spacing: 3px;  
 }
 
-.text-back {
+.text-back-1 {
 position: absolute;
+text-align: center;
 top: 100%;
 width: 100vw;
-height: 230px;
+height: 300px;
 z-index: 5;
 background-color: #fff9f2;
 box-shadow: 0 0 10px black; 
@@ -56,12 +53,295 @@ box-shadow: 0 0 10px black;
 .image-one {
 position: absolute;
 background-image: url('./images/Heart - Sketch 01.png');
-background-repeat: no-repeat;
 background-size: cover;
 background-position: center;
-top: 125%;
+top: 130%;
 width: 100vw;
-height: 400px;
+height: 500px;
 box-shadow: 0 0 10px black; 
 background-attachment: fixed;  
+}
+
+.text-back-2 {
+position: absolute;
+text-align: center;
+top: 191%;
+width: 100vw;
+height: 900px;
+z-index: 5;
+background-color: #fff9f2;
+box-shadow: 0 0 10px black; 
+}
+
+.quote {
+position: absolute;
+top: 60px;
+left: 50%;
+transform: translate(-50%);
+width: 80vw;
+z-index: 5;
+
+font-family: georgia;
+font-size: 17px;
+color: black;
+text-shadow: 0px 0px 1px gray;
+letter-spacing: 3px;  
+}
+
+.pic-one {
+position: absolute;
+background-image: url('./images/Anatomy - Sketch 02.jpg');
+background-size: cover;
+top: 300px;
+left: 15%;
+width: 300px;
+height: 497px;
+box-shadow: 0 0 5px black;
+/*transform: rotate(3deg);*/
+}
+.pic-two {
+position: absolute;
+background-image: url('./images/Anatomy - Sketch 03.jpg');
+background-size: cover;
+top: 300px;
+left: 40%;
+width: 300px;
+height: 497px;
+box-shadow: 0 0 5px black; 
+}
+.pic-three {
+position: absolute;
+background-image: url('./images/Anatomy - Sketch 04.jpg');
+background-size: cover;
+top: 300px;
+left: 65%;
+width: 300px;
+height: 497px;
+box-shadow: 0 0 5px black; 
+}
+
+.button-1 {
+cursor: pointer;
+position: absolute;
+left: 50%;
+transform: translate(-50%);
+top: 107%;
+z-index: 5;
+
+font-family: 'Josefin Sans';
+font-size: 20px;
+color: white;
+text-shadow: 0px 0px 10px white;
+letter-spacing: 10px;
+}
+.button-2 {
+cursor: pointer;
+position: absolute;
+left: 50%;
+transform: translate(-50%);
+top: 107%;
+z-index: 5;
+
+font-family: 'Josefin Sans';
+font-size: 20px;
+color: white;
+text-shadow: 0px 0px 10px white;
+letter-spacing: 10px;
+}
+.button-3 {
+cursor: pointer;
+position: absolute;
+left: 50%;
+transform: translate(-50%);
+top: 107%;
+z-index: 5;
+
+font-family: 'Josefin Sans';
+font-size: 20px;
+color: white;
+text-shadow: 0px 0px 10px white;
+letter-spacing: 10px;
+}
+.dark-curtain-2 {
+position: absolute;
+bottom: 0px;
+width: 100vw;
+height: 200px;
+opacity: .3;
+z-index: -5;
+background: -webkit-linear-gradient(bottom, #6b0000, transparent);
+}
+
+.image-two {
+position: absolute;
+background-image: url('./images/Anatomy - Sketch 05.png');
+background-size: cover;
+top: 300%;
+width: 100%;
+height: 100%;
+box-shadow: 0 0 5px black;
+background-attachment: fixed;
+}
+
+.continue {
+cursor: pointer;
+position: absolute;
+top: 37%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 5;
+font-family: 'Josefin Sans';
+font-size: 100px;
+color: white;
+text-shadow: 0px 0px 50px black;
+letter-spacing: 10px;
+}
+
+.home-filler {
+position: absolute;
+text-align: center;
+top: 370%;
+width: 100vw;
+height: 245px;
+z-index: 5;
+background-color: #fff9f2;
+box-shadow: 0 0 10px black; 
+}
+
+.home-footer {
+position: absolute;
+top: 398%;
+width: 100vw;
+height: 350px;
+z-index: 0;
+background-color: #fff9f2;
+}
+
+.dark-curtain-3 {
+position: absolute;
+width: 100vw;
+height: 100%;
+opacity: .6 ;
+z-index: -5;
+background: -webkit-linear-gradient(bottom right, #6b0000, black);
+}
+
+.footer-cardiac {
+position: absolute;
+top: 14%;
+left: 10%;
+z-index: 5;
+font-family: 'Josefin Sans';
+font-size: 25px;
+color: white;
+text-shadow: 0px 0px 5px white;
+letter-spacing: 10px;
+transform: translate(-50%);
+}
+
+.footer-line{
+position: absolute;
+background-color: white;
+height: 1px;
+width: 95%;
+top: 27%;
+left: 50%;
+transform: translate(-50%); 
+}
+
+.foot-toes {
+position: absolute;
+top: 35%;
+left: 10%;
+z-index: 5;
+font-family: 'Josefin Sans';
+font-size: 15px;
+color: white;
+text-shadow: 0px 0px 10px black;
+letter-spacing: 7px;
+}
+
+.footer-vision {
+left: 35%;
+}
+.footer-sources {
+left: 50%;
+}
+.footer-about {
+left: 65%;
+}
+.footer-contact {
+left: 80%;
+}
+
+.footer-source1 {
+cursor: pointer;
+position: absolute;
+top: 45%;
+left: 50%;
+z-index: 5;
+font-family: 'Josefin Sans';
+font-size: 13px;
+color: white;
+letter-spacing: 5px;
+}
+
+.footer-source2 {
+cursor: pointer;
+position: absolute;
+top: 55%;
+left: 50%;
+z-index: 5;
+font-family: 'Josefin Sans';
+font-size: 13px;
+color: white;
+letter-spacing: 5px;
+
+}
+.footer-source3 {
+cursor: pointer;
+position: absolute;
+top: 65%;
+left: 50%;
+z-index: 5;
+font-family: 'Josefin Sans';
+font-size: 13px;
+color: white;
+letter-spacing: 5px;
+
+}
+.footer-source4 {
+cursor: pointer;
+position: absolute;
+top: 75%;
+left: 50%;
+z-index: 5;
+font-family: 'Josefin Sans';
+font-size: 13px;
+color: white;
+letter-spacing: 5px;
+}
+
+.footer-about1 {
+cursor: pointer;
+position: absolute;
+top: 45%;
+left: 65%;
+z-index: 5;
+font-family: 'Josefin Sans';
+font-size: 13px;
+color: white;
+letter-spacing: 5px;
+}
+
+.footer-about2 {
+cursor: pointer;
+position: absolute;
+top: 55%;
+left: 65%;
+z-index: 5;
+font-family: 'Josefin Sans';
+font-size: 13px;
+color: white;
+letter-spacing: 5px;
 }
