@@ -24,12 +24,17 @@ module.exports = {
         })
     },
 
-    getFoodData: function (req, res) {
-      var search = req.query.item;
-      const url = `https://api.nal.usda.gov/ndb/search/?format=json&q=${search}&sort=n&max=100&offset=0&api_key=YRc0BEaFiPedkCcYvOsuFHJf3iI8DDlwGd1AddiX`
-      axios.get(url).then(resp => resp.data).then(resp => res.status(200).send(resp))
+    getFoods: function (req, res) {
+      const search = req.query.item;
+      const maxItems = '100';
+      const url = `https://api.nal.usda.gov/ndb/search/?format=json&q=${search}&sort=n&max=${maxItems}&offset=0&api_key=${config.apiKey}`
+      axios.get(url).then(resp => res.status(200).send(resp.data))
     },
-    getNutritionData: function (req,  res) {
 
+    getNutritionData: function (req,  res) {
+        const ndbno = req.query.ndbno;
+        const url = `https://api.nal.usda.gov/ndb/reports/?ndbno=${ndbno}&type=b&format=json&api_key=${config.apiKey}`
+        axios.get(url).then(resp => res.status(200).send(resp.data))
+        
     }
 }

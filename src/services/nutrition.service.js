@@ -1,9 +1,13 @@
 import axios from 'axios';
-import { getList } from '../store/ducks/nutritionReducer';
+import { getList, getSpecificFood } from '../store/ducks/nutritionReducer';
 import store from '../store/store';
-// import apiURL from '../'
 
-export function getFood(item){
-  const promise = axios.get('/api/nutrition?item='+item).then(response => response.data);
-  store.dispatch(getList(promise))
+export function getSearchFood(item){
+  const promise = axios.get('http://localhost:8000/api/foods?item='+item).then(response => response.data);
+  store.dispatch( getList(promise) )
+}
+
+export function getSpecific(ndbno){
+  const promise = axios.get('http://localhost:8000/api/nutrition?ndbno='+ndbno).then(response => response.data);
+  store.dispatch( getSpecificFood(promise) )
 }
