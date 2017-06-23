@@ -1,12 +1,9 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
 
-const initialState = {
-    testy: 'test'
-}
+import nutritionReducer from './ducks/nutritionReducer';
+import userReducer from './ducks/userReducer';
 
-function reducerTest(state = initialState) {
-    return state
-}
+const combinedReducer = combineReducers({ nutritionReducer, userReducer });
 
-export default createStore(reducerTest, applyMiddleware(promiseMiddleware()) )
+export default createStore(combinedReducer, applyMiddleware(promiseMiddleware()) );
