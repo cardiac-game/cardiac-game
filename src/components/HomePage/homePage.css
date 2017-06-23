@@ -1,5 +1,5 @@
 .home-body {
-height: 3000px;
+height: 3130px;
 }
 
 .title {
@@ -171,4 +171,23 @@ height: 200px;
 opacity: .3;
 z-index: -5;
 background: -webkit-linear-gradient(bottom, #6b0000, transparent);
+}
+
+.home-footer {
+position: absolute;
+top: 345%;
+width: 100vw;
+height: 350px;
+z-index: 5;
+background-color: #fff9f2;
+box-shadow: 0 0 10px black; 
+}
+
+.dark-curtain-3 {
+position: absolute;
+width: 100vw;
+height: 100%;
+opacity: .6 ;
+z-index: -5;
+background: -webkit-linear-gradient(bottom right, #6b0000, black);
 }

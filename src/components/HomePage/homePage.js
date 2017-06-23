@@ -56,6 +56,15 @@ Take command of your immune system, and fight the battle your body fights every 
 
 </div>
 
+
+
+
+
+
+<div className="home-footer">
+<div className="dark-curtain-3"></div>
+</div>
+
 </section>
 
 )}}
