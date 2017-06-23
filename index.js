@@ -25,7 +25,12 @@ app.get('/api/rank/top', function(req, res){
 })
 
 app.get('/api/rank/:gameId', function(req, res){
-  controller.getCurrentGameRank(req, res)  
+  controller.getCurrentGameRank(req, res)
+})
+
+app.get('/api/nutrition'
+  ,function(req, res) {
+    controller.getFoodData(req, res)
 })
 
 app.listen(port, function(){
