@@ -19,7 +19,7 @@ ReactDOM.render(
 <Provider store = {store} >
     <Router>
         <div>
-        <Navbar />
+        {/*<Navbar />*/}
         <Switch>
             <Route exact path='/' component={HomePage} />
             <Route path="/about" component = {AboutPage}/>
