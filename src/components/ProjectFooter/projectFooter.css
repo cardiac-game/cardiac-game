@@ -1,16 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
 .footer {
+  padding-left: 40px;  
   background:black;
   height:40px;
   width:100%;
+  display: flex;
+  align-items: center;
 }
-
 .textFooter{
-  position: relative;
-  left: 40px;
-  top:50%;
-  transform: translate(0%, -50%);
   font-family: 'Josefin Sans';
   color:white;
   opacity: .6;
