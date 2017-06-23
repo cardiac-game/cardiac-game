@@ -57,12 +57,36 @@ Take command of your immune system, and fight the battle your body fights every 
 </div>
 
 
+<div className="image-two">
+    <div className="continue">CONTINUE</div>
+</div>
 
 
-
-
+<div className="home-filler">
+    <div className="quote">"This website changed my life. I'm new to the h about their health.
+    <br></br><br></br>As someone with a lot of life experience, I endorse this website as a good source of motivation. Some days are harder to get out of bed than others because of my osteoperosis.
+    <br></br><br></br>As someone with a lot of life experience, I endorse this website as a good source of motivation."
+<br></br><br></br><br></br><hr></hr>
+</div>
+</div>
 <div className="home-footer">
 <div className="dark-curtain-3"></div>
+<div className="footer-cardiac">CARDIAC</div>
+<div className="footer-line"></div>
+
+<div className="footer-vision foot-toes">VISION</div>
+
+<div className="footer-sources foot-toes">SOURCES</div>
+<div className="footer-source1">· CDC</div>
+<div className="footer-source2">· Live Strong</div>
+<div className="footer-source3">· NCI</div>
+<div className="footer-source4">· PBS</div>
+
+<div className="footer-about foot-toes">ABOUT</div>
+<div className="footer-about1">· Developers</div>
+<div className="footer-about2">· Technology</div>
+
+<div className="footer-contact foot-toes">CONTACT</div>
 </div>
 
 </section>
