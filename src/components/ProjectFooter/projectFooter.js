@@ -1,4 +1,5 @@
 import React from 'react';
+import './projectFooter.css';
 // import { Link } from 'react-router-dom'; // to link to the about team
 
 // 
@@ -10,9 +11,8 @@ import React from 'react';
 //functional component (not class component) for components with no state
 const projectFooter = () => {
     return (
-        <div>
-            <h1>THIS IS A PORTFOLIO PROJECT</h1>
-        </div>
+        <div className="footer"><div className="textFooter">2017 Cardiac | DevMountain GROUP PROJECT</div>
+ </div>
     )
 }
 
