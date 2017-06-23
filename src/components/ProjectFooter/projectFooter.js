@@ -11,7 +11,7 @@ import './projectFooter.css';
 //functional component (not class component) for components with no state
 const projectFooter = () => {
     return (
-        <div className="footer"><div className="textFooter">Cardiac is a Portfoilio piece.   <a href="#">About</a></div>
+        <div className="footer"><div className="textFooter">2017 Cardiac | DevMountain GROUP PROJECT</div>
  </div>
     )
 }
