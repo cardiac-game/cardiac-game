@@ -1,37 +1,41 @@
-export default function Bullet(obj) {
+export default function Bullet(context) {
 
-  this.spawn = function(x,y,dx,dy, img) {
+  this.spawn = function(x,y,orientation,img, speed) {
     this.x = x,
     this.y = y,
-    this.dx = dx,
-    this.dy = dy,
-    this.img = img
+    this.speed = 12,
+    this.orientation = orientation,
+    this.dx = this.speed * Math.cos((this.orientation) * Math.PI / 180),
+    this.dy = this.speed * Math.sin((this.orientation) * Math.PI / 180),
+    this.img = img,
+    this.width = img.width,
+    this.height = img.height,
+    this.centerX = this.width/2,
+    this.centerY = this.height/2
   }
 
-function checkInBounds() {
+  this.checkInBounds = function() {
   let top = this.y <= 0 - this.img.height
-  let bottom = this.y >= this.canvasHeight
+  let bottom = this.y >= context.canvas.height
   let left = this.x <= 0 - this.img.width
-  let right = this.x >= this.canvasWidth
-  return (top || bottom || left || right) ? false : true
+  let right = this.x >= context.canvas.width
+  return (top || bottom || left || right) ? true : false
   }
-
-  checkInBounds.bind(this)
-
 
 
   this.move = function() {
     this.x += this.dx
     this.y += this.dy
-
-    if (this.isColliding || checkInBounds()) {
-      return true
-    }
   }
 
   this.draw = function() {
-    this.context.clearRect(this.x-1,this.y-1,this.img.width+2,this.img.height+2)
-    this.context.drawImage(this.img, this.x,this.y)
-  }
+    let xView = this.x + this.width / 2
+    let yView = this.y + this.height / 2
 
+    context.save()
+    context.translate(xView, yView)
+    context.rotate((this.orientation + 90) * Math.PI / 180)
+    context.drawImage(this.img, -this.centerX, -this.centerY)
+    context.restore()
+  }
 }
