@@ -1,11 +1,13 @@
-// API call to nutrition API
 import axios from 'axios';
-import { getList } from './ducks/nutritionService';
+import { getList, getSpecificFood } from '../store/ducks/nutritionReducer';
 import store from '../store/store';
 
+export function getSearchFood(item){
+  const promise = axios.get('http://localhost:8000/api/foods?item='+item).then(response => response.data);
+  store.dispatch( getList(promise) )
+}
 
-export function dispatchGetList() {
-  const promise = axios.get( 'https://api.nal.usda.gov/ndb/search/?format=json&q=${search}&sort=n&max=1000&offset=0&api_key=apiKey' )
-  .then( response => response.data );
-  store.dispatch( getList(promise) );
+export function getSpecific(ndbno){
+  const promise = axios.get('http://localhost:8000/api/nutrition?ndbno='+ndbno).then(response => response.data);
+  store.dispatch( getSpecificFood(promise) )
 }
