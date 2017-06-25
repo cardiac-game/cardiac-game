@@ -16,11 +16,18 @@ render() {
 
 <section className="home-body">
 
+
+{/*SECTION ONE*/}
+<div className="section-1">
 <div className="title">CARDIAC</div>
 {/*<div className="test"></div>*/}
 <div className="dark-curtain-1"></div>
 <canvas ref="bloody"></canvas>
+</div>
 
+
+{/*SECTION TWO*/}
+<div className="section-2">
 <div className="text-back-1">
 <div className="text">WELCOME TO CARDIAC
 <hr/>
@@ -31,14 +38,16 @@ Cardiac raises awareness and educates in the form of a fun and informative video
 Take command of your immune system, and fight the battle your body fights every single day.
 </div>
 </div>
-
 <div className="image-one"></div>
+</div>
 
+
+{/*SECTION THREE*/}
+<div className="section-3">
 <div className="text-back-2">
 
 <div className="quote">"This website changed my life. I'm new to the internet, but this is the only reason I ever go on. It warms my heart to see young people these days care so much about their health.
-    <br/><br/>As someone with a lot of life experience, I endorse this website as a good source of motivation. Some days are harder to get out of bed than others because of my osteoperosis, but this website alone has helped me push through the pain.
-    <br/><br/>Sign up and play today."  - Mentor, Alex - 100 years from now (Yes, I'll still be alive).
+    <br/><br/>As someone with a lot of life experience, I endorse this website as a good source of motivation."
 <br/><br/><hr/>
 </div>
 
@@ -55,9 +64,7 @@ Take command of your immune system, and fight the battle your body fights every 
     </div>
 
 <div className="dark-curtain-2"></div>
-
 </div>
-
 
 <div className="image-two">
     <div className="continue">CONTINUE</div>
@@ -88,10 +95,12 @@ Take command of your immune system, and fight the battle your body fights every 
 
 
 <div className="footer-about foot-toes">ABOUT</div>
-<div className="footer-about1">· Developers</div>
-<div className="footer-about2">· Technology</div>
+<Link to="/about"><div className="footer-about1">· Developers</div></Link>
+<Link to="/about"><div className="footer-about2">· Technology</div></Link>
 
 <div className="footer-contact foot-toes">CONTACT</div>
+</div>
+
 </div>
 
 </section>
