@@ -8,9 +8,9 @@ background-color: #fff9f2;
 .selected-info {
 position: absolute;
 top: 7vh;
-left: 10px;
+left: calc(50vw + 5px);
 height: 32vh;
-width: calc(50vw - 5px);
+width: calc(49vw - 5px);
 overflow-y: scroll;
 font-family: 'Josefin Sans';
 font-size: 13px;
@@ -18,9 +18,9 @@ font-size: 13px;
 
 .nutrition-info {
 position: absolute;
-top: 7vh;
+top: 45vh;
 left: calc(50vw + 5px);
-height: 32vh;
+height: calc(55vh - 40px);
 width: calc(49vw - 5px);
 overflow-y: scroll;
 font-family: 'Josefin Sans';
