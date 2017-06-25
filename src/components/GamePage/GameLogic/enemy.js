@@ -36,8 +36,8 @@ export default function Enemy(context, image) {
           this.orientation += (direction* Math.min(this.turnSpeed, delta))
       }
       this.orientation %= $.pi
-      this.x += Math.cos(this.orientation) * this.speed
-      this.y += Math.sin(this.orientation) * this.speed
+      this.x += Math.cos(this.orientation) * this.speed + $.randBtwn(-3,3)
+      this.y += Math.sin(this.orientation) * this.speed 
     },
     draw: function() {
       let xView = this.x + this.centerX
@@ -47,8 +47,7 @@ export default function Enemy(context, image) {
       context.rotate($.toRad(this.orientation + 90))
       context.drawImage(this.img, -this.centerX, -this.centerY, this.width, this.height)
       context.restore()
-      this.move()
-    }
+   }
   }
 
   return enemy

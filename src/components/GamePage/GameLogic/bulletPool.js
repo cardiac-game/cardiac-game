@@ -1,6 +1,6 @@
 import Bullet from './bullet'
 
-export default function BulletPool(maxSize, context) {
+export default function BulletPool(maxSize,context) {
 	var size = maxSize
 	let active = []
   let inactive = []
@@ -32,13 +32,17 @@ export default function BulletPool(maxSize, context) {
     active.push(bullet)
 	}
 
-	this.draw = function() {
+	this.move = function() {
     if (active.length < 1) return
     for (let i = 0; i < active.length; i ++) {
-      let bullet = active[i]
-      bullet.draw()
-      bullet.move()
-      bullet.checkInBounds() ? storeBullet(active.splice(i,1)[0]) : null
+      active[i].move()
+      active[i].checkInBounds() ? storeBullet(active.splice(i,1)[0]) : null
     }
 	}
+
+  this.draw = function() {
+    for (let i = 0; i < active.length; i++) {
+      active[i].draw()
+    }
+  }
 }

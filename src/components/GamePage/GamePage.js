@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import MainLoop from 'mainloop.js'
+
 import Player from './GameLogic/player'
 import Enemy from './GameLogic/enemy'
 import images from './GameLogic/mediaRepos'
@@ -6,6 +8,7 @@ import images from './GameLogic/mediaRepos'
 import './GamePage.css'
 
 //========================== React Component ================================
+
 
 export default class GamePage extends Component {
 
@@ -20,18 +23,29 @@ export default class GamePage extends Component {
 
     let ctx = canvas.getContext('2d')
 
-    let player = Player(ctx,canvas.width,canvas.height,100)
-    let enemy = Enemy(ctx,images.enemy)
+    let player = Player(100, ctx)
+    let enemy = Enemy(ctx, images.enemy)
+
+    player.context = ctx
+    enemy.context = ctx
+
     player.bulletPool.init()
     player.draw()
     enemy.draw()
 
+    
+    function animate(timestamp) {
+    // update player, enemies, bullets
+    ctx.clearRect(0,0,canvas.width,canvas.height)
 
-    function animate() {
+    
+
+
       player.draw()
       enemy.draw()
       requestAnimationFrame(animate)
     }
+
     animate()
 
   }

@@ -1,5 +1,7 @@
 export default function Bullet(context) {
 
+  this.context = context
+
   this.spawn = function(x,y,orientation,img, speed) {
     this.x = x,
     this.y = y,
@@ -16,9 +18,9 @@ export default function Bullet(context) {
 
   this.checkInBounds = function() {
   let top = this.y <= 0 - this.img.height
-  let bottom = this.y >= context.canvas.height
+  let bottom = this.y >= this.context.canvas.height
   let left = this.x <= 0 - this.img.width
-  let right = this.x >= context.canvas.width
+  let right = this.x >= this.context.canvas.width
   return (top || bottom || left || right) ? true : false
   }
 
@@ -32,10 +34,10 @@ export default function Bullet(context) {
     let xView = this.x + this.width / 2
     let yView = this.y + this.height / 2
 
-    context.save()
-    context.translate(xView, yView)
-    context.rotate((this.orientation + 90) * Math.PI / 180)
-    context.drawImage(this.img, -this.centerX, -this.centerY)
-    context.restore()
+    this.context.save()
+    this.context.translate(xView, yView)
+    this.context.rotate((this.orientation + 90) * Math.PI / 180)
+    this.context.drawImage(this.img, -this.centerX, -this.centerY)
+    this.context.restore()
   }
 }

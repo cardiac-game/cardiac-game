@@ -39,11 +39,12 @@ document.onkeyup = (e) => {
 }
 
 // player object
-export default function Player(ctx,cW,cH,maxBullets) {
+export default function Player(maxBullets, context) {
 
   let player = {
-    x: cW/2,
-    y: cH/2,
+    context: context,
+    x: 200,
+    y: 200,
     img: images.ship,
     width: images.ship.width,
     height: images.ship.height,
@@ -54,7 +55,7 @@ export default function Player(ctx,cW,cH,maxBullets) {
     speed: 6,
     orientation: 0,
     turnSpeed:  3,
-    bulletPool: new BulletPool(maxBullets,ctx),
+    bulletPool: new BulletPool(maxBullets, context),
     lastShot: 0,
     fireRate: 333,
     init: function(speed,turnSpeed) {
@@ -90,13 +91,13 @@ export default function Player(ctx,cW,cH,maxBullets) {
        }
 
        // bounds checking
-       if (this.x >= cW - this.width) {
-           this.x = cW - this.width
+       if (this.x >= this.cW - this.width) {
+           this.x = this.cW - this.width
        } else if (this.x <= 0) {
            this.x = 0
        }
-       if (this.y > cH - this.height) {
-           this.y = cH - this.height
+       if (this.y > this.cH - this.height) {
+           this.y = this.cH - this.height
        } else if (this.y <= 0) {
            this.y = 0
        }
@@ -106,26 +107,13 @@ export default function Player(ctx,cW,cH,maxBullets) {
         this.lastShot = Date.now()
         this.bulletPool.fire(this.x + this.centerX, this.y + this.centerY, this.orientation, images.bullet, this.speed*2)
       }
-      this.bulletPool.draw()
     },
     draw: function() {
-      let xView = this.x + this.width / 2
-      let yView = this.y + this.height / 2
-
-      ctx.save()
-      ctx.clearRect(0,0,cW, cH)
-
-      this.move()
-      /// make sure pivot is moved to center
-      ctx.translate(xView, yView)
-
-      /// rotate, you should make new sprite where direction
-      /// points to the right. I'm add 90 here to compensate
-      ctx.rotate((this.orientation + 90) * Math.PI / 180)
-      /// translate back before drawing the sprite
-      ctx.drawImage(this.img, -this.centerX, -this.centerY, this.width, this.height)
-      ctx.restore()
-      this.shoot()
+      this.context.save()
+      this.context.translate(this.x + this.centerX, this.y + this.centerY)
+      this.context.rotate((this.orientation + 90) * Math.PI / 180)
+      this.context.drawImage(this.img, -this.centerX, -this.centerY, this.width, this.height)
+      this.context.restore()
     }
   }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import HomePage from './components/HomePage/HomePage'
+import HomePage from './components/HomePage/homePage'
 import GamePage from './components/GamePage/GamePage'
 
 import './App.css';
