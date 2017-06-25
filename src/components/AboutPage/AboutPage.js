@@ -9,6 +9,8 @@ render() {
 
 <section className="about-body">
 
+<div className="about-main">
+
 <div className="about-line-1"></div>
  <div className="about-pic-one">
      <div className="technology">TECHNOLOGY</div>
@@ -23,6 +25,8 @@ render() {
     <div className="about-pic-three">
         <div className="developers">DEVELOPERS</div>
     </div>
+
+</div>
 
 </section>
 
