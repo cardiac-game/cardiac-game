@@ -9,24 +9,34 @@ render() {
 
 <section className="about-body">
 
-<div className="about-main">
-
-<div className="about-line-1"></div>
- <div className="about-pic-one">
-     <div className="technology">TECHNOLOGY</div>
- </div>
-
-<div className="about-image"></div>
-<div className="about-back-1"></div>
-
-    <div className="about-pic-two"></div>
-    
-  <div className="about-line-2"></div>
-    <div className="about-pic-three">
-        <div className="developers">DEVELOPERS</div>
+    <div className="about-solidBG">
+        <div className="about-solidBG-HR"></div>
+        <div className="about-solidBG-container">
+            <div className="about-img-container">
+                <div className="about-technology">TECHNOLOGY</div>
+                <div className="about-pic1"></div>         
+            </div>
+        </div>
     </div>
 
-</div>
+    <div className="about-parallax">
+        <div className="about-parallax-gradient">
+            <div className="about-img-container">
+                <div className="about-pic2"></div>
+            </div> 
+        </div>       
+    </div>
+
+    <div className="about-solidBG">
+        <div className="about-solidBG-HR"></div>
+        <div className="about-solidBG-container">
+            <div className="about-img-container">
+                <div className="about-technology">DEVELOPERS</div>
+                <div className="about-pic3"></div>         
+            </div>
+        </div>
+    </div>
+
 
 </section>
 
