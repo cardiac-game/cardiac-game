@@ -1,24 +1,19 @@
-// 
-//  LINKS CURRENTLY DO NOT WORK ON HOMEPAGE BC OF THE Z-INDEX on Homepage.CSS
-// 
-
-
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './navbar.css';
 
 // import './navbar.css'
 
 //functional component (not class component)
 const Navbar = () => {
     return (
-        <nav>
+        <nav className="navbar-bar">
             <ul>
-                <Link to="/"><li>Home</li></Link>
-                <Link to="/about"><li>About</li></Link>
-                <Link to="/healthy"><li>Health</li></Link>
-                <Link to="/timeline"><li>Timeline</li></Link>
-                <Link to="/input"><li>Game - Input</li></Link>
-                <Link to="/game"><li>Game - Game</li></Link>          
+                <Link to="/"><div className="navbar-text navbar-home">HOME</div></Link>
+                <Link to="/timeline"><div className="navbar-text navbar-timeline">TIMELINE</div></Link>
+                <Link to="/nutrition"><div className="navbar-text navbar-nutrition">NUTIRUTION</div></Link>
+                <Link to="/about"><div className="navbar-text navbar-about">ABOUT</div></Link>
+                <Link to="/input"><div className="navbar-text navbar-game">GAME</div></Link>    
             </ul>
         </nav>
     )

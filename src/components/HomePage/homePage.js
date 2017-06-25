@@ -17,16 +17,17 @@ render() {
 <section className="home-body">
 
 <div className="title">CARDIAC</div>
+{/*<div className="test"></div>*/}
 <div className="dark-curtain-1"></div>
 <canvas ref="bloody"></canvas>
 
 <div className="text-back-1">
 <div className="text">WELCOME TO CARDIAC
-<hr></hr>
+<hr/>
 We’ve used proven nutritional data and correlated this with the phenomenon that is the human body to bring you the ultimate immune system simulator.
-<br></br><br></br>
+<br/><br/>
 Cardiac raises awareness and educates in the form of a fun and informative video game. A game that only proves its point the more challenging it gets.
-<br></br><br></br>
+<br/><br/>
 Take command of your immune system, and fight the battle your body fights every single day.
 </div>
 </div>
@@ -36,9 +37,9 @@ Take command of your immune system, and fight the battle your body fights every 
 <div className="text-back-2">
 
 <div className="quote">"This website changed my life. I'm new to the internet, but this is the only reason I ever go on. It warms my heart to see young people these days care so much about their health.
-    <br></br><br></br>As someone with a lot of life experience, I endorse this website as a good source of motivation. Some days are harder to get out of bed than others because of my osteoperosis, but this website alone has helped me push through the pain.
-    <br></br><br></br>Sign up and play today."  - Mentor, Alex - 100 years from now (Yes, I'll still be alive).
-<br></br><br></br><hr></hr>
+    <br/><br/>As someone with a lot of life experience, I endorse this website as a good source of motivation. Some days are harder to get out of bed than others because of my osteoperosis, but this website alone has helped me push through the pain.
+    <br/><br/>Sign up and play today."  - Mentor, Alex - 100 years from now (Yes, I'll still be alive).
+<br/><br/><hr/>
 </div>
 
     <div className="pic-one anatomy-pic">
@@ -68,7 +69,7 @@ Take command of your immune system, and fight the battle your body fights every 
     <div className="quote">"This website has changed my soul.
         <br></br><br></br>I'm not new to health, and so I know how bad looking other health websites look. This one is beautiful. I've bookmarked, favorited and made this website my homepage.
         <br></br><br></br>You can trust me. I'm a professional and finding websites like this helps keep the pounds off." - Dr. El-ix
-<br></br><br></br><hr></hr>
+<br></br><br></br><hr/>
 </div>
 </div>
 <div className="home-footer">

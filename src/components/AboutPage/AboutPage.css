@@ -1,41 +1,105 @@
 .about-body {
-height: 100%;
-}
-
-.about-back {
-height: 763px;
-width: 100%;
+height: 2370px;
 background-color: #fff9f2;
 }
 
-.pic-one {
+.about-back-1 {
 position: absolute;
-background-image: url('./images/Head - Sketch 01.jpg');
+text-align: center;
+top: 100%;
+width: 100vw;
+height: 100%;
+z-index: 5;
+opacity: .6;
+background: -webkit-linear-gradient(right, #6b0000, black);
+box-shadow: inset 0px 0px 10px black; 
+}
+.about-image {
+position: absolute;
 background-size: cover;
-top: 200px;
-left: 15%;
+top: 100%;
+width: 100vw;
+height: 100%;
+background-image: url('./images/Anatomy - Sketch 01.png');
+box-shadow: inset 0px 0px 10px black;
+background-attachment: fixed;
+}
+.about-line-1{
+position: absolute;
+background-color: black;
+height: 1px;
+width: 95%;
+top: 15%;
+left: 50%;
+transform: translate(-50%); 
+}
+.technology {
+position: absolute;
+top: -12%;
+left: 50%;
+transform: translate(-50%);
+z-index: 50;
+font-family: 'Josefin Sans';
+font-size: 35px;
+color: black;
+text-shadow: 0px 0px 3px black;
+letter-spacing: 5px;
+}
+.about-pic-one {
+position: absolute;
+background-image: url('./images/Body - Sketch 01.jpg');
+background-size: cover;
+top: 55%;
+left: 5%;
+transform: translate(-0%, -50%);
 width: 300px;
-height: 497px;
-box-shadow: 0 0 5px black;
+height: 460px;
+box-shadow: inset 0 0 5px black;
+z-index: 10;
 /*transform: rotate(3deg);*/
 }
-.pic-two {
+.about-pic-two {
 position: absolute;
-background-image: url('./images/Head - Sketch 02.jpg');
+background-image: url('./images/Head - Sketch 01.png');
 background-size: cover;
-top: 200px;
-left: 40%;
+top: 150%;
+left: 5%;
+transform: translate(-0%, -50%);
 width: 300px;
-height: 497px;
-box-shadow: 0 0 5px black; 
+height: 460px;
+box-shadow: 0 0 5px black;
+z-index: 10;
 }
-.pic-three {
+.about-line-2{
 position: absolute;
-background-image: url('./images/Head - Sketch 03.jpg');
+background-color: black;
+height: 1px;
+width: 95%;
+top: 215%;
+left: 50%;
+transform: translate(-50%); 
+}
+.developers {
+position: absolute;
+top: -12%;
+left: 50%;
+transform: translate(-50%);
+z-index: 50;
+font-family: 'Josefin Sans';
+font-size: 35px;
+color: black;
+text-shadow: 0px 0px 3px black;
+letter-spacing: 5px;
+}
+.about-pic-three {
+position: absolute;
+background-image: url('./images/Body - Sketch 02.png');
 background-size: cover;
-top: 200px;
-left: 65%;
+top: 255%;
+left: 5%;
+transform: translate(-0%, -50%);
 width: 300px;
-height: 497px;
-box-shadow: 0 0 5px black; 
+height: 460px;
+box-shadow: 0 0 5px black;
+z-index: 10;
 }
