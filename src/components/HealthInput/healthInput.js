@@ -38,7 +38,7 @@ class HealthInput extends Component {
 
                     result = matches_array[0]
                     }
-                    obj.name = result
+                    obj.name = result.toUpperCase();
                 })
 
                 // this block of code eliminates all duplicates from then end to the beginning of the array
@@ -53,7 +53,6 @@ class HealthInput extends Component {
                 this.setState({
                     allFoodsArray: allFoodsArray
                 })
-                console.log(this.state.allFoodsArray)
             });
     }
 
@@ -61,10 +60,23 @@ class HealthInput extends Component {
     addToUserList(ndbno) {
         axios.get('http://localhost:8000/api/nutrition?ndbno='+ndbno)
             .then(response => {
-                response.data.report.food.qty=1;
+
+                let singularUserFood = response.data.report.food
+                
+                let result = singularUserFood.name;
+                if (result.includes(', UPC')) {
+                    const regexp = /.*?(?=, UPC)/
+                    const matches_array = result.match(regexp);
+
+                    result = matches_array[0]
+                }
+                singularUserFood.name = result.toUpperCase();
+        
+
+                singularUserFood.qty=1;
                 this.setState({
-                    chosenFoodsArray: [...this.state.chosenFoodsArray, response.data.report.food],
-                    chosenFoodsNutrition: Object.assign({}, this.arrayOfObjectsReducer([...this.state.chosenFoodsArray, response.data.report.food]))
+                    chosenFoodsArray: [...this.state.chosenFoodsArray, singularUserFood],
+                    chosenFoodsNutrition: Object.assign({}, this.arrayOfObjectsReducer([...this.state.chosenFoodsArray, singularUserFood]))
                 })
             });
     }
@@ -156,7 +168,7 @@ class HealthInput extends Component {
 
 //hook up to store
 function mapStateToProps(state){
-    console.log(state.nutritionReducer)
+    // console.log(state.nutritionReducer)
     return state.nutritionReducer;
 }
 
