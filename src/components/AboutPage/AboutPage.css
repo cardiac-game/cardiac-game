@@ -1,5 +1,5 @@
-.about-body {
-height: 2370px;
+.about-main {
+height: 295vh;
 background-color: #fff9f2;
 }
 
@@ -34,7 +34,7 @@ left: 50%;
 transform: translate(-50%); 
 }
 .technology {
-position: absolute;
+position: relative;
 top: -12%;
 left: 50%;
 transform: translate(-50%);
