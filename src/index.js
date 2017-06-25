@@ -28,6 +28,7 @@ ReactDOM.render(
             <Route path="/timeline" component = {Timeline}/>
             <Route path="/input" component = {HealthInput}/>
             <Route path="/game" component={GamePage}/>
+            <Route path="*" component={HomePage} />
         </Switch>
         <ProjectFooter />
         </div>

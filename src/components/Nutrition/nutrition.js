@@ -4,13 +4,15 @@ import './nutrition.css';
 
 export default class Nutrition extends Component {
 
-render() {
-    return (
+    render() {
+        return (
 
-<section className="nutrition-body">
+        <section className="nutrition-body">
 
 
 
-</section>
+        </section>
 
-)}}
+        )
+    }
+}
