@@ -8,19 +8,21 @@ render() {
     return (
 
 <section className="about-body">
-<div className="about-back">
 
-  <div className="pic-one anatomy-pic">
-    </div>
+<div className="about-line-1"></div>
+ <div className="about-pic-one">
+     <div className="technology">TECHNOLOGY</div>
+ </div>
+
+<div className="about-image"></div>
+<div className="about-back-1"></div>
+
+    <div className="about-pic-two"></div>
     
-    <div className="pic-two anatomy-pic">
+  <div className="about-line-2"></div>
+    <div className="about-pic-three">
+        <div className="developers">DEVELOPERS</div>
     </div>
-    
-    <div className="pic-three anatomy-pic">
-    </div>
-
-</div>
-
 
 </section>
 
