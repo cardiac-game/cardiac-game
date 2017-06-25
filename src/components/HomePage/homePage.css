@@ -1,15 +1,16 @@
 .home-body {
-width: 1445px;
+width: 100vw;
 height: 3410px;
 overflow-x: hidden;
 }
+
 
 /*------------------------------ SECTION ONE*/
 
     .section-1 {
     position: absolute;
     top: 0px;
-    width: 1440px;
+    width: 100vw;
     height: 100vh;
     }
 
@@ -39,7 +40,7 @@ overflow-x: hidden;
     .dark-curtain-1 {
     position: absolute;
     width: 100vw;
-    height: 900px;
+    height: 100vh;
     opacity: .5;
     background: -webkit-linear-gradient(top, #6b0000, white);
     }
@@ -49,7 +50,7 @@ overflow-x: hidden;
     .section-2 {
     position: absolute;
     top: 100vh;
-    width: 1440px;
+    width: 100vw;
     height: 100vh;
     }
 
@@ -95,7 +96,7 @@ overflow-x: hidden;
     .section-3 {
     position: absolute;
     top: 1500px;
-    width: 1440px;
+    width: 100vw;
     height: 100vh;
     }
 
@@ -217,7 +218,7 @@ overflow-x: hidden;
     background-image: url('./images/Anatomy - Sketch 07.png');
     background-size: cover;
     top: 805px;
-    width: 100%;
+    width: 100vw;
     height: 500px;
     box-shadow: 0 0 5px black;
     background-attachment: fixed;
