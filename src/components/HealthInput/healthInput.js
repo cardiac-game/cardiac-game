@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 // import { Link } from 'react-router-dom'; // to link to the game
 // import { getSearchFood, getSpecific} from '../../services/nutrition.service'
 import './healthInput.css'
@@ -122,6 +123,7 @@ class HealthInput extends Component {
     }
 
     render() {
+
         // display the list of all foods return by the user search
         const listOfFoods = this.state.allFoodsArray.map((item => {
             return (
@@ -153,16 +155,17 @@ class HealthInput extends Component {
         })
 
         return (
-        <div>
-            <h1>HI THIS IS THE HEALTH INPUT PAGE</h1>
-            { nutritionInfo }            
-            <div className="HI-nutrition-info">{ listOfUserFoods }</div>
-            <input value={this.state.userInput} onChange={e => this.setState({userInput: e.target.value})}></input>
-            <button disabled={this.state.userInput ? false : true} onClick={() => this.getFoodsArray(this.state.userInput)}>PUSH</button>
-            <button disabled={this.state.chosenFoodsArray.length === 0 ? true : false}>Submit</button>
-            <div className="HI-food-list">{ listOfFoods }</div>
+        <div className="input-input">
+            <div className="nutrition-info">{ nutritionInfo }</div>       
+            <div className="selected-info">{ listOfUserFoods }</div>
+            <input className="input-box" value={this.state.userInput} onChange={e => this.setState({userInput: e.target.value})}></input>
+            <button className="input-button-1" disabled={this.state.userInput ? false : true} onClick={() => this.getFoodsArray(this.state.userInput)}>Search</button>
+            <button className="input-button-2" disabled={this.state.chosenFoodsArray.length === 0 ? true : false}>Submit</button>
+            <div className="food-list">{ listOfFoods }</div>
         </div>
         )
+
+        
     }
 }
 
