@@ -1,0 +1,41 @@
+.about-body {
+height: 100%;
+}
+
+.about-back {
+height: 763px;
+width: 100%;
+background-color: #fff9f2;
+}
+
+.pic-one {
+position: absolute;
+background-image: url('./images/Head - Sketch 01.jpg');
+background-size: cover;
+top: 200px;
+left: 15%;
+width: 300px;
+height: 497px;
+box-shadow: 0 0 5px black;
+/*transform: rotate(3deg);*/
+}
+.pic-two {
+position: absolute;
+background-image: url('./images/Head - Sketch 02.jpg');
+background-size: cover;
+top: 200px;
+left: 40%;
+width: 300px;
+height: 497px;
+box-shadow: 0 0 5px black; 
+}
+.pic-three {
+position: absolute;
+background-image: url('./images/Head - Sketch 03.jpg');
+background-size: cover;
+top: 200px;
+left: 65%;
+width: 300px;
+height: 497px;
+box-shadow: 0 0 5px black; 
+}

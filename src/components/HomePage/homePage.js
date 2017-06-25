@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 // import { Link } from 'react-router-dom'; // Important for linking to the Health page at bottom of homepage
 import bloody from './bloody.js';
 import anatomy from './anatomy.js';
@@ -37,19 +38,19 @@ Take command of your immune system, and fight the battle your body fights every 
 <div className="quote">"This website changed my life. I'm new to the internet, but this is the only reason I ever go on. It warms my heart to see young people these days care so much about their health.
     <br></br><br></br>As someone with a lot of life experience, I endorse this website as a good source of motivation. Some days are harder to get out of bed than others because of my osteoperosis, but this website alone has helped me push through the pain.
     <br></br><br></br>Sign up and play today."  - Mentor, Alex - 100 years from now (Yes, I'll still be alive).
-<br></br><br></br><br></br><hr></hr>
+<br></br><br></br><hr></hr>
 </div>
 
     <div className="pic-one anatomy-pic">
-        <div className="button-1">TIMELINE</div>
+        <Link to="/timeline"><div className="button-1">TIMELINE</div></Link>
     </div>
     
     <div className="pic-two anatomy-pic">
-        <div className="button-2">NUTRITION</div>
+        <Link to="/healthy"><div className="button-2">NUTRITION</div></Link>
     </div>
     
     <div className="pic-three anatomy-pic">
-        <div className="button-3">ABOUT</div>
+        <Link to="/about"><div className="button-3">ABOUT</div></Link>
     </div>
 
 <div className="dark-curtain-2"></div>
@@ -59,14 +60,15 @@ Take command of your immune system, and fight the battle your body fights every 
 
 <div className="image-two">
     <div className="continue">CONTINUE</div>
+    <Link to="/input"><div className="continue">CONTINUE</div></Link>
 </div>
 
 
 <div className="home-filler">
-    <div className="quote">"This website changed my life. I'm new to the h about their health.
-    <br></br><br></br>As someone with a lot of life experience, I endorse this website as a good source of motivation. Some days are harder to get out of bed than others because of my osteoperosis.
-    <br></br><br></br>As someone with a lot of life experience, I endorse this website as a good source of motivation."
-<br></br><br></br><br></br><hr></hr>
+    <div className="quote">"This website has changed my soul.
+        <br></br><br></br>I'm not new to health, and so I know how bad looking other health websites look. This one is beautiful. I've bookmarked, favorited and made this website my homepage.
+        <br></br><br></br>You can trust me. I'm a professional and finding websites like this helps keep the pounds off." - Dr. El-ix
+<br></br><br></br><hr></hr>
 </div>
 </div>
 <div className="home-footer">
@@ -81,6 +83,8 @@ Take command of your immune system, and fight the battle your body fights every 
 <div className="footer-source2">· Live Strong</div>
 <div className="footer-source3">· NCI</div>
 <div className="footer-source4">· PBS</div>
+<div className="footer-source5">· USDA API</div>
+
 
 <div className="footer-about foot-toes">ABOUT</div>
 <div className="footer-about1">· Developers</div>

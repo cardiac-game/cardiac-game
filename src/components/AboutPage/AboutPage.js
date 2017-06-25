@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import './AboutPage.css';
 
-//functional component (not class component) for components with no state
-const About = () => {
+export default class About extends Component {
+
+render() {
     return (
-        <div>
-            <h1>HI WELCOME TO THE ABOUT PAGE</h1>
-        </div>
-    )
-}
 
-export default About;
+<section className="about-body">
+<div className="about-back">
+
+  <div className="pic-one anatomy-pic">
+    </div>
+    
+    <div className="pic-two anatomy-pic">
+    </div>
+    
+    <div className="pic-three anatomy-pic">
+    </div>
+
+</div>
+
+
+</section>
+
+)}}
