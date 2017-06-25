@@ -1,105 +1,78 @@
-.about-main {
-height: 295vh;
-background-color: #fff9f2;
+.about-solidBG {
+    height: 100vh;
+    width: 100%;
+    background-color: #fff9f2;
+    padding: 2.5%
 }
 
-.about-back-1 {
-position: absolute;
-text-align: center;
-top: 100%;
-width: 100vw;
-height: 100%;
-z-index: 5;
-opacity: .6;
-background: -webkit-linear-gradient(right, #6b0000, black);
-box-shadow: inset 0px 0px 10px black; 
+.about-solidBG-HR {
+    height: 15%;
+    width: 100;
+    border-bottom: 1px solid black;
 }
-.about-image {
-position: absolute;
-background-size: cover;
-top: 100%;
-width: 100vw;
-height: 100%;
-background-image: url('./images/Anatomy - Sketch 01.png');
-box-shadow: inset 0px 0px 10px black;
-background-attachment: fixed;
+
+.about-solidBG-container {
+    height: 85%;
+    width: 100%;
+    padding: 5% 0 5% 0;
 }
-.about-line-1{
-position: absolute;
-background-color: black;
-height: 1px;
-width: 95%;
-top: 15%;
-left: 50%;
-transform: translate(-50%); 
+
+.about-img-container {
+    width: 33%;
+    height: 100%;
+    padding: 0 5% 0 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
-.technology {
-position: relative;
-top: -12%;
-left: 50%;
-transform: translate(-50%);
-z-index: 50;
-font-family: 'Josefin Sans';
-font-size: 35px;
-color: black;
-text-shadow: 0px 0px 3px black;
-letter-spacing: 5px;
+
+.about-technology {
+    font-family: 'Josefin Sans';
+    font-size: 35px;
+    color: black;
+    text-shadow: 0px 0px 3px black;
+    letter-spacing: 5px;
 }
-.about-pic-one {
-position: absolute;
-background-image: url('./images/Body - Sketch 01.jpg');
-background-size: cover;
-top: 55%;
-left: 5%;
-transform: translate(-0%, -50%);
-width: 300px;
-height: 460px;
-box-shadow: inset 0 0 5px black;
-z-index: 10;
-/*transform: rotate(3deg);*/
+
+.about-pic1 {
+    background-image: url('./images/Body - Sketch 01.jpg');
+    background-size: cover;
+    width: 300px;
+    height: 460px;
+    box-shadow: inset 0 0 5px black;
 }
-.about-pic-two {
-position: absolute;
-background-image: url('./images/Head - Sketch 01.png');
-background-size: cover;
-top: 150%;
-left: 5%;
-transform: translate(-0%, -50%);
-width: 300px;
-height: 460px;
-box-shadow: 0 0 5px black;
-z-index: 10;
+
+.about-pic3 {
+    background-image: url('./images/Head - Sketch 01.png');
+    background-size: cover;
+    width: 300px;
+    height: 460px;
 }
-.about-line-2{
-position: absolute;
-background-color: black;
-height: 1px;
-width: 95%;
-top: 215%;
-left: 50%;
-transform: translate(-50%); 
+ 
+
+.about-parallax {
+    height: 66vh;
+    width: 100%;
+    background-image: url('./images/Anatomy - Sketch 01.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-.developers {
-position: absolute;
-top: -12%;
-left: 50%;
-transform: translate(-50%);
-z-index: 50;
-font-family: 'Josefin Sans';
-font-size: 35px;
-color: black;
-text-shadow: 0px 0px 3px black;
-letter-spacing: 5px;
+
+.about-parallax-gradient {
+    height: 100%;
+    width: 100%;
+    /*opacity: .6;*/
+    background: -webkit-linear-gradient(right, rgba(107, 0, 0, .6), rgba(0, 0, 0, 0.6));
+    box-shadow: inset 0px 0px 10px black; 
 }
-.about-pic-three {
-position: absolute;
-background-image: url('./images/Body - Sketch 02.png');
-background-size: cover;
-top: 255%;
-left: 5%;
-transform: translate(-0%, -50%);
-width: 300px;
-height: 460px;
-box-shadow: 0 0 5px black;
-z-index: 10;
+
+.about-pic2 {
+    background-image: url('./images/Head - Sketch 01.png');
+    background-size: cover;
+    width: 300px;
+    height: 460px;
+    box-shadow: 0 0 5px black; 
 }
