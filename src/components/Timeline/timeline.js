@@ -6,10 +6,12 @@ export default class Timeline extends Component {
 render() {
     return (
 
-<section className="timeline-body">
+        <section className="timeline-body">
 
 
 
-</section>
+        </section>
 
-)}}
+        )
+    }
+}
