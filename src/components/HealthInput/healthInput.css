@@ -1,0 +1,61 @@
+
+.input-input {
+height: calc(100vh - 40px);
+width: 100vw;
+background-color: #fff9f2;
+}
+
+.selected-info {
+position: absolute;
+top: 7vh;
+left: calc(50vw + 5px);
+height: 32vh;
+width: calc(49vw - 5px);
+overflow-y: scroll;
+font-family: 'Josefin Sans';
+font-size: 13px;
+}
+
+.nutrition-info {
+position: absolute;
+top: 45vh;
+left: calc(50vw + 5px);
+height: calc(55vh - 40px);
+width: calc(49vw - 5px);
+overflow-y: scroll;
+font-family: 'Josefin Sans';
+font-size: 13px;
+}
+
+.input-box {
+position: absolute;
+top: 40vh;
+width: 30vw;
+left: 10px;
+background-color: #fff9f2;
+}
+
+.input-button-1 {
+position: absolute;
+top: 40vh;
+left: 460px;
+background-color: #fff9f2;
+}
+
+.input-button-2 {
+position: absolute;
+top: 40vh;
+left: 520px;
+background-color: #fff9f2;
+}
+.food-list {
+position: absolute;
+top: 45vh;
+left: 10px;
+height: calc(55vh - 40px);
+width: 99vw;
+overflow-y: scroll;
+font-family: 'Josefin Sans';
+text-transform: uppercase;
+font-size: 13px;
+}

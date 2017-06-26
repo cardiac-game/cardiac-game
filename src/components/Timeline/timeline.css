@@ -1,0 +1,4 @@
+.timeline-body {
+height: calc(100vh - 40px);
+background-color: #fff9f2;
+}

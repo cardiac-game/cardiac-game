@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
+import './timeline.css';
 
-//functional component (not class component) no state
-const Timeline = () => {
+export default class Timeline extends Component {
+
+render() {
     return (
-        <div>
-            <h1>HI I AM THE TIMELINE PAGE</h1>
-        </div>
-    )
-}
 
-export default Timeline;
+<section className="timeline-body">
+
+
+
+</section>
+
+)}}

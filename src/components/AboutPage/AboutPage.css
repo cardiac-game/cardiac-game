@@ -1,0 +1,79 @@
+.about-solidBG {
+    height: 100vh;
+    width: 100%;
+    background-color: #fff9f2;
+    padding: 2.5%
+}
+
+.about-solidBG-HR {
+    height: 15%;
+    width: 100;
+    border-bottom: 1px solid black;
+}
+
+.about-solidBG-container {
+    height: 85%;
+    width: 100%;
+    padding: 3% 0 3% 0;
+}
+
+.about-img-container {
+    width: 33%;
+    height: 100%;
+    padding: 0 5% 0 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.about-technology {
+    font-family: 'Josefin Sans';
+    font-size: 35px;
+    color: black;
+    text-shadow: 0px 0px 3px black;
+    letter-spacing: 5px;
+}
+
+.about-pic1 {
+    background-image: url('./images/Body - Sketch 01.jpg');
+    background-size: cover;
+    width: 300px;
+    height: 460px;
+    box-shadow: 0 0 5px black; 
+}
+
+.about-pic3 {
+    background-image: url('./images/Body - Sketch 02.png');
+    background-size: cover;
+    width: 300px;
+    height: 460px;
+    box-shadow: 0 0 5px black; 
+}
+ 
+.about-parallax {
+    height: 66vh;
+    width: 100%;
+    background-image: url('./images/Anatomy - Sketch 01.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.about-parallax-gradient {
+    height: 100%;
+    width: 100%;
+    padding: 2.5%;
+    /*opacity: .6;*/
+    background: -webkit-linear-gradient(right, rgba(107, 0, 0, .6), rgba(0, 0, 0, 0.6));
+    box-shadow: inset 0px 0px 10px black; 
+}
+
+.about-pic2 {
+    background-image: url('./images/Head - Sketch 01.png');
+    background-size: cover;
+    width: 300px;
+    height: 460px;
+    box-shadow: 0 0 5px black; 
+}
