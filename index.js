@@ -10,7 +10,7 @@ var app = module.exports = express();
 
 app.use(bodyParser.json());
 app.use(cors());
-// app.use(express.static('dist'));
+app.use(express.static('build'));
 
 massive(dbConnectionString).then(db => {
     db.leaderboard_create_seed()
@@ -25,7 +25,20 @@ app.get('/api/rank/top', function(req, res){
 })
 
 app.get('/api/rank/:gameId', function(req, res){
-  controller.getCurrentGameRank(req, res)  
+  controller.getCurrentGameRank(req, res)
+})
+
+app.get('/api/foods', function(req, res) {
+    controller.getFoods(req, res)
+})
+
+app.get('/api/nutrition', function(req, res) {
+    controller.getNutritionData(req, res)
+})
+
+app.post('/api/userInfo/:user/:score', function(req, res) {
+  // console.log(controller, " HEYYY")
+  controller.postUserInfo(req, res)
 })
 
 app.listen(port, function(){

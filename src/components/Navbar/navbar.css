@@ -1,0 +1,41 @@
+.navbar-bar {
+position: fixed;
+height: 50px;
+width: 100vw;
+opacity: .7 ;
+background: -webkit-linear-gradient(right, #6b0000, black);
+box-shadow: 0 0 10px black;
+z-index: 50;
+}
+
+.navbar-text {
+cursor: pointer;
+position: absolute;
+top: 50%;
+transform: translate(-50%, -50%);
+z-index: 50;
+font-family: 'Josefin Sans';
+font-size: 13px;
+color: white;
+letter-spacing: 5px;
+}
+
+.navbar-home {
+left: 10%;
+}
+
+.navbar-timeline {
+left: 30%;
+}
+
+.navbar-nutrition {
+left: 50%;
+}
+
+.navbar-about {
+left: 70%;
+}
+
+.navbar-game {
+left: 90%;
+}
