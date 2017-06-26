@@ -7,7 +7,11 @@
     "body-parser": "^1.17.2",
     "cors": "^2.8.3",
     "express": "^4.15.3",
+<<<<<<< HEAD
     "jquery": "^3.2.1",
+=======
+    "font-awesome": "^4.7.0",
+>>>>>>> master
     "massive": "^3.0.0-rc1",
     "moment": "^2.18.1",
     "ramda": "^0.24.1",
