@@ -53,7 +53,7 @@ export default class About extends Component {
                                     <img className="about-logo-img" src={reactLogo} alt="react logo"/>
                                 </div>
                                 <div className="about-logo-info">
-                                    REACT
+                                    The frontend logic and data management is handled through the use of React.js. The use of this technology was a first for the development team.
                                 </div>
                             </div>
                             <div className="about-tech">
@@ -61,7 +61,7 @@ export default class About extends Component {
                                     <img className="about-logo-img" src={HTMLLogo} alt="HTML5 logo"/>
                                 </div>
                                 <div className="about-logo-info">
-                                    HTML
+                                    The game is drawn entirely within a HTML5 canvas element using vanilla javascript.
                                 </div>
                             </div>
                             <div className="about-tech">
@@ -69,7 +69,7 @@ export default class About extends Component {
                                     <img className="about-logo-img" src={nodeLogo} alt="nodejs logo"/>
                                 </div>
                                 <div className="about-logo-info">
-                                    NODE
+                                    Node.js enables server-side scripting entirely in javascript to create dynamic content.
                                 </div>
                             </div>
                             <div className="about-tech">
@@ -77,7 +77,7 @@ export default class About extends Component {
                                     <img className="about-logo-express" src={expressLogo} alt="express logo"/>
                                 </div>
                                 <div className="about-logo-info">
-                                    EXPRESS
+                                    API calls to the postgreSQL database and to external APIs are done by the server framework, Express.js.
                                 </div>
                             </div>
                             <div className="about-tech">
@@ -85,7 +85,7 @@ export default class About extends Component {
                                     <img className="about-logo-img" src={postgresLogo} alt="postgreSQL logo"/>
                                 </div>
                                 <div className="about-logo-info">
-                                    POSTGRESQL
+                                    The database server is done using the postgreSQL object-relational database management system. Queries and data sorting are done directly through SQL files with the use of Massive.js.
                                 </div>
                             </div>
                             <div className="about-tech">
@@ -93,7 +93,7 @@ export default class About extends Component {
                                     <img className="about-logo-img" src={herokuLogo} alt="heroku logo"/>
                                 </div>
                                 <div className="about-logo-info">
-                                    HEROKU
+                                    The cloud platform, Heroku allows for an easily built and accessible database.
                                 </div>
                             </div>
                         </div>
@@ -120,6 +120,9 @@ export default class About extends Component {
                             <div className="about-pic3"></div>         
                         </div>
                         <div className="about-solidBG-content">
+                            <div className="about-spacer "></div>                            
+                            <div className="about-spacer "></div>                            
+                            <div className="about-spacer "></div>                            
                             <div className="portrait-container">
                                 <div className="portrait">
                                     <div className="portrait-img-container">
@@ -243,7 +246,7 @@ export default class About extends Component {
                                         </p>
                                         <p>
                                             <span className="bold">Background: </span>
-                                            Military brat with a degree in Mechanical Engineering from Rice University.
+                                            Military brat with a degree in Mechanical Engineering from Rice University. Previous work experience in healthcare includes Quality Engineering in biotherapeutics and Information Technology work with electronic health records. 
                                         </p>                             
                                     </div>
                                 </div>
