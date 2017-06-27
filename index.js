@@ -36,6 +36,11 @@ app.get('/api/nutrition', function(req, res) {
     controller.getNutritionData(req, res)
 })
 
+app.post('/api/userInfo/:user/:score', function(req, res) {
+  // console.log(controller, " HEYYY")
+  controller.postUserInfo(req, res)
+})
+
 app.listen(port, function(){
   console.log("Successfully listening on :",port)
 })

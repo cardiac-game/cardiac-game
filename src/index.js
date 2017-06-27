@@ -9,7 +9,7 @@ import ProjectFooter from './components/ProjectFooter/projectFooter';
 import AboutPage from './components/AboutPage/AboutPage';
 import GamePage from './components/GamePage/GamePage';
 import HealthInput from './components/HealthInput/healthInput';
-import HealthKnowledge from './components/HealthKnowledge/healthKnowledge';
+import Nutrition from './components/Nutrition/nutrition';
 import Timeline from './components/Timeline/timeline';
 
 import App from './App';
@@ -21,14 +21,15 @@ ReactDOM.render(
 <Provider store = {store} >
     <Router>
         <div>
-        {/*<Navbar />*/}
+        <Navbar />
         <Switch>
             <Route exact path='/' component={HomePage} />
             <Route path="/about" component = {AboutPage}/>
-            <Route path="/healthy" component = {HealthKnowledge}/>
+            <Route path="/nutrition" component = {Nutrition}/>
             <Route path="/timeline" component = {Timeline}/>
             <Route path="/input" component = {HealthInput}/>
             <Route path="/game" component={GamePage}/>
+            <Route path="*" component={HomePage} />
         </Switch>
         <ProjectFooter />
         </div>
