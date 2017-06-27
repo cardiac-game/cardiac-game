@@ -1,13 +1,12 @@
 import $ from './reusable'
 
 export default function Enemy(context, image) {
-  let cW = context.canvas.width
-  let cH = context.canvas.height
-
 
   let enemy = {
-    x: $.randBtwn(0,cW),
-    y: $.randBtwn(0,cH),
+    context: context,
+    isAlive: false,
+    x: $.randBtwn(0,1200),
+    y: $.randBtwn(0,900),
     img: image,
     width: image.width,
     height: image.height,
@@ -20,13 +19,13 @@ export default function Enemy(context, image) {
     orientation: $.randBtwn(0,$.fullCircle),
     lastShot: 0,
     fireRate: $.randBtwn(500,2000),
-    init: function(orientation) {
-      this.orientation = orientation
-      this.x = $.randBtwn(0,cW)
-      this.y = $.randBtwn(0,cH)
+    init: function() {
+      this.x = $.randBtwn(0,this.context.canvas.width)
+      this.y = $.randBtwn(0,this.context.canvas.height)
     },
-    move: function() {
-      let angle = Math.atan2(cH/2 - this.y, cW/2 - this.x)
+
+    update: function() {
+      let angle = Math.atan2(this.context.canvas.height/2 - this.y, this.context.canvas.width/2 - this.x)
       let delta = angle - this.orientation
       if (delta > $.pi) {
           delta = delta - $.pi
@@ -39,6 +38,7 @@ export default function Enemy(context, image) {
       this.x += Math.cos(this.orientation) * this.speed + $.randBtwn(-3,3)
       this.y += Math.sin(this.orientation) * this.speed 
     },
+
     draw: function() {
       let xView = this.x + this.centerX
       let yView = this.y + this.centerY

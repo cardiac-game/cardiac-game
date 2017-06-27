@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
 import MainLoop from 'mainloop.js'
 
+import Game from './GameLogic/gameObj'
 import Player from './GameLogic/player'
+import EnemyPool from './GameLogic/enemyPool'
 import Enemy from './GameLogic/enemy'
+import Virus from './GameLogic/virus'
+
+
 import images from './GameLogic/mediaRepos'
+
+import spriteAnimation from './GameLogic/spriteAnimation'
+import CollisionDetector from './GameLogic/collisionDetection'
 
 import './GamePage.css'
 
@@ -16,38 +24,50 @@ export default class GamePage extends Component {
 
     const canvas = this.refs.canvas
     const bulletCanvas = this.refs.bulletCanvas
+    const ctx = canvas.getContext('2d')
 
     bulletCanvas.style.background = `url(${images.bg.src})`
     canvas.width = bulletCanvas.width = images.bg.width
     canvas.height = bulletCanvas.height = images.bg.height
 
-    let ctx = canvas.getContext('2d')
+    const player = new Player(100,ctx)
+    const virus = new Virus(ctx)
+    const enemyPool = new EnemyPool(20, Enemy, images.enemy, ctx)
+    const virusAnimation = new spriteAnimation(images.virus, ctx)
+    const collisions = new CollisionDetector()
 
-    let player = Player(100, ctx)
-    let enemy = Enemy(ctx, images.enemy)
+    player.init()
+    enemyPool.init(5)
 
-    player.context = ctx
-    enemy.context = ctx
-
-    player.bulletPool.init()
-    player.draw()
-    enemy.draw()
-
-    
-    function animate(timestamp) {
-    // update player, enemies, bullets
-    ctx.clearRect(0,0,canvas.width,canvas.height)
-
-    
-
-
+    function animation() {
+      ctx.clearRect(0,0,canvas.width,canvas.height)
       player.draw()
-      enemy.draw()
-      requestAnimationFrame(animate)
+      player.shoot()
+      enemyPool.spawnEnemy()
+      enemyPool.draw()
+      virusAnimation.draw()
+
+
+
+      collisions.checkArrayToArray(player.bulletPool.getActive(),enemyPool.getActive(),function(bool, obj1, obj2) {
+        if (bool) {
+          obj1.isAlive = false,
+          obj2.isAlive = false
+        }
+      }, ctx)
+
+      player.update()
+      enemyPool.update()
+      virusAnimation.update()
+      requestAnimationFrame(animation)
     }
+    animation()
 
-    animate()
-
+    // let game = new Game(ctx) // context
+ 
+    // game.init()
+    // MainLoop.setUpdate(player.update).setDraw(player.draw).start()
+  
   }
 
   render() {

@@ -1,8 +1,10 @@
 export default function Bullet(context) {
 
   this.context = context
+  this.isAlive = false
 
   this.spawn = function(x,y,orientation,img, speed) {
+    this.isAlive = true
     this.x = x,
     this.y = y,
     this.speed = 12,
@@ -25,14 +27,14 @@ export default function Bullet(context) {
   }
 
 
-  this.move = function() {
+  this.update = function() {
     this.x += this.dx
     this.y += this.dy
   }
 
   this.draw = function() {
-    let xView = this.x + this.width / 2
-    let yView = this.y + this.height / 2
+    let xView = this.x + this.centerX
+    let yView = this.y + this.centerY
 
     this.context.save()
     this.context.translate(xView, yView)

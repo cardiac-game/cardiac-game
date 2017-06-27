@@ -1,16 +1,14 @@
-import Bullet from './bullet'
 
-export default function BulletPool(maxSize,context) {
-	var size = maxSize
+export default function BulletPool(maxSize,Bullet,context) {
 	let active = []
   let inactive = []
 
   function getBullet() {
-    let bullet;
+    let bullet
     if ( inactive.length > 1 ) {
       bullet = inactive.shift()
     }  else {
-      bullet = new Bullet(context)
+      bullet = new Bullet(context) // context
     }
     return bullet
   }
@@ -20,8 +18,8 @@ export default function BulletPool(maxSize,context) {
   }
 
 	this.init = function() {
-      for (let i = 0; i < size; i++) {
-        let b = new Bullet(context)
+      for (let i = 0; i < maxSize; i++) {
+        let b = new Bullet(context) // context
         storeBullet(b)
       }
 	}
@@ -32,11 +30,16 @@ export default function BulletPool(maxSize,context) {
     active.push(bullet)
 	}
 
-	this.move = function() {
+  this.getActive = function() {
+    return active
+  }
+
+	this.update = function() {
     if (active.length < 1) return
     for (let i = 0; i < active.length; i ++) {
-      active[i].move()
-      active[i].checkInBounds() ? storeBullet(active.splice(i,1)[0]) : null
+      active[i].update()
+      !active[i].isAlive || active[i].checkInBounds() ? storeBullet(active.splice(i,1)[0]) : null
+
     }
 	}
 
