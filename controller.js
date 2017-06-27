@@ -4,8 +4,12 @@
 
 // var app = require('./index');
 // const db = app.get('db');
+
 const axios = require('axios');
 const config = require('./config.js')
+
+
+
 
 module.exports = {
 
@@ -24,6 +28,12 @@ module.exports = {
         })
     },
 
+    postUserInfo: function(req, res) {
+      req.app.get('db').postUserInfo(req.params.user, req.params.score).then(function (currentGame) {
+        return res.status(200).json(currentGame)
+      }).catch(err => console.log( err ))
+    },
+
     getFoods: function (req, res) {
       const search = req.query.item;
       const maxItems = '100';
@@ -35,6 +45,7 @@ module.exports = {
         const ndbno = req.query.ndbno;
         const url = `https://api.nal.usda.gov/ndb/reports/?ndbno=${ndbno}&type=b&format=json&api_key=${config.apiKey}`
         axios.get(url).then(resp => res.status(200).send(resp.data))
-        
-    }
+
+    },
+
 }
