@@ -15,6 +15,7 @@
     height: 85%;
     width: 100%;
     padding: 3% 0 3% 0;
+    display: flex
 }
 
 .about-img-container {
@@ -27,7 +28,7 @@
     justify-content: space-around;
 }
 
-.about-technology {
+.about-headers {
     font-family: 'Josefin Sans';
     font-size: 35px;
     color: black;
@@ -35,8 +36,68 @@
     letter-spacing: 5px;
 }
 
+.about-solidBG-content {
+    width: 67%;
+    height: 100%;
+    /*background: dodgerblue;*/
+    font-family: 'Josefin Sans';    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1vw;
+}
+
+.about-tech {
+    height: calc(100%/6);
+    width: 100%;
+    /*background-color: black;*/
+    /*border: 1px solid white;*/
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about-logo-container {
+    height: 100%;
+    width: 10%;
+    /*background: yellow;*/
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.about-logo-img {
+    height: 60%;
+}
+
+.about-logo-express {
+    width: 80%
+}
+
+.about-logo-info {
+    height: 100%;
+    width: 90%;
+    /*background: green;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 2%;
+}
+
+
+/* Anatomy Pictures */
+
 .about-pic1 {
     background-image: url('./images/Body - Sketch 01.jpg');
+    background-size: cover;
+    width: 300px;
+    height: 460px;
+    box-shadow: 0 0 5px black; 
+}
+
+.about-pic2 {
+    background-image: url('./images/Head - Sketch 01.png');
     background-size: cover;
     width: 300px;
     height: 460px;
@@ -50,6 +111,8 @@
     height: 460px;
     box-shadow: 0 0 5px black; 
 }
+ 
+/* Parallax content */
  
 .about-parallax {
     height: 66vh;
@@ -68,12 +131,149 @@
     /*opacity: .6;*/
     background: -webkit-linear-gradient(right, rgba(107, 0, 0, .6), rgba(0, 0, 0, 0.6));
     box-shadow: inset 0px 0px 10px black; 
+    display: flex
 }
 
-.about-pic2 {
-    background-image: url('./images/Head - Sketch 01.png');
-    background-size: cover;
-    width: 300px;
-    height: 460px;
-    box-shadow: 0 0 5px black; 
+.about-para-content {
+    width: 67%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: georgia;
+    font-size: 17px;
+    text-shadow: 0px 0px 1px grey;
+    letter-spacing: 3px;
+    line-height: 1.3;
+    color: white;
+    text-align: center;
+}
+
+.about-para-content-p {
+    width: 75%;
+}
+
+/*Developer Content*/
+
+.portrait-container {
+    height: 40%;
+    width: 100%;
+    /*background-color: green;*/
+    display: flex;
+}
+
+.portrait {
+    width: 20%;
+    height: 100%;
+    /*background-color: teal;*/
+    /*border: 1px solid white;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.portrait-img{
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 0 5px black;
+}
+
+.portrait-img-container {
+    width: 92%
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.portrait-text-container {
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    display: inline-block;
+    text-align: center;
+    /*background: tan;*/
+    /*border: 1px dashed black;*/
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+}
+
+.portrait-role-container {
+    width: 100%;
+    height: 55%;
+    text-align: center;
+    padding-top: 7%;
+}
+
+.about-icon {
+    margin-left: 1%; 
+    float: right;
+    font-size: 2vw;
+}
+
+.portrait-name-container {
+    width: 100%;
+    height: 45%;
+    /*background-color: gold;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase; 
+    border-bottom: 1px solid gray;   
+}
+
+.about-spacer {
+    width: 100%;
+    height: 3%;
+    /*background-color: mediumaquamarine;*/
+}
+
+.portrait-text-container-row {
+    width: 100%;
+    height: 18%;
+    /*background-color: lavender;*/
+    display: flex;
+}
+
+.portrait-info {
+    height: 30%;
+    width: 100%;
+    padding: 2%;
+    /*background-color: yellow;*/
+    line-height: 3vh;
+}
+
+.portrait-info-text {
+    height: 100%;
+    width: 100;
+    padding-right: 10%;
+}
+
+.portrait-gs {
+    filter: grayscale(100%);
+}
+
+.portrait-no-gs {
+    filter: none;
+}
+.display-none {
+    display: none;
+}
+.display-block {
+    display: block;
+}
+
+.about-a {
+    color: black;
+}
+
+.text-black {
+    color: rgba(0, 0, 0, 1)
+}
+
+.text-transparent {
+    color: rgba(0, 0, 0, .5)    
 }

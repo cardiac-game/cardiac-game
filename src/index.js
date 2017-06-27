@@ -12,6 +12,7 @@ import HealthInput from './components/HealthInput/healthInput';
 import Nutrition from './components/Nutrition/nutrition';
 import Timeline from './components/Timeline/timeline';
 
+import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import store from './store/store';
