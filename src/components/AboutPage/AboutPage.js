@@ -170,29 +170,29 @@ export default class About extends Component {
                                 </div>                
                             </div>
                             <div className="portrait-text-container-row">
-                                <div className="portrait-text-container">
+                                <div className={"portrait-text-container " + (this.state.selectedPortrait === 1 ? "text-black" : "text-transparent")}>
                                     <div className="portrait-name-container">Eric Patterson</div>
                                     <div className="portrait-role-container">Game Developer</div>
                                 </div>
-                                <div className="portrait-text-container">
+                                <div className={"portrait-text-container " + (this.state.selectedPortrait === 2 ? "text-black" : "text-transparent")}>
                                     <div className="portrait-name-container">Ivor Anderson</div>
                                     <div className="portrait-role-container">Frontend Developer and Designer</div>
                                 </div>
-                                <div className="portrait-text-container">
+                                <div className={"portrait-text-container " + (this.state.selectedPortrait === 3 ? "text-black" : "text-transparent")}>
                                     <div className="portrait-name-container">Jesse Tenney</div>
                                     <div className="portrait-role-container">Backend Developer</div>
                                 </div>
-                                <div className="portrait-text-container">
+                                <div className={"portrait-text-container " + (this.state.selectedPortrait === 4 ? "text-black" : "text-transparent")}>
                                     <div className="portrait-name-container">Justice Perez White</div>
                                     <div className="portrait-role-container">Fullstack Developer</div>
                                 </div>
-                                <div className="portrait-text-container">
+                                <div className={"portrait-text-container " + (this.state.selectedPortrait === 5 ? "text-black" : "text-transparent")}>
                                     <div className="portrait-name-container">Nicholas Mueller</div>
                                     <div className="portrait-role-container">Frontend Developer and Researcher</div>
                                 </div>
                             </div>
-                            <div className="about-spacer">
-                                <hr/>
+                            <div className="about-spacer ">
+                                <hr />
                             </div>
                             <div className="portrait-info">
                                 <div className={(this.state.selectedPortrait === 1 ? "display-block" : "display-none")}> 
@@ -239,11 +239,11 @@ export default class About extends Component {
                                     <a className="about-a" target="_blank" href="https://github.com/Justiceleeg/"><i className="fa fa-github-square about-icon" aria-hidden="true"></i></a>
                                     <div className="portrait-info-text">
                                         <p><span className="bold">Roles and Responsiblilities: </span>
-                                            Lead Backend Developer and Frontend Developer
+                                            Lead Backend Developer and Frontend Developer in charge of building the Node.js server for API calls and calls to the PostgreSQL database on Heroku. Responsible for data exchange within the App and creating the About page on the frontend. 
                                         </p>
                                         <p>
                                             <span className="bold">Background: </span>
-                                            From Texas
+                                            Military brat with a degree in Mechanical Engineering from Rice University.
                                         </p>                             
                                     </div>
                                 </div>
