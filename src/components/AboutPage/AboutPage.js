@@ -242,7 +242,7 @@ export default class About extends Component {
                                     <a className="about-a" target="_blank" href="https://github.com/Justiceleeg/"><i className="fa fa-github-square about-icon" aria-hidden="true"></i></a>
                                     <div className="portrait-info-text">
                                         <p><span className="bold">Roles and Responsiblilities: </span>
-                                            Lead Backend Developer and Frontend Developer in charge of building the Node.js server for API calls and calls to the PostgreSQL database on Heroku. Responsible for data exchange within the App and creating the About page on the frontend. 
+                                            Lead Backend Developer and Frontend Developer in charge of building the Node.js server for API calls and queries to the PostgreSQL database on Heroku. Responsible for data exchange within the App and creating the About page on the frontend. 
                                         </p>
                                         <p>
                                             <span className="bold">Background: </span>
