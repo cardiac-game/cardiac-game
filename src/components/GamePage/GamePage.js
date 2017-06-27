@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { setContext } from '../../store/ducks/gameReducer'
-import {Modal} from './Leaderboard/leaderboard'
+import {Modal} from './Leaderboard/Leaderboard'
 
 import Game from './GameLogic/gameObj'
 import Player from './GameLogic/player'
@@ -83,13 +83,16 @@ class GamePage extends Component {
 
   render() {
     return (
+      <div>
       <section className='game-page'>
         <div className="game-canvas-container">
           <canvas className='game-canvas' ref='bulletCanvas'></canvas>
           <canvas className='game-canvas' ref="canvas"></canvas>
-          <Modal />
-        </div>
+
+        </div>        
       </section>
+      <Modal />
+      </div>
     )
   }
 }
