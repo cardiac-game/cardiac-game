@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import $ from 'jquery'
+// import $ from 'jquery' //taken out of package json
 import './timeline.css';
 
 export default class Timeline extends Component {
