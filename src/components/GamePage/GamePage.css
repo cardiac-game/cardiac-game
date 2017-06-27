@@ -1,5 +1,6 @@
 .game-page {
   margin: 0;
+  overflow: hidden;
   background: radial-gradient(#871018, #300508);
 }
 

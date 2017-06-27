@@ -26,6 +26,9 @@ import './GamePage.css'
 
 class GamePage extends Component {
 
+  componentWillMount() {
+    document.querySelector('body').style.overflow = 'hidden'
+  }
 
   componentDidMount() {
     // Game State is stored in redux store and passed into game component
@@ -78,6 +81,9 @@ class GamePage extends Component {
     animation()  
   }
 
+  componentWillUnmout() {
+    document.querySelector('body').style.overflow = 'scroll'
+  }
 
 
   render() {
