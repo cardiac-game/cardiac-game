@@ -3,8 +3,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { setContext } from '../../store/ducks/gameReducer'
 
-import MainLoop from 'mainloop.js'
-
 import Game from './GameLogic/gameObj'
 import Player from './GameLogic/player'
 import BulletPool from './GameLogic/bulletPool'
