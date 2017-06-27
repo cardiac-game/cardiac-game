@@ -37,7 +37,6 @@ app.get('/api/nutrition', function(req, res) {
 })
 
 app.post('/api/userInfo/:user/:score', function(req, res) {
-  // console.log(controller, " HEYYY")
   controller.postUserInfo(req, res)
 })
 
