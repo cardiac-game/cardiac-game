@@ -43,7 +43,7 @@
     font-family: 'Josefin Sans';    
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     font-size: 1vw;
 }
@@ -267,4 +267,12 @@
 
 .about-a {
     color: black;
+}
+
+.text-black {
+    color: rgba(0, 0, 0, 1)
+}
+
+.text-transparent {
+    color: rgba(0, 0, 0, .5)    
 }
