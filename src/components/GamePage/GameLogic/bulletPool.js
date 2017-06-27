@@ -1,51 +1,80 @@
+import store from '../../../store/store'
+import { setPlayerBulletPool } from '../../../store/ducks/playerReducer'
 
-export default function BulletPool(maxSize,Bullet,context) {
-	let active = []
-  let inactive = []
+import Bullet from './bullet'
 
-  function getBullet() {
+let updatedState
+let playerState
+let bulletParams
+
+store.subscribe(function() {
+  updatedState = store.getState().playerReducer
+  playerState = updatedState.player
+  bulletParams = updatedState.bulletParams
+})
+
+export default class BulletPool {
+  constructor(context) {
+    this.context = context
+    this.active = []
+    this.inactive = []
+    this.maxSize = bulletParams.bulletCapacity
+
+    this.getBullet = this.getBullet.bind(this)
+    this.storeBullet = this.storeBullet.bind(this)
+    this.init = this.init.bind(this)
+    this.fire = this.fire.bind(this)
+    this.getActive = this.getActive.bind(this)
+    this.update = this.update.bind(this)
+    this.draw = this.draw.bind(this)
+  }
+
+  getBullet() {
     let bullet
-    if ( inactive.length > 1 ) {
-      bullet = inactive.shift()
+    if ( this.inactive.length > 1 ) {
+      bullet = this.inactive.shift()
     }  else {
-      bullet = new Bullet(context) // context
+      bullet = new Bullet(this.context) 
     }
     return bullet
   }
 
-  function storeBullet(bullet) {
-    inactive.push(bullet)
+  storeBullet(bullet) {
+    this.inactive.push(bullet)
   }
 
-	this.init = function() {
-      for (let i = 0; i < maxSize; i++) {
-        let b = new Bullet(context) // context
-        storeBullet(b)
+	init() {
+      for (let i = 0; i < this.maxSize; i++) {
+        let b = new Bullet(this.context) 
+        this.storeBullet(b)
       }
 	}
 
-	this.fire = function(x, y, orientation, img) {
-    let bullet = getBullet()
-    bullet.spawn(x,y,orientation,img)
-    active.push(bullet)
-	}
-
-  this.getActive = function() {
-    return active
-  }
-
-	this.update = function() {
-    if (active.length < 1) return
-    for (let i = 0; i < active.length; i ++) {
-      active[i].update()
-      !active[i].isAlive || active[i].checkInBounds() ? storeBullet(active.splice(i,1)[0]) : null
-
+	fire() {
+    if (playerState.isFiring) {
+      let bullet = this.getBullet()
+      bullet.spawn()
+      this.active.push(bullet)
     }
 	}
 
-  this.draw = function() {
-    for (let i = 0; i < active.length; i++) {
-      active[i].draw()
+  getActive() {
+    return this.active
+  }
+
+	update() {
+    if (this.active.length < 1) return
+    for (let i = 0; i < this.active.length; i ++) {
+      this.active[i].update()
+      !this.active[i].isAlive ? this.storeBullet(this.active.splice(i,1)[0]) : null
+    }
+
+    store.dispatch(setPlayerBulletPool(this))
+	}
+
+  draw() {
+    for (let i = 0; i < this.active.length; i++) {
+      this.active[i].draw()
     }
   }
 }

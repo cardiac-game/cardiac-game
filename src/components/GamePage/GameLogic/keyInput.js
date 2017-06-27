@@ -1,5 +1,5 @@
 import store from '../../../store/store'
-import { updateKeys } from '../../../store/ducks/gameReducer'
+import { setKeys } from '../../../store/ducks/playerReducer'
 
 
 // object to relate keycodes to keyname
@@ -28,7 +28,7 @@ export default function keyListeners() {
         let currCode = (e.keyCode) ? e.keyCode : e.charCode
         if (KeyCodes[currCode]) {
             KeyStatus[KeyCodes[currCode]] = true
-            store.dispatch(updateKeys(KeyStatus))
+            store.dispatch(setKeys(KeyStatus))
         }
     }
 
@@ -38,7 +38,7 @@ export default function keyListeners() {
         let currCode = (e.keyCode) ? e.keyCode : e.charCode
         if (KeyCodes[currCode]) {
             KeyStatus[KeyCodes[currCode]] = false
-            store.dispatch(updateKeys(KeyStatus))
+            store.dispatch(setKeys(KeyStatus))
         }
     }
 

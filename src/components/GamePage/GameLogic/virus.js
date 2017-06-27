@@ -1,4 +1,10 @@
+import store from '../../../store/store'
+import { setPlayer } from '../../../store/ducks/gameReducer'
+
+
 import $ from './reusable'
+
+let gameState
 
 export default function Virus(context) {
 
@@ -48,8 +54,6 @@ export default function Virus(context) {
       this.orientation %= $.pi
       this.x += Math.cos(this.orientation) * this.speed + $.randBtwn(-3,3)
       this.y += Math.sin(this.orientation) * this.speed 
-
-      console.log(this.x,this.y)
     },
 
     draw: function() {
@@ -62,7 +66,6 @@ export default function Virus(context) {
           context.beginPath()
           // start drawing at this point
           context.moveTo(this.cx,this.cy-this.outerRadius)
-          console.log(this);
           // loop through each point
           for(let i=0;i<this.spikes;i++){
             this.drawX=this.cx+Math.cos(this.rot)*this.spikePointsOuter[i]

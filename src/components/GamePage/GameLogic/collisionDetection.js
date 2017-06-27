@@ -26,7 +26,7 @@ export default function CollisionDetector() {
         //  handle destroying enemies, triggering visual cues, and changing score
 
 
-    this.checkObjToArray = function(obj,arr, callback) {
+    this.checkObjToArray = function(obj,arr,callback) {
         for (let i = 0; i < arr.length; i++) {
             if ( checkBoxOverlap(obj,arr[i]) ) {
                 callback(true)

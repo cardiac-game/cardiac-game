@@ -1,66 +1,64 @@
 import store from '../../../store/store'
-import { setPlayer } from '../../../store/ducks/gameReducer'
+import { setPlayer } from '../../../store/ducks/playerReducer'
 
 import images from './mediaRepos'
 import BulletPool from './bulletPool'
 import Bullet from './bullet'
 
-let gameState;
+let playerState
 
 // update state anytime it is changed
 store.subscribe(function() {
-    gameState = store.getState().gameReducer.game
+    playerState = store.getState().playerReducer
 })
-
-
 
 
 // player object
 export default class Player {
-    constructor(state, context) {
+    constructor(context) {
         this.context = context
-        this.x = state.player.x
-        this.y = state.player.y
-        this.img = state.player.img
-        this.width = state.player.width
-        this.height = state.player.height
-        this.centerX = state.player.centerX
-        this.centerY = state.player.centerY
-        this.dx = state.player.dx
-        this.dy = state.player.dy
-        this.speed = state.player.speed
-        this.orientation = state.player.orientation
-        this.turnSpeed = state.player.turnSpeed
-        this.lastShot = state.player.lastShot
-        this.fireRate = state.player.lastShot
+        this.x = playerState.player.x
+        this.y = playerState.player.y
+        this.img = playerState.player.img
+        this.width = playerState.player.width
+        this.height = playerState.player.height
+        this.centerX = playerState.player.centerX
+        this.centerY = playerState.player.centerY
+        this.dx = playerState.player.dx
+        this.dy = playerState.player.dy
+        this.speed = playerState.player.speed
+        this.orientation = playerState.player.orientation
+        this.turnSpeed = playerState.player.turnSpeed
+        this.lastShot = Date.now()
+        this.fireRate = playerState.player.lastShot
+        this.isFiring = playerState.player.isFiring
 
         this.update = this.update.bind(this)
-        this.shoot = this.shoot.bind(this)
         this.draw = this.draw.bind(this)
     }
    
     update() {
         // rotate character
-        if (gameState.keys.right) {
+        if (playerState.keys.right) {
             this.orientation += this.turnSpeed
-        } else if (gameState.keys.left) {
+        } else if (playerState.keys.left) {
             this.orientation -= this.turnSpeed
         }
 
         // move forwards/backwards
-        if (gameState.keys.up) {
+        if (playerState.keys.up) {
             this.x += (this.speed * Math.cos(this.orientation * Math.PI / 180))
             this.y += (this.speed * Math.sin(this.orientation * Math.PI / 180))
-        } else if (gameState.keys.down) {
+        } else if (playerState.keys.down) {
             this.x -= this.speed / 2 * Math.cos(this.orientation * Math.PI / 180)
             this.y -= this.speed / 2 * Math.sin(this.orientation * Math.PI / 180)
         }
 
         // strafe left/right
-        if (gameState.keys.strafeRight) {
+        if (playerState.keys.strafeRight) {
             this.x += (this.speed * Math.cos((this.orientation + 90) * Math.PI / 180)) / 2
             this.y += (this.speed * Math.sin((this.orientation + 90) * Math.PI / 180)) / 2
-        } else if (gameState.keys.strafeLeft) {
+        } else if (playerState.keys.strafeLeft) {
             this.x -= (this.speed * Math.cos((this.orientation + 90) * Math.PI / 180)) / 2
             this.y -= (this.speed * Math.sin((this.orientation + 90) * Math.PI / 180)) / 2
         }
@@ -76,18 +74,20 @@ export default class Player {
         } else if (this.y <= 0) {
             this.y = 0
         }
+        console.log(this.lastShot, playerState.keys.space)
+        // shoot
+        if (playerState.keys.space && Date.now() - this.lastShot > this.fireRate) {
+            console.log('fire!');
+            this.lastShot = Date.now()
+            this.isFiring = true
+        } else {
+            this.isFiring = false
+        }
+
 
         store.dispatch(setPlayer(this))
     }
     
-
-    shoot() {
-        if (gameState.keys.space && Date.now() - this.lastShot > this.fireRate) {
-            this.lastShot = Date.now()
-            // this.bulletPool.fire(this.x + this.centerX, this.y + this.centerY, this.orientation, images.bullet, this.speed * 2)
-        }
-    }
-
     draw() {
         this.context.save()
         this.context.translate(this.x + this.centerX, this.y + this.centerY)
