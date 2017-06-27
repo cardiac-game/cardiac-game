@@ -1,130 +1,99 @@
+import store from '../../../store/store'
+import { setPlayer } from '../../../store/ducks/gameReducer'
+
 import images from './mediaRepos'
 import BulletPool from './bulletPool'
 import Bullet from './bullet'
 
+let gameState;
+
+// update state anytime it is changed
+store.subscribe(function() {
+    gameState = store.getState().gameReducer.game
+})
 
 
 
-// object to relate keycodes to keyname
-const KeyCodes = {
-    32: 'space',
-    37: 'left',
-    38: 'up',
-    39: 'right',
-    40: 'down',
-    65: 'strafeLeft',
-    68: 'strafeRight'
-}
-
-// generate object to store status of each key
-// initialize status of all pressed keys to false
-const KeyStatus = {}
-for (let code in KeyCodes) {
-    KeyStatus[KeyCodes[code]] = false
-}
-
-// listener to change key status to true when key is pressed
-document.onkeydown = (e) => {
-    let currCode = (e.keyCode) ? e.keyCode : e.charCode
-    if (KeyCodes[currCode]) {
-        KeyStatus[KeyCodes[currCode]] = true
-    }
-}
-
-// listener to change key status to false when key is release
-document.onkeyup = (e) => {
-    e.preventDefault()
-    let currCode = (e.keyCode) ? e.keyCode : e.charCode
-    if (KeyCodes[currCode]) {
-        KeyStatus[KeyCodes[currCode]] = false
-    }
-}
 
 // player object
-export default function Player(maxBullets, context) {
+export default class Player {
+    constructor(state, context) {
+        this.context = context
+        this.x = state.player.x
+        this.y = state.player.y
+        this.img = state.player.img
+        this.width = state.player.width
+        this.height = state.player.height
+        this.centerX = state.player.centerX
+        this.centerY = state.player.centerY
+        this.dx = state.player.dx
+        this.dy = state.player.dy
+        this.speed = state.player.speed
+        this.orientation = state.player.orientation
+        this.turnSpeed = state.player.turnSpeed
+        this.lastShot = state.player.lastShot
+        this.fireRate = state.player.lastShot
 
-    let player = {
-        context: context,
-        x: 200,
-        y: 200,
-        img: images.ship,
-        width: images.ship.width,
-        height: images.ship.height,
-        centerX: images.ship.width / 2,
-        centerY: images.ship.height / 2,
-        dx: 0,
-        dy: 0,
-        speed: 6,
-        orientation: 0,
-        turnSpeed: 3,
-        bulletPool: new BulletPool(maxBullets, Bullet, context), // maxBullets, context
-        lastShot: 0,
-        fireRate: 333,
+        this.update = this.update.bind(this)
+        this.shoot = this.shoot.bind(this)
+        this.draw = this.draw.bind(this)
+    }
+   
+    update() {
+        // rotate character
+        if (gameState.keys.right) {
+            this.orientation += this.turnSpeed
+        } else if (gameState.keys.left) {
+            this.orientation -= this.turnSpeed
+        }
 
-        init: function (speed, turnSpeed) {
-            this.bulletPool.init()
-            this.orientation = 0
-            if (speed) this.speed = speed
-            if (turnSpeed) this.turnSpeed = turnSpeed
-        },
+        // move forwards/backwards
+        if (gameState.keys.up) {
+            this.x += (this.speed * Math.cos(this.orientation * Math.PI / 180))
+            this.y += (this.speed * Math.sin(this.orientation * Math.PI / 180))
+        } else if (gameState.keys.down) {
+            this.x -= this.speed / 2 * Math.cos(this.orientation * Math.PI / 180)
+            this.y -= this.speed / 2 * Math.sin(this.orientation * Math.PI / 180)
+        }
 
-        update: function () {
-            // rotate character
-            if (KeyStatus.right) {
-                this.orientation += this.turnSpeed
-            } else if (KeyStatus.left) {
-                this.orientation -= this.turnSpeed
-            }
+        // strafe left/right
+        if (gameState.keys.strafeRight) {
+            this.x += (this.speed * Math.cos((this.orientation + 90) * Math.PI / 180)) / 2
+            this.y += (this.speed * Math.sin((this.orientation + 90) * Math.PI / 180)) / 2
+        } else if (gameState.keys.strafeLeft) {
+            this.x -= (this.speed * Math.cos((this.orientation + 90) * Math.PI / 180)) / 2
+            this.y -= (this.speed * Math.sin((this.orientation + 90) * Math.PI / 180)) / 2
+        }
 
-            // move forwards/backwards
-            if (KeyStatus.up) {
-                this.x += (this.speed * Math.cos(this.orientation * Math.PI / 180))
-                this.y += (this.speed * Math.sin(this.orientation * Math.PI / 180))
-            } else if (KeyStatus.down) {
-                this.x -= this.speed / 2 * Math.cos(this.orientation * Math.PI / 180)
-                this.y -= this.speed / 2 * Math.sin(this.orientation * Math.PI / 180)
-            }
+        // bounds checking
+        if (this.x >= this.context.canvas.width - this.width) {
+            this.x = this.context.canvas.width - this.width
+        } else if (this.x <= 0) {
+            this.x = 0
+        }
+        if (this.y > this.context.canvas.height - this.height) {
+            this.y = this.context.canvas.height - this.height
+        } else if (this.y <= 0) {
+            this.y = 0
+        }
 
-            // strafe left/right
-            if (KeyStatus.strafeRight) {
-                this.x += (this.speed * Math.cos((this.orientation + 90) * Math.PI / 180)) / 2
-                this.y += (this.speed * Math.sin((this.orientation + 90) * Math.PI / 180)) / 2
-            } else if (KeyStatus.strafeLeft) {
-                this.x -= (this.speed * Math.cos((this.orientation + 90) * Math.PI / 180)) / 2
-                this.y -= (this.speed * Math.sin((this.orientation + 90) * Math.PI / 180)) / 2
-            }
+        store.dispatch(setPlayer(this))
+    }
+    
 
-            // bounds checking
-            if (this.x >= this.cW - this.width) {
-                this.x = this.cW - this.width
-            } else if (this.x <= 0) {
-                this.x = 0
-            }
-            if (this.y > this.cH - this.height) {
-                this.y = this.cH - this.height
-            } else if (this.y <= 0) {
-                this.y = 0
-            }
-
-            this.bulletPool.update()
-        },
-
-        shoot: function () {
-            if (KeyStatus.space && Date.now() - this.lastShot > this.fireRate) {
-                this.lastShot = Date.now()
-                this.bulletPool.fire(this.x + this.centerX, this.y + this.centerY, this.orientation, images.bullet, this.speed * 2)
-            }
-        },
-
-        draw: function () {
-            this.context.save()
-            this.context.translate(this.x + this.centerX, this.y + this.centerY)
-            this.context.rotate((this.orientation + 90) * Math.PI / 180)
-            this.context.drawImage(this.img, -this.centerX, -this.centerY, this.width, this.height)
-            this.context.restore()
-            this.bulletPool.draw()
+    shoot() {
+        if (gameState.keys.space && Date.now() - this.lastShot > this.fireRate) {
+            this.lastShot = Date.now()
+            // this.bulletPool.fire(this.x + this.centerX, this.y + this.centerY, this.orientation, images.bullet, this.speed * 2)
         }
     }
 
-    return player
+    draw() {
+        this.context.save()
+        this.context.translate(this.x + this.centerX, this.y + this.centerY)
+        this.context.rotate((this.orientation + 90) * Math.PI / 180)
+        this.context.drawImage(this.img, -this.centerX, -this.centerY, this.width, this.height)
+        this.context.restore()
+    }
+    
 }
