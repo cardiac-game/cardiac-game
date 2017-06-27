@@ -168,33 +168,43 @@ class HealthInput extends Component {
                         <input className="input-bar" value={this.state.userInput} onChange={e => this.setState({userInput: e.target.value})}></input>
                         <button className="input-button-1" disabled={this.state.userInput ? false : true} onClick={() => this.getFoodsArray(this.state.userInput)}>SEARCH</button>
                         </div>
-                    
+                    {
+                        listOfFoods.length
+                        ?
                     <div className="input-list">
                     <div className="food-list">{ listOfFoods }</div>
-                </div></div>   
-
+                </div>
+                    :
+                    <div className="first-search">
+                    <div className="input-curtain-first"></div>
+                    </div>
+                    }
+                </div>
               {
-              
                     listOfUserFoods.length
                     ?
                 <div className="input-boxy-2">
             
                     <div className="input-boxy-21">
+                        <div className="game-map-title">QUANTITY</div>
                         <div className="selected-info">{ listOfUserFoods }</div>
                     </div>
 
                     <div className="input-boxy-22">
+                        <div className="game-map-title">NUTRITION DATA</div>
                         <div className="nutrition-info">{ nutritionInfo }</div>
                            </div>
                            <div className="input-boxy-maps">
                                <div className="game-map-title">GAME MAP</div>
                             <form action="">
                                <input class="input-radio" type="radio" name="map"/> CANCEROUS<br/>
+                               <input class="input-radio" type="radio" name="map"/> CARNIVORE<br/>
                                <input class="input-radio" type="radio" name="map"/> GALACTIC<br/>
                                <input class="input-radio" type="radio" name="map"/> HEART ATTACK<br/>
                                <input class="input-radio" type="radio" name="map"/> INFECTION<br/>
                                <input class="input-radio" type="radio" name="map"/> MICROSCOPIC<br/>
                                <input class="input-radio" type="radio" name="map"/> PARASITICAL<br/>
+            
                             </form>
                            </div>
                     </div>
@@ -202,12 +212,22 @@ class HealthInput extends Component {
                     <div className="first-box">
                         <div className="input-curtain-first">
                             <div className="first-title">NDC (NUTRITION DATA CALCULATOR)</div>
-                            <div className="first-text">Our NDC can take in almost any food products from around the globe, extract the nutritional data from these products and calculate the data in a simple and presentible manner.</div>
+                            <div className="first-text">The NDC can take in almost any food products from around the globe, extract the nutritional data from these products and calculate the data in a simple and presentable manner.
+                                <br/><br/>
+                                Inside the game you will experience a simulation, one that takes in the infomation that you have submited from the NDC and factor it into the gameplay. With this, you are altering your gaming experience in a unique way that raises awareness of what we should be eating and gives a fresh perspective on what nutrition our bodies need, as well as what we may need to be avoiding.
+                                <br/><br/>
+                                <span className="first-color">STEP ONE:</span> Search for a food item in the search bar to the left.
+                                <br/><br/>
+                                <span className="first-color">STEP TWO:</span> Select the foods you wish to test, or perhaps even the foods you have recently eaten.
+                                <br/><br/>
+                                <span className="first-color">STEP THREE:</span> A window for inputting quantities will appear, use this window to select how many servings you wish to submit. The default serving is 1.
+                                <br/><br/>
+                                <span className="first-color">STEP FOUR:</span> Don't forget to select the map you wish to play before submitting your NDC data to the game.
+                                <br/><br/>
+                                <span className="first-color">STEP FIVE:</span> Submit your data by pressing the submit button below.
+                            </div>
                         </div>
-                         
-                          
                     </div>
-
                 }        
 
             </div>
