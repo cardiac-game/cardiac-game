@@ -3,9 +3,9 @@ import { setPlayerBulletPool } from '../../../store/ducks/playerReducer'
 
 import Bullet from './bullet'
 
-let updatedState
-let playerState
-let bulletParams
+let updatedState = store.getState().playerReducer
+let playerState = updatedState.player
+let bulletParams = updatedState.bulletParams
 
 store.subscribe(function() {
   updatedState = store.getState().playerReducer
@@ -51,11 +51,9 @@ export default class BulletPool {
 	}
 
 	fire() {
-    if (playerState.isFiring) {
       let bullet = this.getBullet()
       bullet.spawn()
       this.active.push(bullet)
-    }
 	}
 
   getActive() {
@@ -63,12 +61,17 @@ export default class BulletPool {
   }
 
 	update() {
+    if (playerState.isFiring) {
+      this.fire()
+    }
     if (this.active.length < 1) return
     for (let i = 0; i < this.active.length; i ++) {
       this.active[i].update()
       !this.active[i].isAlive ? this.storeBullet(this.active.splice(i,1)[0]) : null
     }
 
+    // update bulletPool in store
+    // move to game object before production
     store.dispatch(setPlayerBulletPool(this))
 	}
 

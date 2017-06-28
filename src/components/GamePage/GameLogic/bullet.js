@@ -1,9 +1,9 @@
 import store from '../../../store/store'
 import images from './mediaRepos'
 
-let updatedState
-let playerState
-let bulletParams
+let updatedState = store.getState().playerReducer
+let playerState = updatedState.player
+let bulletParams = updatedState.bulletParams
 
 store.subscribe(function() {
   updatedState = store.getState().playerReducer
@@ -18,8 +18,8 @@ export default class Bullet {
     this.img = bulletParams.img
     this.width = bulletParams.width
     this.height = bulletParams.height
-    this.centerX = bulletParams.width / 2
-    this.centerY = bulletParams.height / 2
+    this.imgCenterX = bulletParams.imgCenterX
+    this.imgCenterY = bulletParams.imgCenterY
     this.speed = bulletParams.bulletSpeed
 
     this.spawn = this.spawn.bind(this)
@@ -33,14 +33,14 @@ export default class Bullet {
     this.x = playerState.x
     this.y = playerState.y
     this.orientation = playerState.orientation
-    this.dx = playerState.bulletSpeed * Math.cos((playerState.orientation) * Math.PI / 180)
-    this.dy = playerState.bulletSpeed * Math.sin((playerState.orientation) * Math.PI / 180)
+    this.dx = bulletParams.bulletSpeed * Math.cos((playerState.orientation) * Math.PI / 180)
+    this.dy = bulletParams.bulletSpeed * Math.sin((playerState.orientation) * Math.PI / 180)
   }
 
   checkInBounds() {
-  let top = this.y <= 0 - this.img.height
+  let top = this.y <= 0 - this.height
   let bottom = this.y >= this.context.canvas.height
-  let left = this.x <= 0 - this.img.width
+  let left = this.x <= 0 - this.height
   let right = this.x >= this.context.canvas.width
   return (top || bottom || left || right) ? true : false
   }
@@ -53,13 +53,10 @@ export default class Bullet {
   }
 
   draw() {
-    let xView = this.x + this.centerX
-    let yView = this.y + this.centerY
-
     this.context.save()
-    this.context.translate(xView, yView)
+    this.context.translate(this.x + playerState.imgCenterX, this.y + playerState.imgCenterY)
     this.context.rotate((this.orientation + 90) * Math.PI / 180)
-    this.context.drawImage(this.img, -this.centerX, -this.centerY)
+    this.context.drawImage(this.img, -this.imgCenterX, -this.imgCenterY, this.width, this.height)
     this.context.restore()
   }
 }

@@ -1,55 +1,67 @@
-import CollisionDetector from './collisionDetection'
- 
-export default function EnemyPool(maxSize,Enemy,image, context) {
-    
-    let active = []
-    let inactive = []
-    let numOnScreen
-
-    function getEnemy() {
-         return inactive.length > 1 ? inactive.shift() : false
-        }
-
-    function storeEnemy(enemy) {
-            inactive.push(enemy)
-        }
+// import CollisionDetector from './collisionDetection'
+// import store from '../../../store/store'
+// import { setPlayerBulletPool } from '../../../store/ducks/enemiesReducer'
 
 
-    this.init = function(maxOnScreen) {
-        numOnScreen = maxOnScreen
-        for (let i = 0; i < maxSize; i++) {
-            let enemy = new Enemy(context, image)
-            enemy.init ? enemy.init() : null 
-            inactive.push(enemy)
-        }
-    }
+// let updatedState = store.getState()
+// let gameState = updatedState.gameReducer
+// let enemiesState = updatedState.enemiesReducer
 
-    this.spawnEnemy = function(x,y,orientation) {
-        if (active.length < numOnScreen) {
-            let enemy = getEnemy()
-            if (!enemy) return 
-            enemy.isAlive = true
-            active.push(enemy)
-        }
-    }
+// export class EnemyPool {
+//     constructor(context, maxSize) {
+//         this.context = context
+//         this.active = []
+//         this.inactive = []
+//         this.maxSize = maxSize
 
-    this.getActive = function() {
-        return active
-    }
+//         this.getEnemy = this.getEnemy.bind(this)
+//         this.storeEnemy = this.storeEnemy.bind(this)
+//         this.init = this.init.bind(this)
+//         this.spawnEnemy = this.spawnEnemy.bind(this)
+//         this.update = this.update.bind(this)
+//         this.draw = this.draw.bind(this)
+//     }
 
-    this.update = function() {
-        if (active.length < 1) return
-        for (let i = 0; i < active.length; i++) {
-            active[i].update()
-            !active[i].isAlive || active[i].x === context.canvas.width / 2 ? storeEnemy(active.splice(i,1)) : null
-        }
-    }
 
-    this.draw = function() {
-    if (active.length > 0) {
-        for (let i = 0; i < active.length; i++) {
-            active[i].draw()
-            }
-        }
-    }
-}
+//     getEnemy() {
+//          return this.inactive.length > 1 ? this.inactive.shift() : false
+//         }
+
+//     storeEnemy(enemy) {
+//             this.inactive.push(enemy)
+//         }
+
+
+//     init(EnemyType, ) {
+//         for (let i = 0; i < this.maxSize; i++) {
+//             let enemy = new EnemyType()
+//             enemy.init ? enemy.init() : null 
+//             inactive.push(enemy)
+//         }
+//     }
+
+//     spawnEnemy(x,y,orientation) {
+//         if (this.active.length < numOnScreen) {
+//             let enemy = getEnemy()
+//             if (!enemy) return 
+//             enemy.isAlive = true
+//             this.active.push(enemy)
+//         }
+//     }
+
+//     update() {
+//         if (this.active.length < 1) return
+//         for (let i = 0; i < this.active.length; i++) {
+//             this.active[i].update()
+//             !this.active[i].isAlive || this.active[i].x === context.canvas.width / 2 ? storeEnemy(this.active.splice(i,1)) : null
+//         }
+//     }
+
+//     draw() {
+//     if (this.active.length > 0) {
+//         for (let i = 0; i < this.active.length; i++) {
+//             this.active[i].draw()
+//             }
+//         }
+//     }
+// }

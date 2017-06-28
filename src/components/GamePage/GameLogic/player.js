@@ -5,7 +5,7 @@ import images from './mediaRepos'
 import BulletPool from './bulletPool'
 import Bullet from './bullet'
 
-let playerState
+let playerState = store.getState().playerReducer
 
 // update state anytime it is changed
 store.subscribe(function() {
@@ -22,15 +22,15 @@ export default class Player {
         this.img = playerState.player.img
         this.width = playerState.player.width
         this.height = playerState.player.height
-        this.centerX = playerState.player.centerX
-        this.centerY = playerState.player.centerY
+        this.imgCenterX = playerState.player.imgCenterX
+        this.imgCenterY = playerState.player.imgCenterY
         this.dx = playerState.player.dx
         this.dy = playerState.player.dy
         this.speed = playerState.player.speed
         this.orientation = playerState.player.orientation
         this.turnSpeed = playerState.player.turnSpeed
         this.lastShot = Date.now()
-        this.fireRate = playerState.player.lastShot
+        this.fireRate = playerState.player.fireRate
         this.isFiring = playerState.player.isFiring
 
         this.update = this.update.bind(this)
@@ -74,10 +74,9 @@ export default class Player {
         } else if (this.y <= 0) {
             this.y = 0
         }
-        console.log(this.lastShot, playerState.keys.space)
+        
         // shoot
         if (playerState.keys.space && Date.now() - this.lastShot > this.fireRate) {
-            console.log('fire!');
             this.lastShot = Date.now()
             this.isFiring = true
         } else {
@@ -90,9 +89,9 @@ export default class Player {
     
     draw() {
         this.context.save()
-        this.context.translate(this.x + this.centerX, this.y + this.centerY)
+        this.context.translate(this.x + this.imgCenterX, this.y + this.imgCenterY)
         this.context.rotate((this.orientation + 90) * Math.PI / 180)
-        this.context.drawImage(this.img, -this.centerX, -this.centerY, this.width, this.height)
+        this.context.drawImage(this.img, -this.imgCenterX, -this.imgCenterY, this.width, this.height)
         this.context.restore()
     }
     

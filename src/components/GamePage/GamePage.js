@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+
+import store from '../../store/store'
 import { setContext } from '../../store/ducks/gameReducer'
 
 import Game from './GameLogic/gameObj'
@@ -19,6 +21,7 @@ import spriteAnimation from './GameLogic/spriteAnimation'
 import CollisionDetector from './GameLogic/collisionDetection'
 import keyListeners from './GameLogic/keyInput'
 
+
 import './GamePage.css'
 
 //========================== React Component ================================
@@ -35,16 +38,14 @@ class GamePage extends Component {
     // Game State is then passed into each module when game objects are created
     // Each game object then subscribes to state and contains state dispatch functions
     //    so they can update and stay updated themselves
-    let gameState = this.props.gameState
-
 
     // Target canvases and set context
     const canvas = this.refs.canvas
     const bulletCanvas = this.refs.bulletCanvas
     const ctx = canvas.getContext('2d')
 
-    this.props.setContext(ctx)
-
+    store.dispatch(setContext(ctx))
+   
     // set background and canvas dimensions
     bulletCanvas.style.background = `url(${images.bg.src})`
     canvas.width = bulletCanvas.width = images.bg.width
@@ -55,25 +56,23 @@ class GamePage extends Component {
 
     // create player object. pass in gameState to initialize player with proper params
     const player = new Player(ctx)
-    const virus = new Virus(ctx)
+    const enemy = new Enemy(ctx)
     const bulletPool = new BulletPool(ctx)
 
     bulletPool.init()
 
     player.draw()
-    virus.draw()
-    bulletPool.draw()
 
     // animation loop
     function animation() {
 
       ctx.clearRect(0,0,canvas.width,canvas.height)
       player.draw()
-      virus.draw()
+      enemy.draw()
       bulletPool.draw()
 
       player.update()
-      virus.update()
+      enemy.update()
       bulletPool.update()
 
       requestAnimationFrame(animation)
@@ -98,14 +97,4 @@ class GamePage extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    gameState: Object.assign({},state.gameReducer,state.playerReducer,state.enemiesReducer)
-  }
-} 
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({setContext: setContext}, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(GamePage)
+export default GamePage

@@ -10,8 +10,8 @@ export default function Enemy(context, image) {
     img: image,
     width: image.width,
     height: image.height,
-    centerX: image.width/2,
-    centerY: image.height/2,
+    imgCenterX: image.width/2,
+    imgCenterY: image.height/2,
     dx: 0,
     dy: 0,
     speed: $.randBtwn(1,3),
@@ -20,6 +20,11 @@ export default function Enemy(context, image) {
     lastShot: 0,
     fireRate: $.randBtwn(500,2000),
     init: function() {
+      let x = Math.random() - 0.5 
+      let y = Math.random()  - 0.5
+      let signX = x / x
+      let signY = y / y
+
       this.x = $.randBtwn(0,this.context.canvas.width)
       this.y = $.randBtwn(0,this.context.canvas.height)
     },
@@ -40,12 +45,12 @@ export default function Enemy(context, image) {
     },
 
     draw: function() {
-      let xView = this.x + this.centerX
-      let yView = this.y + this.centerY
+      let xView = this.x + this.imgCenterX
+      let yView = this.y + this.imgCenterY
       context.save()
       context.translate(xView, yView)
       context.rotate($.toRad(this.orientation + 90))
-      context.drawImage(this.img, -this.centerX, -this.centerY, this.width, this.height)
+      context.drawImage(this.img, -this.imgCenterX, -this.imgCenterY, this.width, this.height)
       context.restore()
    }
   }
