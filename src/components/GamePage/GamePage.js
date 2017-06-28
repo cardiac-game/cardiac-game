@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import store from '../../store/store'
 import { setContext } from '../../store/ducks/gameReducer'
+import {Modal} from './LeaderBoard/leaderBoard'
 
 import Game from './GameLogic/gameObj'
 import Player from './GameLogic/player'
@@ -45,7 +46,7 @@ class GamePage extends Component {
     const ctx = canvas.getContext('2d')
 
     store.dispatch(setContext(ctx))
-   
+
     // set background and canvas dimensions
     bulletCanvas.style.background = `url(${images.bg.src})`
     canvas.width = bulletCanvas.width = images.bg.width
@@ -77,7 +78,7 @@ class GamePage extends Component {
 
       requestAnimationFrame(animation)
     }
-    animation()  
+    animation()
   }
 
   componentWillUnmout() {
@@ -87,14 +88,28 @@ class GamePage extends Component {
 
   render() {
     return (
+      <div>
       <section className='game-page'>
         <div className="game-canvas-container">
           <canvas className='game-canvas' ref='bulletCanvas'></canvas>
           <canvas className='game-canvas' ref="canvas"></canvas>
+
         </div>
       </section>
+      <Modal />
+      </div>
     )
   }
 }
 
-export default GamePage
+function mapStateToProps(state) {
+  return {
+    gameState: Object.assign({},state.gameReducer,state.playerReducer,state.enemiesReducer)
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({setContext: setContext}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GamePage)
