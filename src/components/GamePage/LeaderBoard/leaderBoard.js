@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import './leaderboard.css';
+import './leaderBoard.css';
 
 export class Modal extends React.Component {
   constructor(props) {
