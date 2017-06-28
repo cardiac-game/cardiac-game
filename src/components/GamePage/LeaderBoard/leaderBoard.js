@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import './leaderBoard.css';
+import './leaderboard.css';
 
 export class Modal extends React.Component {
   constructor(props) {
@@ -10,7 +10,8 @@ export class Modal extends React.Component {
     { isModalOpen: false }
   }
 
-  render() {
+
+  render () {
     return (
       <div>
         <button onClick={ () => this.openModal() }>Leaderboard</button>
