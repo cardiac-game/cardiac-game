@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { setContext } from '../../store/ducks/gameReducer'
+import {Modal} from './Leaderboard/Leaderboard'
 
 import Game from './GameLogic/gameObj'
 import Player from './GameLogic/player'
@@ -75,19 +76,23 @@ class GamePage extends Component {
 
       requestAnimationFrame(animation)
     }
-    animation()  
+    animation()
   }
 
 
 
   render() {
     return (
+      <div>
       <section className='game-page'>
         <div className="game-canvas-container">
           <canvas className='game-canvas' ref='bulletCanvas'></canvas>
           <canvas className='game-canvas' ref="canvas"></canvas>
-        </div>
+
+        </div>        
       </section>
+      <Modal />
+      </div>
     )
   }
 }
@@ -96,7 +101,7 @@ function mapStateToProps(state) {
   return {
     gameState: Object.assign({},state.gameReducer,state.playerReducer,state.enemiesReducer)
   }
-} 
+}
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({setContext: setContext}, dispatch)
