@@ -7,8 +7,12 @@ export default class Timeline extends Component {
 render() {
     return (
 <div className="timeline-body">
-  <div className="timeLineWrapper">
 <section id="cd-timeline" className="cd-container">
+	<div className="cd-timeline-block">
+			<div className="cd-timeline-content">
+				<h2>TIMELINE OF AMERICAN EATING HABITS</h2>
+			</div>
+		</div>
 		<div className="cd-timeline-block">
 			<div className="cd-timeline-content">
 				<h2>1839</h2>
@@ -326,5 +330,5 @@ render() {
 		</div>
 </section>
 </div>
-</div>
+
 )}}
