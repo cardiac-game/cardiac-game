@@ -2,7 +2,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 50%;
+  width: 20%;
   transform: translate(-50%, -50%);
   z-index: 9999;
   background: white
@@ -29,9 +29,13 @@
 }
 
 .nickname-height {
-  height: 20vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 10vh;
 }
 
 .modal-height {
-  height: 0vh;
+  height: 0px;
 }

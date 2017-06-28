@@ -15,15 +15,15 @@ export class Modal extends React.Component {
       <div>
         <button onClick={ () => this.openModal() }>Leaderboard</button>
         <Leaderboard isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
-          <div class='modal-height'>
-            <h1>Leaderboard</h1>
-            <p>top ten scores</p>
-          </div>
-          <div class='nickname-height'>
+          <div className='nickname-height'>
             <input placeholder='Nickname'></input>
             <button>Submit</button>
           </div>
-          <p><button onClick={() => this.closeModal()}>Close</button></p>
+          <div className='modal-height'>
+            <h1>Leaderboard</h1>
+            <p>top ten scores</p>
+          </div>
+          <p><button onClick={ () => this.closeModal() }>Close</button></p>
         </Leaderboard>
       </div>
     )
@@ -46,7 +46,7 @@ class Leaderboard extends React.Component {
       <div>
         <div className='nickname nickname-height'></div>
         <div className='modalStyle modal-height'>{this.props.children}</div>
-        <div className="backdropStyle" onClick={e => this.close(e)}/>}
+        <div className="modalStyle modal-height" onClick={e => this.close(e)}/>}
       </div>
     )
   }
