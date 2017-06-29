@@ -1,5 +1,6 @@
 .game-page {
   margin: 0;
+  height: calc(100vh - 40px);
   background: radial-gradient(#871018, #300508);
 }
 
@@ -12,5 +13,7 @@
 .game-canvas {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translate(-50%);
+  box-shadow: 0 0 30px black;
 }
