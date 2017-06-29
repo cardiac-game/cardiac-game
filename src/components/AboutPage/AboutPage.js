@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './AboutPage.css';
 
 import reactLogo from './images/react_logo.png';
+import reduxLogo from './images/redux_logo.svg'
 import HTMLLogo from './images/HTML5_logo.png';
 import nodeLogo from './images/nodejs_logo.png';
 import expressLogo from './images/express_logo.png';
@@ -54,6 +55,14 @@ export default class About extends Component {
                                 </div>
                                 <div className="about-logo-info">
                                     The frontend logic and data management is handled through the use of React.js. The use of this technology was a first for the development team.
+                                </div>
+                            </div>
+                            <div className="about-tech">
+                                <div className="about-logo-container">
+                                    <img className="about-logo-img" src={reduxLogo} alt="react logo"/>
+                                </div>
+                                <div className="about-logo-info">
+                                    Both application state and game state are managed with Redux. 
                                 </div>
                             </div>
                             <div className="about-tech">
@@ -203,11 +212,11 @@ export default class About extends Component {
                                     <a className="about-a" target="_blank" href="https://github.com/erpatterson11"><i className="fa fa-github-square about-icon" aria-hidden="true"></i></a>
                                     <div className="portrait-info-text">
                                         <p><span className="bold">Roles and Responsiblilities: </span>
-                                            Lead Game Developer in charge of
+                                            Lead Game Developer in charge of technical design and development of the Cardiac game. Responsible for game logic, physics, and performance.  
                                         </p>
                                         <p>
                                             <span className="bold">Background: </span>
-                                            West Philadelphia born and raised
+                                            Before building awesome interactive content for the web Eric was improving manufacturing processes as an engineer for a company that made brain implants.  
                                         </p>                             
                                     </div>
                                 </div>

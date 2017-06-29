@@ -28,15 +28,15 @@ const initialState = {
         orientation: 0,
         turnSpeed: 3,
         lastShot: 0,
-        fireRate: 200,
+        fireRate: 1000,
         isFiring: false
     },
     bulletParams: {
         img: images.bullet,
         width: images.bullet.width,
         height: images.bullet.height,
-        imgCenterX: images.bullet.width / 2,
-        imgCenterY: images.bullet.height / 2,
+        imgCenterX: images.bullet.width / 2,     
+            imgCenterY: images.bullet.height / 2,
         bulletSpeed: 12,
         bulletCapacity: 100
     },
