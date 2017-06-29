@@ -8,6 +8,8 @@ const initialState = {
       cholesterolPool: [],
       sugarPool: [],
 
+      enemy: {},
+
       virus: {},
       bacteria: {},
       sugar: {},
@@ -24,6 +26,9 @@ const UPDATE_BACTERIA = "UPDATE_BACTERIA"
 const UPDATE_VIRUS = "UPDATE_VIRUS"
 const UPDATE_CHOLESTEROL = "UPDATE_CHOLESTEROL"
 const UPDATE_SUGAR = "UPDATE_SUGAR"
+
+
+
 
 
 // REDUCER

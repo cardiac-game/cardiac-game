@@ -1,59 +1,111 @@
 import $ from './reusable'
 
-export default function Enemy(context, image) {
+import store from '../../../store/store'
 
-  let enemy = {
-    context: context,
-    isAlive: false,
-    x: $.randBtwn(0,1200),
-    y: $.randBtwn(0,900),
-    img: image,
-    width: image.width,
-    height: image.height,
-    imgCenterX: image.width/2,
-    imgCenterY: image.height/2,
-    dx: 0,
-    dy: 0,
-    speed: $.randBtwn(1,3),
-    turnSpeed: $.randBtwn(3,6),
-    orientation: $.randBtwn(0,$.fullCircle),
-    lastShot: 0,
-    fireRate: $.randBtwn(500,2000),
-    init: function() {
-      let x = Math.random() - 0.5 
-      let y = Math.random()  - 0.5
-      let signX = x / x
-      let signY = y / y
 
-      this.x = $.randBtwn(0,this.context.canvas.width)
-      this.y = $.randBtwn(0,this.context.canvas.height)
-    },
+let enemiesState = store.getState().enemiesReducer
 
-    update: function() {
-      let angle = Math.atan2(this.context.canvas.height/2 - this.y, this.context.canvas.width/2 - this.x)
-      let delta = angle - this.orientation
-      if (delta > $.pi) {
-          delta = delta - $.pi
-      }
-      if (delta !== 0) {
-          let direction = delta / delta
-          this.orientation += (direction* Math.min(this.turnSpeed, delta))
-      }
-      this.orientation %= $.pi
-      this.x += Math.cos(this.orientation) * this.speed + $.randBtwn(-3,3)
-      this.y += Math.sin(this.orientation) * this.speed 
-    },
+// update state anytime it is changed
+store.subscribe(function() {
+    enemiesState = store.getState().enemiesReducer
+})
 
-    draw: function() {
-      let xView = this.x + this.imgCenterX
-      let yView = this.y + this.imgCenterY
-      context.save()
-      context.translate(xView, yView)
-      context.rotate($.toRad(this.orientation + 90))
-      context.drawImage(this.img, -this.imgCenterX, -this.imgCenterY, this.width, this.height)
-      context.restore()
-   }
+function thisOrThat() {
+  return Math.round(Math.random()) !== 0
+}
+
+
+function randomSpawn(obj) {
+  let split1 = thisOrThat()
+  let split2 = thisOrThat()
+  
+  if (split1 && split2) {
+    return {
+      x: Math.random() * obj.width,
+      y: -100
+    }
+  } else if (split1 && !split2) {
+    return {
+      x: Math.random() * obj.width,
+      y: obj.width + 100
+    }
+  } else if (!split1 && split2) {
+    return {
+      x: -100,
+      y: Math.random() * obj.height
+    }
+  } else if (!split1 && !split2) {
+    return {
+      x: obj.height + 100,
+      y: Math.random() * obj.height
+    }
+  } 
+}
+
+
+export default class Enemy {
+  constructor(context, img) {
+    let spawnCoords = randomSpawn(context.canvas)
+    this.isAlive = false
+    this.context = context
+    this.x = spawnCoords.x,
+    this.y = spawnCoords.y,
+    this.img = img,
+    this.width = img.width,
+    this.height = img.height,
+    this.imgCenterX = img.width / 2,
+    this.imgCenterY = img.height / 2,
+    this.dx = 1,
+    this.dy = 1,
+    this.speed = 2,
+    this.orientation = Math.random() * Math.PI,
+    this.turnSpeed = 1,
+    this.lastShot = Date.now(),
+    this.fireRate = 0,
+    this.isFiring = 0,
+    this.counter = 0,
+    this.targetX = context.canvas.width / 2,
+    this.targetY = context.canvas.height / 2,
+    this.targetWidth = 40 * 60 // scale to difficulty
+    this.targetHeight = 40 * 60 // scale to difficulty
+
+    this.update = this.update.bind(this)
+    this.draw = this.draw.bind(this)
   }
 
-  return enemy
+  update() {
+    this.counter++ 
+    this.turnSpeed = Math.random() * 5 + 1
+    if ( this.counter > 30) {
+      this.targetX = this.context.canvas.width / 2 + (Math.random() * this.targetWidth - this.targetWidth/2)
+      this.targetY = this.context.canvas.height / 2 + (Math.random() * this.targetHeight - this.targetHeight/2)
+      this.counter = 0
+    }    
+    var x1 = this.x + this.imgCenterX
+    var y1 = this.y + this.imgCenterY  
+    var angle = Math.atan2(this.targetY - y1, this.targetX - x1)  
+    var theta = 0
+     
+      if (this.orientation !== angle) {        
+        var turnSpeed  = this.turnSpeed * Math.PI / 180
+        var delta = angle - this.orientation       
+        if (delta >  Math.PI) delta -= Math.PI * 2
+        if (delta < -Math.PI) delta += Math.PI * 2       
+        theta = delta > 0 ? turnSpeed : -turnSpeed        
+        this.orientation += theta
+        if (Math.abs(delta) < turnSpeed) {
+          this.orientation = angle
+        }
+      }
+      this.x += Math.cos(this.orientation) * this.speed
+      this.y += Math.sin(this.orientation) * this.speed
+    }
+
+    draw() {
+      this.context.save()
+      this.context.translate(this.x + this.imgCenterX, this.y + this.imgCenterY)
+      this.context.rotate(this.orientation + Math.PI/2)
+      this.context.drawImage(this.img, -this.imgCenterX, -this.imgCenterY, this.width, this.height)
+      this.context.restore()
+  }
 }

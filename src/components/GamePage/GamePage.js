@@ -57,10 +57,11 @@ class GamePage extends Component {
 
     // create player object. pass in gameState to initialize player with proper params
     const player = new Player(ctx)
-    const enemy = new Enemy(ctx)
     const bulletPool = new BulletPool(ctx)
+    const enemyPool = new EnemyPool(ctx, 100)
+    const collision = new CollisionDetector()
 
-    bulletPool.init()
+    enemyPool.init(Enemy)
 
     player.draw()
 
@@ -69,12 +70,20 @@ class GamePage extends Component {
 
       ctx.clearRect(0,0,canvas.width,canvas.height)
       player.draw()
-      enemy.draw()
+      enemyPool.draw()
       bulletPool.draw()
 
       player.update()
-      enemy.update()
+      enemyPool.update()
       bulletPool.update()
+
+      collision.checkObjToArray(player, enemyPool.active, function(bulletPool,enemy) {
+        enemy.isAlive = false
+      })
+      collision.checkArrayToArray(bulletPool.active, enemyPool.active, function(bullet,enemy) {
+        enemy.isAlive = false
+        bullet.isAlive = false
+      })
 
       requestAnimationFrame(animation)
     }
@@ -84,7 +93,6 @@ class GamePage extends Component {
   componentWillUnmout() {
     document.querySelector('body').style.overflow = 'scroll'
   }
-
 
   render() {
     return (
@@ -102,14 +110,4 @@ class GamePage extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    gameState: Object.assign({},state.gameReducer,state.playerReducer,state.enemiesReducer)
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({setContext: setContext}, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(GamePage)
+export default GamePage
