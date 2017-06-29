@@ -1,17 +1,15 @@
 .timeline-body {
-height: calc(100vh - 40px);
 background-color: #fff9f2;
 font-family: 'Josefin Sans';
 display:flex;
 align-content: center;
 justify-content: center;
-font-size:30px;
+font-size:40px;
+color:black;
+text-align: center;
 }
 #cd-timeline {
   position: relative;
-  /*padding: 2em 0;*/
-  /*margin-top: 2em;*/
-  /*margin-bottom: 2em;*/
 }
 #cd-timeline::before {
   /* this is the vertical line */
@@ -33,21 +31,12 @@ font-size:30px;
     margin-left: -2px;
   }
 }
-/*.cd-timeline-block {
-  position: relative;
-  margin: 2em 0;
-}*/
 .cd-timeline-block::after {
   clear: both;
   content: "";
   display: table;
 }
-/*.cd-timeline-block:first-child {
-  margin-top: 0;
-}*/
-/*.cd-timeline-block:last-child {
-  margin-bottom: 0;
-}*/
+
 .cd-timeline-content {
   position: relative;
   margin-left: 60px;
@@ -60,9 +49,6 @@ font-size:30px;
   content: "";
   display: table;
 }
-/*.cd-timeline-content h2 {
-  color: black;
-}*/
 .cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content  {
   font-size: 13px;
   font-size: 0.8125rem;
@@ -72,7 +58,6 @@ font-size:30px;
 }
 .cd-timeline-content p {
   margin: 1em 0;
-  line-height: 1.6;
 }
 .cd-timeline-content .cd-read-more {
   float: right;
@@ -89,16 +74,17 @@ font-size:30px;
   padding: .8em 0;
   opacity: .7;
 }
-.cd-timeline-content::before {
+/*.cd-timeline-content::before {
   content: '';
   position: absolute;
   top: 16px;
   right: 100%;
-  height: 0;
   width: 0;
   border: 7px solid transparent;
+  border:20px solid;
   border-right: 7px solid #ffffff;
-}
+}*/
+
 @media only screen and (min-width: 768px) {
   .cd-timeline-content h2 {
     font-size: 20px;
@@ -137,16 +123,6 @@ font-size:30px;
     font-size: 1rem;
   }
   .cd-timeline-block:nth-child(even) .cd-timeline-content {
-    float: right;
-  }
-  .cd-timeline-block:nth-child(even) .cd-timeline-content::before {
-    top: 24px;
-    left: auto;
-    right: 100%;
-    border-color: transparent;
-    border-right-color: #ffffff;
-  }
-  .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-read-more {
     float: right;
   }
   .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
