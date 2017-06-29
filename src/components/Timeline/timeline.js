@@ -3,6 +3,17 @@ import './timeline.css';
 
 export default class Timeline extends Component {
 
+componentDidMount(){
+	window.onscroll = function() {
+		console.log("Is this working?");
+		if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.getElementById("cd-timeline").className = "cd-container";
+    } else {
+        document.getElementById("cd-timeline").className = "cd-container";
+    }
+	};
+
+}
 
 render() {
     return (
@@ -79,35 +90,30 @@ render() {
 				<p>Lucky Strike Cigarette brand launches its  ad campaign "Reach for a Lucky instead of a Sweet", using nicotine's appetite suppressing abilities to increase sales.</p>
 			</div>
 		</div>
-
 		<div className="cd-timeline-block">
       <div className="cd-timeline-content">
 				<h2>1920s</h2>
 				<p>USDA produced radio show titled "Aunt Sammy" which informed listeners on recipes and cooking tips. Also informed them on nutrition.</p>
 			</div>
 		</div>
-
 		<div className="cd-timeline-block">
       <div className="cd-timeline-content">
 				<h2>1930s</h2>
 				<p>During the Great Depression, focus on diets switched to getting enough daily calories.</p>
 			</div>
 		</div>
-
 		<div className="cd-timeline-block">
       <div className="cd-timeline-content">
 				<h2>1943</h2>
 				<p>The War Food Administration expands lunch program, making sure children are fed during the day.</p>
 			</div>
 		</div>
-
 		<div className="cd-timeline-block">
       <div className="cd-timeline-content">
 				<h2>1946</h2>
 				<p>Chick-fil-A was founded</p>
 			</div>
 		</div>
-
 <div className="cd-timeline-block">
       <div className="cd-timeline-content">
 				<h2>1950</h2>
@@ -120,7 +126,6 @@ render() {
 				<p>University of Minnesota Dr. Ancel Keys, research finds that heart disease has a direct correlation with diet and exercise.</p>
 			</div>
 		</div>
-
 		<div className="cd-timeline-block">
       <div className="cd-timeline-content">
 				<h2>1955</h2>
@@ -141,14 +146,12 @@ render() {
 				<p>Domino's Pizza was founded.</p>
 			</div>
 		</div>
-
 		<div className="cd-timeline-block">
       <div className="cd-timeline-content">
 				<h2>1962</h2>
 				<p>Taco Bell was Founded on March 21,1962.</p>
 			</div>
 		</div>
-
 <div className="cd-timeline-block">
       <div className="cd-timeline-content">
 				<h2>1962</h2>
@@ -205,15 +208,12 @@ render() {
 				<p>The start of America's Obesity epidemic begins.</p>
 			</div>
 		</div>
-
 <div className="cd-timeline-block">
       <div className="cd-timeline-content">
 				<h2>1981</h2>
 				<p>USDA announced that ketchup could be counted as a vegetable in the school lunch program.</p>
 			</div>
 		</div>
-
-
 <div className="cd-timeline-block">
       <div className="cd-timeline-content">
 				<h2>1981</h2>
@@ -329,6 +329,7 @@ render() {
 			</div>
 		</div>
 </section>
+
 </div>
 
 )}}
