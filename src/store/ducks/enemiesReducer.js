@@ -2,9 +2,18 @@
 ////////////////
 
 const initialState = {
+  
       bacteriaPool: [],
       virusPool: [],
       cholesterolPool: [],
+      sugarPool: [],
+
+      enemy: {},
+
+      virus: {},
+      bacteria: {},
+      sugar: {},
+      cholesterol: {}
     }
 
 
@@ -16,6 +25,8 @@ const initialState = {
 const UPDATE_BACTERIA = "UPDATE_BACTERIA"
 const UPDATE_VIRUS = "UPDATE_VIRUS"
 const UPDATE_CHOLESTEROL = "UPDATE_CHOLESTEROL"
+const UPDATE_SUGAR = "UPDATE_SUGAR"
+
 
 
 
@@ -43,6 +54,12 @@ export default function enemiesReducer( state=initialState, action ) {
         return Object.assign({},{
           ...state,
           cholesterolPool: action.payload
+        })
+
+    case UPDATE_SUGAR:
+        return Object.assign({},{
+          ...state,
+          sugarPool: action.payload
         })
 
     default: return state
@@ -75,4 +92,10 @@ export function updateCholesterol(cholesterolPool) {
   }
 }
 
+export function updateSugar(sugarPool) {
+  return {
+    type: UPDATE_SUGAR,
+    payload: sugarPool
+  }
+}
 
