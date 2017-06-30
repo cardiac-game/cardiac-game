@@ -3,27 +3,50 @@ import './timeline.css';
 
 export default class Timeline extends Component {
 
-componentDidMount(){
-	window.onscroll = function() {
-		console.log("Is this working?");
-		if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        document.getElementById("cd-timeline").className = "cd-container";
-    } else {
-        document.getElementById("cd-timeline").className = "cd-container";
-    }
-	};
-
+constructor(){
+	super()
+	this.state ={
+	scrollPosition: 0
+}	
+this.scroll=this.scroll.bind(this)	
 }
 
+
+	scroll(e) {
+		var target =this.refs.timeLineContainer;
+		console.log(target.scrollWidth)
+		this.setState({scrollPosition: this.state.scrollPosition + e.deltaY})
+		if( this.state.scrollPosition <0 ){
+			this.setState({scrollPosition:0})
+		}
+		if( this.state.scrollPosition > target.scrollWidth ){
+			this.setState({scrollPosition: target.scrollWidth})
+		}
+		target.scrollLeft = this.state.scrollPosition
+
+
+	}
+
+
+componentDidMount(){
+
+
+	window.onwheel = this.scroll
+
+	};
+
+
+
+
 render() {
+	// if( this.state.scrollPosition >50){
+	// 	return <div>hi</div>
+	// }
     return (
 <div className="timeline-body">
 
-
-	
-	<div className="timeLineMarker"></div>
-<div id="cd-timeline" className="cd-container">
-	<div className="longAssBox">
+<div id="cd-timeline" className="cd-container" ref='timeLineContainer'>
+	<div className="timeLineContainer" >
 		<div className="yearTextContainer">
 					<div className="timeLineTime">1830</div>
 			</div>
@@ -53,6 +76,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1839</div>
+					<div className="timeLineEvent">Soda was Invented</div>
 			</div>
 
 			<div className="yearTextContainer">

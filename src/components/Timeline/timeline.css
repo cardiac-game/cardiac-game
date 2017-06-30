@@ -132,22 +132,38 @@ height: calc(100vh - 40px)
    top: calc(67vh - 40px);
    width:100vw;
    height: 33vh;
-   /*border-bottom: thick dotted black;*/
    overflow-x: scroll;
+   overflow-y:hidden;
  }
- .longAssBox{
+ .timeLineContainer{
    width:19100px;
    height:35vh;
+   background:wheat
  }
 .yearTextContainer{
  display:table-cell;
  float: bottom;
-
-  
 }
 .timeLineTime{
   height: 40px;
   width: 100px;
   border-right: 1px solid black;
+  text-align: center;
+  overflow-y:hidden;
+}
+::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-button {
+  width: 1px;
+  height: 1px;
+}
+.contentContainer{
+  overflow-x: scroll;
+}
+.timeLineEvent{
+  display:table-cell;
   text-align: center;
 }
