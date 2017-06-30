@@ -28,7 +28,7 @@ const initialState = {
         orientation: 0,
         turnSpeed: 3,
         lastShot: 0,
-        fireRate: 200,
+        fireRate: 333,
         isFiring: false
     },
     bulletParams: {

@@ -1,20 +1,20 @@
 import CollisionDetector from './collisionDetection'
 import store from '../../../store/store'
-import { setPlayerBulletPool } from '../../../store/ducks/enemiesReducer'
-import { images } from './mediaRepos'
 
 
+// get state on load
 let updatedState = store.getState()
 let gameState = updatedState.gameReducer
 let enemiesState = updatedState.enemiesReducer
 
+
 export default class EnemyPool {
-    constructor(context, maxSize) {
+    constructor(context, maxSize, maxOnScreen) {
         this.context = context
         this.active = []
         this.inactive = []
         this.maxSize = maxSize
-        this.numOnScreen = 10
+        this.numOnScreen = maxOnScreen
         this.waveSize = maxSize
 
         this.getEnemy = this.getEnemy.bind(this)
@@ -25,16 +25,18 @@ export default class EnemyPool {
         this.draw = this.draw.bind(this)
     }
 
+    // returns an enemy unless all enemies in wave have been killed
     getEnemy() {
          return this.waveSize > 1 ? this.inactive.shift() : false
         }
 
+    // moves enemy from active array to inactive array 
     storeEnemy(enemy) {
             this.inactive.push(enemy)
         }
 
+    // move enemy from inactive array to active array
     spawnEnemy() {
-        console.log(this.active.length,this.inactive.length, this.numOnScreen)
         if (this.active.length < this.numOnScreen ) {
             let enemy = this.getEnemy()
             if (enemy) {
@@ -45,6 +47,8 @@ export default class EnemyPool {
         }
     }
 
+
+    // before game loop: create a new pool with the input enemy type and populate the inactive and active pools
     init(EnemyType, image) {
         for (let i = 0; i < this.maxSize; i++) {
             let enemy = new EnemyType(this.context, image)
@@ -55,6 +59,7 @@ export default class EnemyPool {
         }
     }
 
+    // update each enemy in active pool. if an enemy is dead, remove from the 
     update() {
         for (let i = 0; i < this.active.length; i++) {
             this.active[i].update()
@@ -63,7 +68,6 @@ export default class EnemyPool {
                 this.spawnEnemy()
             }
         }
-        store.setState()
     }
     
 
