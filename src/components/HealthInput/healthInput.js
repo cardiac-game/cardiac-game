@@ -11,9 +11,10 @@ import axios from 'axios';
 
 
 class HealthInput extends Component {
-    constructor(){
+    
+    
+constructor(){
         super()
-
         this.state = {
             userInput: '',
             // all foods called in by api
@@ -21,11 +22,11 @@ class HealthInput extends Component {
             // a user's chosen foods
             chosenFoodsArray: [],
             // chosenFoodsNutrition is the reduced object of the sum of all a user's nutrients from chosenFoodsArray
-            chosenFoodsNutrition: {}
+            chosenFoodsNutrition: {},
+            
+            error: false
         }
-
     }
-
     getFoodsArray(item) {
         axios.get('http://localhost:8000/api/foods?item='+item)
             .then(response => {
@@ -36,12 +37,10 @@ class HealthInput extends Component {
                     if (result.includes(', UPC')) {
                     const regexp = /.*?(?=, UPC)/
                     const matches_array = result.match(regexp);
-
                     result = matches_array[0]
                     }
                     obj.name = result.toUpperCase();
                 })
-
                 // this block of code eliminates all duplicates from then end to the beginning of the array
                 for(let i = allFoodsArray.length-1; i > 0; i--){
                    for(let j = i-1; j >= 0; j--){
@@ -50,10 +49,12 @@ class HealthInput extends Component {
                         }
                     } 
                 }
-
                 this.setState({
-                    allFoodsArray: allFoodsArray
+                    allFoodsArray: allFoodsArray,
+                    error: false
                 })
+            }).catch(err => {
+                this.setState({error: true})
             });
     }
 
@@ -173,11 +174,13 @@ class HealthInput extends Component {
                         ?
                     <div className="input-list">
                     <div className="food-list">{ listOfFoods }</div>
-                </div>
+                    </div>
                     :
+                  
                     <div className="first-search">
                     <div className="input-curtain-first"></div>
                     </div>
+           
                     }
                 </div>
               {

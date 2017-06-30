@@ -214,6 +214,7 @@ export default class About extends Component {
                                         <p><span className="bold">Roles and Responsiblilities: </span>
                                             Lead Game Developer in charge of technical design and development of the Cardiac game. Responsible for game logic, physics, and performance.  
                                         </p>
+                                        <br/>
                                         <p>
                                             <span className="bold">Background: </span>
                                             Before building awesome interactive content for the web Eric was improving manufacturing processes as an engineer for a company that made brain implants.  
@@ -225,11 +226,12 @@ export default class About extends Component {
                                     <a className="about-a" target="_blank" href="https://github.com/elderandi"><i className="fa fa-github-square about-icon" aria-hidden="true"></i></a>
                                     <div className="portrait-info-text">
                                         <p><span className="bold">Roles and Responsiblilities: </span>
-                                            Lead Frontend Developer and Designer
+                                            Lead Frontend Developer and Lead Designer, in charge of building the frontend, styling it and creating a beautiful overall experience. Also responsible for transforming complex API data into a user-friendly and clean display on the view.
                                         </p>
+                                        <br/>
                                         <p>
                                             <span className="bold">Background: </span>
-                                            New Zealand born and raised
+                                            Born and raised in New Zealand before moving to multiple countries aroung the world, Ivor found himself working in graphic design, animations, and character design/development for a TV show.
                                         </p>                             
                                     </div>
                                 </div>
@@ -240,6 +242,7 @@ export default class About extends Component {
                                         <p><span className="bold">Roles and Responsiblilities: </span>
                                             Backend Developer
                                         </p>
+                                        <br/>
                                         <p>
                                             <span className="bold">Background: </span>
                                             From California or something
@@ -253,6 +256,7 @@ export default class About extends Component {
                                         <p><span className="bold">Roles and Responsiblilities: </span>
                                             Lead Backend Developer and Frontend Developer in charge of building the Node.js server for API calls and queries to the PostgreSQL database on Heroku. Responsible for data exchange within the App and creating the About page on the frontend. 
                                         </p>
+                                        <br/>
                                         <p>
                                             <span className="bold">Background: </span>
                                             Military brat with a degree in Mechanical Engineering from Rice University. Previous work experience in healthcare includes Quality Engineering in biotherapeutics and Information Technology work with electronic health records. 
@@ -266,6 +270,7 @@ export default class About extends Component {
                                         <p><span className="bold">Roles and Responsiblilities: </span>
                                             Frontend Developer
                                         </p>
+                                        <br/>
                                         <p>
                                             <span className="bold">Background: </span>
                                             From Minnesota but actually Tennesee
