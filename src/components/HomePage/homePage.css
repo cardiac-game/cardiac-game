@@ -26,7 +26,12 @@ overflow-x: hidden;
     text-shadow: 0px 0px 10px white;
     letter-spacing: 50px;
     }
-
+    /*.navbar-bar {
+    position: sticky;
+    top: 0px;
+    margin-top: 100vh;
+    }*/
+    /*blablablalbalbalblablablablblalbalbalb*/
     /*.test{
     position: absolute;
     top: 0;
