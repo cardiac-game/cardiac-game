@@ -1,4 +1,4 @@
-.timeline-body {
+/*.timeline-body {
 background-color: #fff9f2;
 font-family: 'Josefin Sans';
 display:flex;
@@ -12,7 +12,6 @@ text-align: center;
   position: relative;
 }
 #cd-timeline::before {
-  /* this is the vertical line */
   content: '';
   position: absolute;
   top: 0;
@@ -74,17 +73,6 @@ text-align: center;
   padding: .8em 0;
   opacity: .7;
 }
-/*.cd-timeline-content::before {
-  content: '';
-  position: absolute;
-  top: 16px;
-  right: 100%;
-  width: 0;
-  border: 7px solid transparent;
-  border:20px solid;
-  border-right: 7px solid #ffffff;
-}*/
-
 @media only screen and (min-width: 768px) {
   .cd-timeline-content h2 {
     font-size: 20px;
@@ -130,4 +118,36 @@ text-align: center;
     right: 122%;
     text-align: right;
   }
+}*/
+
+
+ /* NEW CSS TEST*/
+
+.timeline-body {
+height: calc(100vh - 40px)
+}
+
+ .cd-container{
+   position: absolute;
+   top: calc(67vh - 40px);
+   width:100vw;
+   height: 33vh;
+   /*border-bottom: thick dotted black;*/
+   overflow-x: scroll;
+ }
+ .longAssBox{
+   width:19100px;
+   height:35vh;
+ }
+.yearTextContainer{
+ display:table-cell;
+ float: bottom;
+
+  
+}
+.timeLineTime{
+  height: 40px;
+  width: 100px;
+  border-right: 1px solid black;
+  text-align: center;
 }
