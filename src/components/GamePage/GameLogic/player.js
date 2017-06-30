@@ -1,7 +1,7 @@
 import store from '../../../store/store'
 import { setPlayer } from '../../../store/ducks/playerReducer'
 
-import images from './mediaRepos'
+import { images } from './mediaRepos'
 import BulletPool from './bulletPool'
 import Bullet from './bullet'
 

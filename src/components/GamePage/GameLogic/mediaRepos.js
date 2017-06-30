@@ -2,7 +2,7 @@
 // need an onload function for each resource.
 // return number of loaded to total number
 
-const images = new function() {
+export const images = new function() {
   this.ship = new Image()
   this.bg = new Image()
   this.bullet = new Image()
@@ -17,12 +17,11 @@ const images = new function() {
   this.virus.src = require('../images/virus.png')
 
   this.virus.frames = 20
+
+
 }
 
 
-let audio = new function() {
+export const audio = new function() {
 
 }
-
-
-export default images

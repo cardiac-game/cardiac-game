@@ -1,4 +1,4 @@
-import images from '../../components/GamePage/GameLogic/mediaRepos'
+import { images } from '../../components/GamePage/GameLogic/mediaRepos'
 
 
 // INITIAL STATE
@@ -18,7 +18,7 @@ const initialState = {
         x: 400,
         y: 100,
         img: images.ship,
-        width: images.ship.width,
+        width: images.ship.width, 
         height: images.ship.height,
         imgCenterX: images.ship.width / 2,
         imgCenterY: images.ship.height / 2,
@@ -28,7 +28,7 @@ const initialState = {
         orientation: 0,
         turnSpeed: 3,
         lastShot: 0,
-        fireRate: 333,
+        fireRate: 200,
         isFiring: false
     },
     bulletParams: {
@@ -37,7 +37,7 @@ const initialState = {
         height: images.bullet.height,
         imgCenterX: images.bullet.width / 2,     
             imgCenterY: images.bullet.height / 2,
-        bulletSpeed: 12,
+        bulletSpeed: 17,
         bulletCapacity: 100
     },
       playerHealth: 0,

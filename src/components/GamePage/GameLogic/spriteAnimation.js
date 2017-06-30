@@ -1,41 +1,53 @@
-export default function spriteAnimation(sprite, context) {
+export default class spriteAnimation {
+    constructor(context, sprite) {
 
+    this.context = context
+    this.sprite = sprite
+    this.currentFrame = 0
+    this.frameWidth = this.sprite.width / this.sprite.frames
+    this.frameSpeed = 5
+    this.frameCount = 0
+    this.x = Math.random() * context.canvas.width
+    this.y = Math.random() * context.canvas.height
+    this.dx = Math.random() * 3 + 1
+    this.dy = Math.random() *3 + 1
+    this.width = this.frameWidth
+    this.height = this.sprite.height
+    this.imgCenterX = this.frameWidth / 2
+    this.imgCenterY = this.sprite.height / 2
+    this.rotationSpeed = 2
 
-    let currentFrame = 0
-    let frameWidth = sprite.width / sprite.frames
-    let frameSpeed = 5
-    let count = 0
-    let x = 100
-    let y = 100
-    let dx = 1
-    let dy = 1
-    let rotationSpeed = 2
+    this.update = this.update.bind(this)
+    this.draw = this.draw.bind(this)
+    }
 
-    this.update = function() {
+    update() {
+
+        this.frameCount++
+
+        this.x += this.dx
+        this.y += this.dy
+
+        // keep in bounds
+        if (this.x > this.context.canvas.width - this.width || this.x < 0) this.dx *= -1
+        if (this.y > this.context.canvas.height - this.width || this.y < 0) this.dy *= -1
         
-        count++
-        x+=dx
-        y+=dy
-
-        if (x > context.canvas.width -37.5 || x < 0 + 37.5) dx *= -1
-        if (y > context.canvas.height -37.5 || y < 0 + 37.5) dy *= -1
-        
-        if (count >= frameSpeed) {
-            currentFrame++
-            if (currentFrame >= sprite.frames) {
-                currentFrame = 0
+        // regulates frame speed
+        if (this.frameCount >= this.frameSpeed) {
+            this.currentFrame++
+            if (this.currentFrame >= this.sprite.frames) {
+                this.currentFrame = 0
             }
-            count = 0
+            this.frameCount = 0
         }
     }
 
-    this.draw = function() {
-        let sp = sprite
-        context.save()
-        context.translate(x, y)
-        context.rotate((rotationSpeed*currentFrame) * Math.PI / 180)
-        context.drawImage(sp,frameWidth*currentFrame,0,frameWidth,sp.height,-37.5,-37.5,frameWidth,sp.height)
-        context.restore()
+    draw() {
+        this.context.save()
+        this.context.translate(this.x + this.imgCenterX, this.y + this.imgCenterY)
+        this.context.rotate((this.rotationSpeed*this.currentFrame) * Math.PI / 180)
+        this.context.drawImage(this.sprite,(this.frameWidth*this.currentFrame),0,this.frameWidth,this.sprite.height,-this.imgCenterX,-this.imgCenterY,this.frameWidth,this.sprite.height)
+        this.context.restore()
     }
 
 } 

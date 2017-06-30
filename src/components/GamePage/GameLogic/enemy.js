@@ -46,7 +46,7 @@ function randomSpawn(obj) {
 export default class Enemy {
   constructor(context, img) {
     let spawnCoords = randomSpawn(context.canvas)
-    this.isAlive = false
+    this.isAlive = true
     this.context = context
     this.x = spawnCoords.x,
     this.y = spawnCoords.y,

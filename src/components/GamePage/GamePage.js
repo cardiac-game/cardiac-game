@@ -15,7 +15,7 @@ import Enemy from './GameLogic/enemy'
 import Virus from './GameLogic/virus'
 
 
-import images from './GameLogic/mediaRepos'
+import { images } from './GameLogic/mediaRepos'
 
 
 import spriteAnimation from './GameLogic/spriteAnimation'
@@ -40,6 +40,7 @@ class GamePage extends Component {
     // Each game object then subscribes to state and contains state dispatch functions
     //    so they can update and stay updated themselves
 
+
     // Target canvases and set context
     const canvas = this.refs.canvas
     const bulletCanvas = this.refs.bulletCanvas
@@ -59,11 +60,14 @@ class GamePage extends Component {
     const player = new Player(ctx)
     const bulletPool = new BulletPool(ctx)
     const enemyPool = new EnemyPool(ctx, 100)
+    const virusPool = new EnemyPool(ctx, 100)
     const collision = new CollisionDetector()
 
-    enemyPool.init(Enemy)
+    enemyPool.init(Enemy, images.enemy) 
+    virusPool.init(spriteAnimation, images.virus)
 
     player.draw()
+
 
     // animation loop
     function animation() {
@@ -71,10 +75,13 @@ class GamePage extends Component {
       ctx.clearRect(0,0,canvas.width,canvas.height)
       player.draw()
       enemyPool.draw()
+      virusPool.draw()
+
       bulletPool.draw()
 
       player.update()
       enemyPool.update()
+      virusPool.update()
       bulletPool.update()
 
       collision.checkObjToArray(player, enemyPool.active, function(bulletPool,enemy) {
@@ -82,6 +89,11 @@ class GamePage extends Component {
       })
       collision.checkArrayToArray(bulletPool.active, enemyPool.active, function(bullet,enemy) {
         enemy.isAlive = false
+        bullet.isAlive = false
+      })
+
+      collision.checkArrayToArray(virusPool.active,bulletPool.active, function(virus,bullet) {
+        virus.isAlive = false
         bullet.isAlive = false
       })
 
@@ -101,7 +113,6 @@ class GamePage extends Component {
         <div className="game-canvas-container">
           <canvas className='game-canvas' ref='bulletCanvas'></canvas>
           <canvas className='game-canvas' ref="canvas"></canvas>
-
         </div>
       </section>
       <Modal />
