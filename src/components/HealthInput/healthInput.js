@@ -200,13 +200,13 @@ constructor(){
                            <div className="input-boxy-maps">
                                <div className="game-map-title">GAME MAP</div>
                             <form action="">
-                               <input class="input-radio" type="radio" name="map"/> CANCEROUS<br/>
-                               <input class="input-radio" type="radio" name="map"/> CARNIVORE<br/>
-                               <input class="input-radio" type="radio" name="map"/> GALACTIC<br/>
-                               <input class="input-radio" type="radio" name="map"/> HEART ATTACK<br/>
-                               <input class="input-radio" type="radio" name="map"/> INFECTION<br/>
-                               <input class="input-radio" type="radio" name="map"/> MICROSCOPIC<br/>
-                               <input class="input-radio" type="radio" name="map"/> PARASITICAL<br/>
+                               <input className="input-radio" type="radio" name="map" checked/> CANCEROUS<br/>
+                               <input className="input-radio" type="radio" name="map"/> CARNIVORE<br/>
+                               <input className="input-radio" type="radio" name="map"/> GALACTIC<br/>
+                               <input className="input-radio" type="radio" name="map"/> HEART ATTACK<br/>
+                               <input className="input-radio" type="radio" name="map"/> INFECTION<br/>
+                               <input className="input-radio" type="radio" name="map"/> MICROSCOPIC<br/>
+                               <input className="input-radio" type="radio" name="map"/> PARASITICAL<br/>
             
                             </form>
                            </div>
