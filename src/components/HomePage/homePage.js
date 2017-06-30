@@ -9,6 +9,7 @@ export default class HomePage extends Component {
 
 componentDidMount(){
     bloody(this.refs.bloody);
+    
 }
 
 render() {
