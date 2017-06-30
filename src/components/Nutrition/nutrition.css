@@ -1,4 +1,22 @@
 .nutrition-body {
-height: calc(100vh - 40px);
 background-color: #fff9f2;
+padding-top: 50px;
+}
+
+.nutri-row-container {
+    height: calc(100vh - 90px)
+}
+
+.row {
+    height: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+.cell-box {
+    height: 100%;
+    width: calc(100%/7);
+    background-color: rgba(150,150,150,.3);
+    border-radius: 15%;
+    border: 5px solid rgba(0,0,0,.1);
 }
