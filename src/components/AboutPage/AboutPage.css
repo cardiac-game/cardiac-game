@@ -52,7 +52,7 @@
     height: calc(100%/6);
     width: 100%;
     /*background-color: black;*/
-    border: 1px solid white;
+    /*border: 1px solid white;*/
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -78,10 +78,11 @@
 .about-logo-info {
     height: 100%;
     width: 90%;
-    background: green;
+    /*background: green;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-left: 2%;
 }
 
 
@@ -238,7 +239,7 @@
 }
 
 .portrait-info {
-    height: 38%;
+    height: 30%;
     width: 100%;
     padding: 2%;
     /*background-color: yellow;*/
