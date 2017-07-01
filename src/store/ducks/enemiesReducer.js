@@ -8,12 +8,26 @@ const initialState = {
       cholesterolPool: [],
       sugarPool: [],
 
-      enemy: {},
 
-      virus: {},
-      bacteria: {},
-      sugar: {},
-      cholesterol: {}
+
+      virus: {
+        currentFrame: 0,
+        frameCount: 0,
+        frameSpeed: 5,
+        rotationSpeed: 2
+    },
+      bacteria: {
+        currentFrame: 0,
+        frameCount: 0,
+        frameSpeed: 5,
+        rotationSpeed: 2
+      },
+      sugar: {
+
+      },
+      cholesterol: {
+
+      }
     }
 
 
