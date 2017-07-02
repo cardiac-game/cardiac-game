@@ -11,11 +11,12 @@ import Player from './GameLogic/player'
 import BulletPool from './GameLogic/bulletPool'
 import Bullet from './GameLogic/bullet'
 import EnemyPool from './GameLogic/enemyPool'
-import Enemy from './GameLogic/enemy'
 import Virus from './GameLogic/virus'
+import Bacteria from './GameLogic/bacteria'
+import Heart from './GameLogic/heart'
 
 
-import images from './GameLogic/mediaRepos'
+import { images } from './GameLogic/mediaRepos'
 
 
 import spriteAnimation from './GameLogic/spriteAnimation'
@@ -40,6 +41,7 @@ class GamePage extends Component {
     // Each game object then subscribes to state and contains state dispatch functions
     //    so they can update and stay updated themselves
 
+
     // Target canvases and set context
     const canvas = this.refs.canvas
     const bulletCanvas = this.refs.bulletCanvas
@@ -58,36 +60,66 @@ class GamePage extends Component {
     // create player object. pass in gameState to initialize player with proper params
     const player = new Player(ctx)
     const bulletPool = new BulletPool(ctx)
-    const enemyPool = new EnemyPool(ctx, 100)
+    const virusPool = new EnemyPool(ctx, 100, 3)
+    const bacteriaPool = new EnemyPool(ctx, 100, 5)
+    const heart = new Heart(ctx)
+
     const collision = new CollisionDetector()
 
-    enemyPool.init(Enemy)
+    
+    virusPool.init(spriteAnimation, images.virus)
+    bacteriaPool.init(Bacteria, images.bacteria)
 
     player.draw()
 
+
     // animation loop
-    function animation() {
+    function gameLoop() {
 
       ctx.clearRect(0,0,canvas.width,canvas.height)
+
+      // draw objects
       player.draw()
-      enemyPool.draw()
       bulletPool.draw()
+      virusPool.draw()
+      heart.draw()
+      bacteriaPool.draw()
 
+
+      // update objects
       player.update()
-      enemyPool.update()
       bulletPool.update()
+      virusPool.update()
+      heart.update()
+      bacteriaPool.update()
+   
 
-      collision.checkObjToArray(player, enemyPool.active, function(bulletPool,enemy) {
+
+      // check collisions
+      collision.checkObjToArray(player, bacteriaPool.active, function(bulletPool,enemy) {
         enemy.isAlive = false
       })
-      collision.checkArrayToArray(bulletPool.active, enemyPool.active, function(bullet,enemy) {
-        enemy.isAlive = false
+
+      collision.checkObjToArray(player, virusPool.active, function(bulletPool,enemy) {
+      })
+      
+      collision.checkArrayToArray(virusPool.active,bulletPool.active, function(virus,bullet) {
+        virus.healthDown()
         bullet.isAlive = false
       })
 
-      requestAnimationFrame(animation)
+      collision.checkArrayToArray(bacteriaPool.active,bulletPool.active, function(bacteria,bullet) {
+        bacteria.healthDown()
+        bullet.isAlive = false
+      })
+
+
+      // request gameLoop frame
+      requestAnimationFrame(gameLoop)
     }
-    animation()
+
+    // kickoff game loop
+    gameLoop()
   }
 
   componentWillUnmout() {
@@ -101,7 +133,6 @@ class GamePage extends Component {
         <div className="game-canvas-container">
           <canvas className='game-canvas' ref='bulletCanvas'></canvas>
           <canvas className='game-canvas' ref="canvas"></canvas>
-
         </div>
       </section>
       <Modal />
