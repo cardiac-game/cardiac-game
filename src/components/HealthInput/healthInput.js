@@ -160,7 +160,7 @@ constructor(){
         <div className="input-input">
             <div className="input-intro">
 
-                <div className="input-enemys"></div>
+                <div className="input-enemies"></div>
                 <div className="input-powerups"></div>
                 <div className="input-gameplay"></div>
 
