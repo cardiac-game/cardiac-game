@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-// import { Link } from 'react-router-dom'; // to link to the game
-// import { getSearchFood, getSpecific} from '../../services/nutrition.service'
+import { Redirect } from 'react-router-dom';
 import './healthInput.css'
 
-// import {removeFood} from '../../store/ducks/nutritionReducer';
+import { postGameInput } from '../../store/ducks/nutritionReducer';
 
 import axios from 'axios';
 
@@ -24,9 +22,15 @@ constructor(){
             // chosenFoodsNutrition is the reduced object of the sum of all a user's nutrients from chosenFoodsArray
             chosenFoodsNutrition: {},
             
-            error: false
+            error: false,
+
+            redirect: false,
+
+            map: undefined,
+
         }
     }
+
     getFoodsArray(item) {
         axios.get('http://localhost:8000/api/foods?item='+item)
             .then(response => {
@@ -119,11 +123,51 @@ constructor(){
                 }
             })
         })
-
+        console.log(this.state.chosenFoodsNutrition)
         return reducedObject
     }
 
+    sendToGameInput(){
+        let inputsObj = {
+            playerInitialSpeed: 1,
+            playerOverallSpeed: 1,
+            playerFireRate: 1,
+            playerMaxShield: 1,
+
+            bulletBonusDamage: 1,
+
+            sugarAmount: 1,
+            sugarSpeed: 1,
+            bacteriaVirusSpeed: 1
+        }
+        
+        // based on 2500 cal diet : 
+        // 375g Carbs -> 60% of cals (max) (Punishment over this range - Under this range scales to 45%)
+            // Sugars should be at 0% of Carbs but can go to most unhealthy at 100% of Carbs
+        // 80g Fat -> 30% of cals (max) (Punishment over this range - Under this range scales to 20%)
+        // 70g Protein -> 10% of cals (min) (Punishment under this range - Over this range scales to 35%)
+        // Cholesterol - over 300mg is bad - scales from 300mg to 600mg (nothing happens under this range)
+        // Sodium is flat rate over 2400mg is bad - scales from 2400mg to 4800mg (nothing happens under this range)
+        // Fiber is flat rate 30g is normal (scales from 30g to 60g)
+        
+        
+        
+
+        // postGameInput(inputsObj)
+        this.setState({
+            redirect: true
+        })
+    }
+
+    handleMapChange(map){
+        this.setState({ map })
+    }
+
+
     render() {
+        if (this.state.redirect) {
+            return <Redirect to='/game' />
+        }
 
         // display the list of all foods return by the user search
         const listOfFoods = this.state.allFoodsArray.map((item => {
@@ -156,6 +200,12 @@ constructor(){
             )
         })
 
+        const errorBox = function() {
+            return (
+                <div className="errorBox"><div>No search results.</div></div>
+            )
+        }
+
         return (
         <div className="input-input">
             <div className="input-intro">
@@ -166,19 +216,21 @@ constructor(){
             
                 <div className="input-boxy-1">
                     <div className="input-boxy-11">
-                        <input className="input-bar" value={this.state.userInput} onChange={e => this.setState({userInput: e.target.value})}></input>
-                        <button className="input-button-1" disabled={this.state.userInput ? false : true} onClick={() => this.getFoodsArray(this.state.userInput)}>SEARCH</button>
-                        </div>
+                        <form onSubmit={() => this.getFoodsArray(this.state.userInput)}>
+                            <input className="input-bar" value={this.state.userInput} onChange={e => this.setState({userInput: e.target.value})}></input>
+                            <button type="submit" className="input-button-1" disabled={this.state.userInput ? false : true}>SEARCH</button>
+                        </form>                        
+                    </div>
                     {
-                        listOfFoods.length
+                        (listOfFoods.length == 0 || this.state.error === false)
                         ?
                     <div className="input-list">
-                    <div className="food-list">{ listOfFoods }</div>
+                    <div className="food-list">{this.state.error ? errorBox() : listOfFoods} </div>
                     </div>
                     :
                   
                     <div className="first-search">
-                    <div className="input-curtain-first"></div>
+                    <div className="input-curtain-first">{this.state.error ? errorBox() : ""}</div>
                     </div>
            
                     }
@@ -199,15 +251,14 @@ constructor(){
                            </div>
                            <div className="input-boxy-maps">
                                <div className="game-map-title">GAME MAP</div>
-                            <form action="">
-                               <input className="input-radio" type="radio" name="map" checked/> CANCEROUS<br/>
-                               <input className="input-radio" type="radio" name="map"/> CARNIVORE<br/>
-                               <input className="input-radio" type="radio" name="map"/> GALACTIC<br/>
-                               <input className="input-radio" type="radio" name="map"/> HEART ATTACK<br/>
-                               <input className="input-radio" type="radio" name="map"/> INFECTION<br/>
-                               <input className="input-radio" type="radio" name="map"/> MICROSCOPIC<br/>
-                               <input className="input-radio" type="radio" name="map"/> PARASITICAL<br/>
-            
+                            <form>
+                               <input className="input-radio" type="radio" name="map" onClick={() => this.handleMapChange(0)}/> CANCEROUS<br/>
+                               <input className="input-radio" type="radio" name="map" onClick={() => this.handleMapChange(1)}/> CARNIVORE<br/>
+                               <input className="input-radio" type="radio" name="map" onClick={() => this.handleMapChange(2)}/> GALACTIC<br/>
+                               <input className="input-radio" type="radio" name="map" onClick={() => this.handleMapChange(3)}/> HEART ATTACK<br/>
+                               <input className="input-radio" type="radio" name="map" onClick={() => this.handleMapChange(4)}/> INFECTION<br/>
+                               <input className="input-radio" type="radio" name="map" onClick={() => this.handleMapChange(5)}/> MICROSCOPIC<br/>
+                               <input className="input-radio" type="radio" name="map" onClick={() => this.handleMapChange(6)}/> PARASITICAL<br/>
                             </form>
                            </div>
                     </div>
@@ -236,7 +287,7 @@ constructor(){
             </div>
 
                     <div className="input-submit">
-                    <button className="input-button-2" disabled={this.state.chosenFoodsArray.length === 0 ? true : false}>SUBMIT</button>
+                    <button className="input-button-2" disabled={(this.state.chosenFoodsArray.length === 0 && this.state.map !== undefined) ? true : false} onClick={() => this.sendToGameInput()}>SUBMIT</button>
                     </div>
                   
         </div>
