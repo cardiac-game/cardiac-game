@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-// import { Link } from 'react-router-dom'; // to link to the game
-// import { getSearchFood, getSpecific} from '../../services/nutrition.service'
+import { Redirect } from 'react-router-dom';
 import './healthInput.css'
 
-// import {removeFood} from '../../store/ducks/nutritionReducer';
+import { postGameInput } from '../../store/ducks/nutritionReducer';
 
 import axios from 'axios';
 
@@ -24,9 +22,15 @@ constructor(){
             // chosenFoodsNutrition is the reduced object of the sum of all a user's nutrients from chosenFoodsArray
             chosenFoodsNutrition: {},
             
-            error: false
+            error: false,
+
+            redirect: false,
+
+            map: undefined,
+
         }
     }
+
     getFoodsArray(item) {
         axios.get('http://localhost:8000/api/foods?item='+item)
             .then(response => {
@@ -123,7 +127,170 @@ constructor(){
         return reducedObject
     }
 
+    sendToGameInput(){
+        // initialize the multipliers
+        let inputsObj = {
+            playerInitialSpeed: 1,
+            playerOverallSpeed: 1,
+            playerFireRate: 1,
+            playerMaxShield: 1,
+
+            bulletBonusDamage: 1,
+
+            // THESE ARE ADDITIONAL SPAWNED ENEMIES - can never be lower than 0 (range from 0 to 1)
+            sugarAmount: 1,
+            cholesterolAmount: 1,
+
+            enemySpeed: 1,
+            maxOnScreenEnemies: 1,
+
+            powerupHeartHealth: 0, // 0 for powerups is the bare minimum (0 powerups of this type should spawn)
+            powerupFirePower: 0,
+            powerupFireRate: 0,
+            powerupCholesterolBomb: 0,
+            powerupPlayerMaxShield: 0,
+        }
+        
+        const arrayOfNutrients = Object.keys(this.state.chosenFoodsNutrition)
+
+        // based on 2500 cal diet : 
+        // 375g Carbs -> 60% of cals (max) (Punishment over this range - Under this range scales to 45%)
+            // Sugars should be at 0% of Carbs but can go to most unhealthy at 100% of Carbs
+        // 80g Fat -> 30% of cals (max) (Punishment over this range - Under this range scales to 20%)
+        // 70g Protein -> 10% of cals (min) (Punishment under this range - Over this range scales to 35%)
+        // Cholesterol - over 300mg is bad - scales from 300mg to 600mg (nothing happens under this range)
+        // Sodium is flat rate over 2400mg is bad - scales from 2400mg to 4800mg (nothing happens under this range)
+        // Fiber is flat rate 30g is normal (scales from 30g to 60g)
+
+        const totalCals = this.state.chosenFoodsNutrition.Energy.value
+        
+        arrayOfNutrients.forEach(nutrient => {
+            switch (nutrient){
+                case "Total lipid (fat)": // decrease speed and fire rate
+                    const percentFat = (this.state.chosenFoodsNutrition[nutrient].value * 9) / totalCals
+                    if (percentFat > .3) {
+                        inputsObj.playerOverallSpeed -= 1*(percentFat-.3);
+                        inputsObj.playerFireRate -= 1*(percentFat-.3);  
+                    }                  
+                    break;
+                case "Protein": // increase speed and bullet dmg
+                    const percentProtein = (this.state.chosenFoodsNutrition[nutrient].value * 4) / totalCals
+                    if (percentProtein > .1){
+                        inputsObj.playerOverallSpeed += 1*(percentProtein-.1);
+                        inputsObj.bulletBonusDamage += 1*(percentProtein-.1); 
+                    } else {
+                        inputsObj.playerOverallSpeed -= 1*(percentProtein);
+                        inputsObj.bulletBonusDamage -= 1*(percentProtein);
+                    }
+                    break;
+                case "Carbohydrate, by difference": // decrease overall speed and increase shield
+                    const percentCarbs = (this.state.chosenFoodsNutrition[nutrient].value * 4) / totalCals
+                    if (percentCarbs > .6){
+                        inputsObj.playerOverallSpeed -= 1*(percentCarbs-.6);
+                        inputsObj.playerMaxShield += 1*(percentCarbs-.6);
+                    }                    
+                    break;
+                case "Sodium, Na": // increase enemy speed (2400mg DV)
+                    if (this.state.chosenFoodsNutrition[nutrient].value > 2400){
+                        inputsObj.enemySpeed += 1*(this.state.chosenFoodsNutrition[nutrient].value/2400);
+                    }
+                    break;
+                case "Cholesterol": // increase Cholesterol amount and increase max-onscreen enemies (300mg DV)
+                    const percentCholesterol = this.state.chosenFoodsNutrition[nutrient].value / totalCals // should be under 300/2500 = .12
+                    if (percentCholesterol > 0.12) {
+                        inputsObj.cholesterolAmount += 1*(percentCholesterol-0.12);
+                        inputsObj.maxOnScreenEnemies += 1*(percentCholesterol-0.12);
+                    }
+                    break;
+                case "Fiber, total dietary": // decrease cholesterol amount and decrease sugar amount (30g DV)
+                    if (this.state.chosenFoodsNutrition[nutrient].value > 30){
+                        const fiberIntakeOverDV = this.state.chosenFoodsNutrition[nutrient].value / 30
+                        inputsObj.cholesterolAmount -= .5*(fiberIntakeOverDV - 1);
+                        inputsObj.sugarAmount -= .5*(fiberIntakeOverDV - 1);
+                    }
+                    break;
+                case "Sugars, total": //increase sugar amount and initial player speed
+                    if (this.state.chosenFoodsNutrition[nutrient].value > 0){
+                        const percentSugar = this.state.chosenFoodsNutrition["Sugars, total"].value / this.state.chosenFoodsNutrition["Carbohydrate, by difference"].value
+                        inputsObj.sugarAmount += 1*percentSugar;
+                        inputsObj.playerInitialSpeed += 1*percentSugar;
+                    }
+                    break;
+                // VITAMINS ----------------------------------
+                case "Calcium, Ca": // Heart Health (1000mg DV)
+                    inputsObj.powerupHeartHealth += .05*(this.state.chosenFoodsNutrition[nutrient].value/1000);
+                    break;
+                case "Thiamin": // HH (1.5mg DV)
+                    inputsObj.powerupHeartHealth += .05*(this.state.chosenFoodsNutrition[nutrient].value/1.5);
+                    break;
+                case "Folate, DFE": // HH (400mcg DV)
+                    inputsObj.powerupHeartHealth += .05*(this.state.chosenFoodsNutrition[nutrient].value/400);
+                    break;
+                case "Zinc, Zn":  //HH (15mg DV)
+                    inputsObj.powerupHeartHealth += .05*(this.state.chosenFoodsNutrition[nutrient].value/15);
+                    break;
+                case "Vitamin K (phylloquinone)":  //HH (78 mcg DV)
+                    inputsObj.powerupHeartHealth += .05*(this.state.chosenFoodsNutrition[nutrient].value/78);
+                    break;
+                case "Riboflavin": // Fire Rate (1.5mg DV)
+                    inputsObj.powerupFireRate += .05*(this.state.chosenFoodsNutrition[nutrient].value/1.5);
+                    break;
+                case "Vitamin B-6": // FR (2mg DV)
+                    inputsObj.powerupFireRate += .05*(this.state.chosenFoodsNutrition[nutrient].value/2);                    
+                    break;
+                case "Vitamin B-12": // FR (6mg DV)
+                    inputsObj.powerupFireRate += .05*(this.state.chosenFoodsNutrition[nutrient].value/6);                    
+                    break;
+                case "Niacin": // Cholesterol Bomb (9mg DV)
+                    inputsObj.powerupCholesterolBomb += .05*(this.state.chosenFoodsNutrition[nutrient].value/9);
+                    break;
+                case "Vitamin E (alpha-tocopherol)": // Max Shield increase (30IU DV)
+                    inputsObj.powerupPlayerMaxShield += .05*(this.state.chosenFoodsNutrition[nutrient].value/30);
+                    break;
+                case "Iron, Fe": // Fire Power (18mg DV)
+                    inputsObj.powerupFirePower += .05*(this.state.chosenFoodsNutrition[nutrient].value/18);
+                    break;
+                case "Magnesium, Mg":    //HH FR (400mg DV)
+                    inputsObj.powerupHeartHealth += .05*(this.state.chosenFoodsNutrition[nutrient].value/400);
+                    inputsObj.powerupFireRate += .05*(this.state.chosenFoodsNutrition[nutrient].value/400);                    
+                    break;
+                case "Vitamin C, total ascorbic acid": // FP MS (60mg DV)
+                    inputsObj.powerupFirePower += .05*(this.state.chosenFoodsNutrition[nutrient].value/60);
+                    inputsObj.powerupPlayerMaxShield += .05*(this.state.chosenFoodsNutrition[nutrient].value/60);
+                    break;
+                case "Vitamin D": // FP MS (400IU DV)
+                    inputsObj.powerupFirePower += .05*(this.state.chosenFoodsNutrition[nutrient].value/400);
+                    inputsObj.powerupPlayerMaxShield += .05*(this.state.chosenFoodsNutrition[nutrient].value/400);                    
+                    break;
+                case "Vitamin A, IU": // FP MS (5000IU DV)
+                    inputsObj.powerupFirePower += .05*(this.state.chosenFoodsNutrition[nutrient].value/5000);
+                    inputsObj.powerupPlayerMaxShield += .05*(this.state.chosenFoodsNutrition[nutrient].value/5000);                    
+                    break;
+                case "Potassium, P": // FR FP MS (5000mg DV)
+                    inputsObj.powerupFireRate += .05*(this.state.chosenFoodsNutrition[nutrient].value/5000);                    
+                    inputsObj.powerupFirePower += .05*(this.state.chosenFoodsNutrition[nutrient].value/5000);                  
+                    inputsObj.powerupPlayerMaxShield += .05*(this.state.chosenFoodsNutrition[nutrient].value/5000);
+                    break;         
+            }
+        })
+        
+        console.log(inputsObj)
+
+        postGameInput(inputsObj)
+        // this.setState({
+        //     redirect: true
+        // })
+    }
+
+    handleMapChange(map){
+        this.setState({ map })
+    }
+
+
     render() {
+        if (this.state.redirect) {
+            return <Redirect to='/game' />
+        }
 
         // display the list of all foods return by the user search
         const listOfFoods = this.state.allFoodsArray.map((item => {
@@ -156,6 +323,12 @@ constructor(){
             )
         })
 
+        const errorBox = function() {
+            return (
+                <div className="errorBox"><div>No search results.</div></div>
+            )
+        }
+
         return (
         <div className="input-input">
             <div className="input-intro">
@@ -166,19 +339,21 @@ constructor(){
             
                 <div className="input-boxy-1">
                     <div className="input-boxy-11">
-                        <input className="input-bar" value={this.state.userInput} onChange={e => this.setState({userInput: e.target.value})}></input>
-                        <button className="input-button-1" disabled={this.state.userInput ? false : true} onClick={() => this.getFoodsArray(this.state.userInput)}>SEARCH</button>
-                        </div>
+                        <form onSubmit={() => this.getFoodsArray(this.state.userInput)}>
+                            <input className="input-bar" value={this.state.userInput} onChange={e => this.setState({userInput: e.target.value})}></input>
+                            <button type="submit" className="input-button-1" disabled={this.state.userInput ? false : true}>SEARCH</button>
+                        </form>                        
+                    </div>
                     {
-                        listOfFoods.length
+                        (listOfFoods.length == 0 || this.state.error === false)
                         ?
                     <div className="input-list">
-                    <div className="food-list">{ listOfFoods }</div>
+                    <div className="food-list">{this.state.error ? errorBox() : listOfFoods} </div>
                     </div>
                     :
                   
                     <div className="first-search">
-                    <div className="input-curtain-first"></div>
+                    <div className="input-curtain-first">{this.state.error ? errorBox() : ""}</div>
                     </div>
            
                     }
@@ -199,15 +374,14 @@ constructor(){
                            </div>
                            <div className="input-boxy-maps">
                                <div className="game-map-title">GAME MAP</div>
-                            <form action="">
-                               <input className="input-radio" type="radio" name="map" checked/> CANCEROUS<br/>
-                               <input className="input-radio" type="radio" name="map"/> CARNIVORE<br/>
-                               <input className="input-radio" type="radio" name="map"/> GALACTIC<br/>
-                               <input className="input-radio" type="radio" name="map"/> HEART ATTACK<br/>
-                               <input className="input-radio" type="radio" name="map"/> INFECTION<br/>
-                               <input className="input-radio" type="radio" name="map"/> MICROSCOPIC<br/>
-                               <input className="input-radio" type="radio" name="map"/> PARASITICAL<br/>
-            
+                            <form>
+                               <input className="input-radio" type="radio" name="map" onClick={() => this.handleMapChange(0)}/> CANCEROUS<br/>
+                               <input className="input-radio" type="radio" name="map" onClick={() => this.handleMapChange(1)}/> CARNIVORE<br/>
+                               <input className="input-radio" type="radio" name="map" onClick={() => this.handleMapChange(2)}/> GALACTIC<br/>
+                               <input className="input-radio" type="radio" name="map" onClick={() => this.handleMapChange(3)}/> HEART ATTACK<br/>
+                               <input className="input-radio" type="radio" name="map" onClick={() => this.handleMapChange(4)}/> INFECTION<br/>
+                               <input className="input-radio" type="radio" name="map" onClick={() => this.handleMapChange(5)}/> MICROSCOPIC<br/>
+                               <input className="input-radio" type="radio" name="map" onClick={() => this.handleMapChange(6)}/> PARASITICAL<br/>
                             </form>
                            </div>
                     </div>
@@ -236,7 +410,7 @@ constructor(){
             </div>
 
                     <div className="input-submit">
-                    <button className="input-button-2" disabled={this.state.chosenFoodsArray.length === 0 ? true : false}>SUBMIT</button>
+                    <button className="input-button-2" disabled={(this.state.chosenFoodsArray.length === 0 && this.state.map !== undefined) ? true : false} onClick={() => this.sendToGameInput()}>SUBMIT</button>
                     </div>
                   
         </div>
