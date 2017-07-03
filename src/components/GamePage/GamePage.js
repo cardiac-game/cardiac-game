@@ -39,7 +39,7 @@ class GamePage extends Component {
     // Game State is then passed into each module when game objects are created
     // Each game object then subscribes to state and contains state dispatch functions
     //    so they can update and stay updated themselves
- 
+
 
     // Target canvases and set context
     const canvas = this.refs.canvas
@@ -66,17 +66,17 @@ class GamePage extends Component {
     const player = new Player(ctx)
     // create player bullets array
     const bulletPool = new BulletPool(ctx)
-    // create viruses array. initialize with total stored in reserve and max shown 
+    // create viruses array. initialize with total stored in reserve and max shown
     // on screen at a time. this will change with level and health-input modifiers
     const virusPool = new EnemyPool(ctx, 100, 3)
-    // create bacteria array. 
+    // create bacteria array.
     const bacteriaPool = new EnemyPool(ctx, 100, 5)
     // create heart object
     const heart = new Heart(ctx)
     // object with collision detection functions
     const collision = new CollisionDetector()
 
-    // initialize the enemy pools 
+    // initialize the enemy pools
     virusPool.init(spriteAnimation, images.virus)
     bacteriaPool.init(Bacteria, images.bacteria)
 
@@ -104,7 +104,7 @@ class GamePage extends Component {
       virusPool.update()
       heart.update()
       bacteriaPool.update()
-   
+
 
 
       // check collisions
@@ -115,7 +115,7 @@ class GamePage extends Component {
 
       collision.checkObjToArray(player, virusPool.active, function(bulletPool,enemy) {
       })
-      
+
       collision.checkArrayToArray(virusPool.active,bulletPool.active, function(virus,bullet) {
         virus.healthDown()
         bullet.isAlive = false

@@ -4,8 +4,10 @@ import {  } from '../store/ducks/userReducer';
 import store from '../store/store';
 
 export function getTopScores() {
-  const promise = axios.get( 'http://localhost:8000/api/rank/top' );
-  store.dispatch( getTopScores(promise) );
+  var apiCall = axios.get( 'http://localhost:8000/api/rank/top' ).then(response => {
+    return response.data
+  });
+  return apiCall;
 }
 
 export function getCurrentRank() {
