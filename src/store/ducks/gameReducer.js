@@ -17,6 +17,8 @@ const SET_CONTEXT = "SET_CONTEXT"
 const UPDATE_SCORE = "UPDATE_SCORE"
 const MOVE_TO_NEXT_LEVEL = "MOVE_TO_NEXT_LEVEL"
 
+const CONFIGURE_LEVELS = "CONFIGURE_LEVELS"
+
 
 
 
@@ -39,9 +41,14 @@ export default function gameReducer( state=initialState, action ) {
             context: action.payload
         })
 
+    case CONFIGURE_LEVELS:
+        return Object.assign({},{
+            ...state,
+            context: action.payload
+        })
+
     default: return state
   }
-
 }
 
 
@@ -62,4 +69,10 @@ export function setContext(context) {
   }
 }
 
+export function configureLevels(levels) {
+  return {
+    type: CONFIGURE_LEVELS,
+    payload: levels
+  }
+}
 
