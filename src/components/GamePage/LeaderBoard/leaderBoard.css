@@ -34,8 +34,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   height: 10vh;
+  transition: 1s;
+  visibility: visible;
 }
 
 .modal-height {
-  height: 0px;
+  height: 50vh;
+  transition: 1s;
+  visibility: hidden;
 }

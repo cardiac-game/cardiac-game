@@ -10,26 +10,56 @@ export class Modal extends React.Component {
     { isModalOpen: false }
   }
 
+  componentDidMount() {
+    console.log(this.refs)
+  }
+
+  submitButton() {
+    this.showScores()
+    this.hideNickname()
+    this.pushNickname()
+    this.getScores()
+  }
+
+  showScores() {
+    this.refs.modalHeight.style.visibility = 'visible'
+  }
+
+  hideNickname() {
+    this.refs.nicknameHeight.style.visibility = 'hidden'
+  }
+
+  pushNickname() {
+    this.state.pushRank(this.state.user, this.state.score)
+  }
+
+  getScores() {
+    this.state.getTopScores()
+    console.log(this.state)
+  }
+
   render() {
     return (
       <div>
         <button onClick={ () => this.openModal() }>Leaderboard</button>
         <Leaderboard isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
-          <div className='nickname-height'>
+          <div className='nickname-height' ref='nicknameHeight'>
+            <h1>ENTER NICKNAME</h1>
             <input placeholder='Nickname'></input>
-            <button>Submit</button>
+            <button onClick={(e) => this.submitButton()} >Submit</button>
           </div>
-          <div className='modal-height'>
+          <div className='modal-height' ref='modalHeight'>
             <h1>Leaderboard</h1>
             <p>top ten scores</p>
           </div>
-          <p><button onClick={ () => this.closeModal() }>Close</button></p>
+          <p><button classname='modal-height' onClick={ () => this.closeModal() }>Close</button></p>
         </Leaderboard>
       </div>
     )
   }
   openModal() {
     this.setState({ isModalOpen: true })
+
   }
 
   closeModal() {
@@ -45,8 +75,8 @@ class Leaderboard extends React.Component {
     return (
       <div>
         <div className='nickname nickname-height'></div>
-        <div className='modalStyle modal-height'>{this.props.children}</div>
-        <div className="modalStyle modal-height" onClick={e => this.close(e)}/>}
+        <div className='modalStyle'>{this.props.children}</div>
+        <div className="backdropStyle" onClick={e => this.close(e)}/>}
       </div>
     )
   }
