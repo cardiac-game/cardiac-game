@@ -15,6 +15,7 @@ import Virus from './GameLogic/virus'
 import Bacteria from './GameLogic/bacteria'
 import Heart from './GameLogic/heart'
 
+import Bloody from '../HomePage/bloody'
 
 import { images } from './GameLogic/mediaRepos'
 
@@ -40,7 +41,8 @@ class GamePage extends Component {
     // Game State is then passed into each module when game objects are created
     // Each game object then subscribes to state and contains state dispatch functions
     //    so they can update and stay updated themselves
-
+    Bloody(this.refs.bloody, 5, 500);
+  
 
     // Target canvases and set context
     const canvas = this.refs.canvas
@@ -113,6 +115,13 @@ class GamePage extends Component {
         bullet.isAlive = false
       })
 
+      collision.checkObjToArray(heart,bacteriaPool.active, function(heart,bacteria) {
+        heart.healthDown()
+        bacteria.healthDown()
+        bacteria.healthDown()
+        bacteria.healthDown()
+      })
+
 
       // request gameLoop frame
       requestAnimationFrame(gameLoop)
@@ -132,6 +141,7 @@ class GamePage extends Component {
       <section className='game-page'>
         <div className="game-canvas-container">
           <canvas className='game-canvas' ref='bulletCanvas'></canvas>
+          <canvas className='game-canvas' ref="bloody"></canvas>
           <canvas className='game-canvas' ref="canvas"></canvas>
         </div>
       </section>

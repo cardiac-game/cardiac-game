@@ -1,8 +1,8 @@
 //Author: Brandon John-Freso
-export default function bloody(canv) {
+export default function bloody(canv, particleSize = 20, particleCount = 110) {
                 var W, H,
                     ctx, //ctx stands for context and is the "curso" of our canvas element.
-                    particleCount = 110,
+                    particleCount = particleCount,
                     particles = []; //this is an array which will hold our particles Object/Class
 
                 W = window.innerWidth ;
@@ -50,7 +50,7 @@ export default function bloody(canv) {
                         "y": -1 + Math.random() * 2
                     };
                     // this.radius = 9 * ((Math.random()*2-1)+(Math.random()*2-1)+(Math.random()*2-1)+3);
-                    this.radius = randomNorm(0,20); //PARTICLE SIZE
+                    this.radius = randomNorm(0,particleSize); //PARTICLE SIZE
                     this.scale=0.8*Math.random()+0.5;
                     this.rotation=Math.PI/4*Math.random();
                 
