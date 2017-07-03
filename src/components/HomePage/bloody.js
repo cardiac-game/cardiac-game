@@ -1,12 +1,11 @@
 //Author: Brandon John-Freso
-export default function bloody(canv, particleSize = 20, particleCount = 110) {
-                var W, H,
-                    ctx, //ctx stands for context and is the "curso" of our canvas element.
+export default function bloody(canv, particleSize = 20, particleCount = 110, W = window.innerWidth, H = window.innerHeight) {
+                var ctx, //ctx stands for context and is the "curso" of our canvas element.
                     particleCount = particleCount,
                     particles = []; //this is an array which will hold our particles Object/Class
 
-                W = window.innerWidth ;
-                H = window.innerHeight ;
+                W = W
+                H = H
                 var canvas = canv;
                 canvas.width = W;
                 canvas.height = H;

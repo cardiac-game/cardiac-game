@@ -9,13 +9,13 @@ let enemiesState = updatedState.enemiesReducer
 
 
 export default class EnemyPool {
-    constructor(context, maxSize, maxOnScreen) {
+    constructor(context, maxSize, maxOnScreen, waveSize = 10) {
         this.context = context
         this.active = []
         this.inactive = []
         this.maxSize = maxSize
         this.numOnScreen = maxOnScreen
-        this.waveSize = maxSize
+        this.waveSize = waveSize
 
         this.getEnemy = this.getEnemy.bind(this)
         this.storeEnemy = this.storeEnemy.bind(this)

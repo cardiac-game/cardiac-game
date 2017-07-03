@@ -9,7 +9,7 @@ const initialState = {
       sugarPool: [],
 
 
-
+      // initial state for each enemy type
       virus: {
         currentFrame: 0,
         frameCount: 0,
