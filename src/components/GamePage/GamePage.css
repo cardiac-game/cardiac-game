@@ -1,7 +1,7 @@
 .game-page {
   margin: 0;
   height: calc(100vh - 40px);
-  background: gray;
+  background: black;
   overflow: hidden;
 }
 
