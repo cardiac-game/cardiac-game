@@ -10,10 +10,6 @@ export class Modal extends React.Component {
     { isModalOpen: false }
   }
 
-  componentDidMount() {
-    console.log(this.refs)
-  }
-
   submitButton() {
     this.showScores()
     this.hideNickname()
@@ -29,16 +25,16 @@ export class Modal extends React.Component {
     this.refs.nicknameHeight.style.visibility = 'hidden'
   }
 
-  pushNickname() {
-    this.state.pushRank(this.state.user, this.state.score)
-  }
+  // pushNickname() {
+  //   this.state.pushRank(this.state.user, this.state.score)
+  // }
 
   getScores() {
     this.state.getTopScores()
     console.log(this.state)
   }
 
-  render() {
+  render () {
     return (
       <div>
         <button onClick={ () => this.openModal() }>Leaderboard</button>

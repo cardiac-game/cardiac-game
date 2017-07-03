@@ -1,24 +1,28 @@
-import React, { Component } from 'react'
+  import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+
+import store from '../../store/store'
 import { setContext } from '../../store/ducks/gameReducer'
-import {Modal} from './Leaderboard/leaderBoard'
+import {Modal} from './LeaderBoard/leaderBoard'
 
 import Game from './GameLogic/gameObj'
 import Player from './GameLogic/player'
 import BulletPool from './GameLogic/bulletPool'
 import Bullet from './GameLogic/bullet'
 import EnemyPool from './GameLogic/enemyPool'
-import Enemy from './GameLogic/enemy'
 import Virus from './GameLogic/virus'
+import Bacteria from './GameLogic/bacteria'
+import Heart from './GameLogic/heart'
 
 
-import images from './GameLogic/mediaRepos'
+import { images } from './GameLogic/mediaRepos'
 
 
 import spriteAnimation from './GameLogic/spriteAnimation'
 import CollisionDetector from './GameLogic/collisionDetection'
 import keyListeners from './GameLogic/keyInput'
+
 
 import './GamePage.css'
 
@@ -27,13 +31,15 @@ import './GamePage.css'
 
 class GamePage extends Component {
 
+  componentWillMount() {
+    document.querySelector('body').style.overflow = 'hidden'
+  }
 
   componentDidMount() {
     // Game State is stored in redux store and passed into game component
     // Game State is then passed into each module when game objects are created
     // Each game object then subscribes to state and contains state dispatch functions
     //    so they can update and stay updated themselves
-    let gameState = this.props.gameState
 
 
     // Target canvases and set context
@@ -41,7 +47,7 @@ class GamePage extends Component {
     const bulletCanvas = this.refs.bulletCanvas
     const ctx = canvas.getContext('2d')
 
-    this.props.setContext(ctx)
+    store.dispatch(setContext(ctx))
 
     // set background and canvas dimensions
     bulletCanvas.style.background = `url(${images.bg.src})`
@@ -53,33 +59,72 @@ class GamePage extends Component {
 
     // create player object. pass in gameState to initialize player with proper params
     const player = new Player(ctx)
-    const virus = new Virus(ctx)
     const bulletPool = new BulletPool(ctx)
+    const virusPool = new EnemyPool(ctx, 100, 3)
+    const bacteriaPool = new EnemyPool(ctx, 100, 5)
+    const heart = new Heart(ctx)
 
-    bulletPool.init()
+    const collision = new CollisionDetector()
+
+    
+    virusPool.init(spriteAnimation, images.virus)
+    bacteriaPool.init(Bacteria, images.bacteria)
 
     player.draw()
-    virus.draw()
-    bulletPool.draw()
+
 
     // animation loop
-    function animation() {
+    function gameLoop() {
 
       ctx.clearRect(0,0,canvas.width,canvas.height)
+
+      // draw objects
       player.draw()
-      virus.draw()
       bulletPool.draw()
+      virusPool.draw()
+      heart.draw()
+      bacteriaPool.draw()
 
+
+      // update objects
       player.update()
-      virus.update()
       bulletPool.update()
+      virusPool.update()
+      heart.update()
+      bacteriaPool.update()
+   
 
-      requestAnimationFrame(animation)
+
+      // check collisions
+      collision.checkObjToArray(player, bacteriaPool.active, function(bulletPool,enemy) {
+        enemy.isAlive = false
+      })
+
+      collision.checkObjToArray(player, virusPool.active, function(bulletPool,enemy) {
+      })
+      
+      collision.checkArrayToArray(virusPool.active,bulletPool.active, function(virus,bullet) {
+        virus.healthDown()
+        bullet.isAlive = false
+      })
+
+      collision.checkArrayToArray(bacteriaPool.active,bulletPool.active, function(bacteria,bullet) {
+        bacteria.healthDown()
+        bullet.isAlive = false
+      })
+
+
+      // request gameLoop frame
+      requestAnimationFrame(gameLoop)
     }
-    animation()
+
+    // kickoff game loop
+    gameLoop()
   }
 
-
+  componentWillUnmout() {
+    document.querySelector('body').style.overflow = 'scroll'
+  }
 
   render() {
     return (
@@ -88,7 +133,6 @@ class GamePage extends Component {
         <div className="game-canvas-container">
           <canvas className='game-canvas' ref='bulletCanvas'></canvas>
           <canvas className='game-canvas' ref="canvas"></canvas>
-
         </div>
       </section>
       <Modal />
@@ -97,14 +141,4 @@ class GamePage extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    gameState: Object.assign({},state.gameReducer,state.playerReducer,state.enemiesReducer)
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({setContext: setContext}, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(GamePage)
+export default GamePage

@@ -1,23 +1,21 @@
+import { images } from './mediaRepos'
 
 
-export default class spriteAnimation {
+export default class Heart {
 
-    constructor(context, sprite) {
+    constructor(context) {
     this.context = context
-    this.sprite = sprite
+    this.sprite = images.heart
     this.currentFrame = 0
     this.frameWidth = this.sprite.width / this.sprite.frames
-    this.frameSpeed = 5
+    this.frameSpeed = 4
     this.frameCount = 0
-    this.x = Math.random() * context.canvas.width
-    this.y = Math.random() * context.canvas.height
-    this.dx = Math.random() * 2 + 0.5
-    this.dy = Math.random() * 2 + 0.5
+    this.x = context.canvas.width / 2
+    this.y = context.canvas.height / 2
     this.width = this.frameWidth
     this.height = this.sprite.height
     this.imgCenterX = this.frameWidth / 2
     this.imgCenterY = this.sprite.height / 2
-    this.rotationSpeed = Math.random() * 360
 
     this.maxHealth = 30
     this.health = this.maxHealth
@@ -32,23 +30,14 @@ export default class spriteAnimation {
     healthDown() {
         this.health--
         if (this.health < 1) {
-            this.isAlive = false
             this.health = this.maxHealth
         }
         this.contrast = (100 * (this.maxHealth - this.health) / this.maxHealth)
     }
 
     update() {
-
         this.frameCount++
 
-        this.x += this.dx
-        this.y += this.dy
-
-        // keep in bounds
-        if (this.x > this.context.canvas.width - this.width || this.x < 0) this.dx *= -1
-        if (this.y > this.context.canvas.height - this.width || this.y < 0) this.dy *= -1
-        
         // regulates frame speed
         if (this.frameCount >= this.frameSpeed) {
             this.currentFrame++
@@ -57,19 +46,13 @@ export default class spriteAnimation {
             }
             this.frameCount = 0
         }
-        this.rotationSpeed++
     }
 
     draw() {
         this.context.save()
-        this.context.filter = "invert(" + this.contrast + "%)"
-        this.context.translate(this.x + this.imgCenterX, this.y + this.imgCenterY)
-        this.context.rotate((this.rotationSpeed) * Math.PI / 180)
+        this.context.translate(this.x, this.y)
         this.context.drawImage(this.sprite,(this.frameWidth*this.currentFrame),0,this.frameWidth,this.sprite.height,-this.imgCenterX,-this.imgCenterY,this.frameWidth,this.sprite.height)
         this.context.restore()
     }
 
 } 
-
-
-

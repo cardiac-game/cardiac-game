@@ -1,54 +1,80 @@
 import CollisionDetector from './collisionDetection'
- 
-export default function EnemyPool(maxSize,Enemy,image, context) {
-    
-    let active = []
-    let inactive = []
-    let numOnScreen
-
-    function getEnemy() {
-         return inactive.length > 1 ? inactive.shift() : false
-        }
-
-    function storeEnemy(enemy) {
-            inactive.push(enemy)
-        }
+import store from '../../../store/store'
 
 
-    this.init = function(maxOnScreen) {
-        numOnScreen = maxOnScreen
-        for (let i = 0; i < maxSize; i++) {
-            let enemy = new Enemy(context, image)
-            enemy.init ? enemy.init() : null 
-            inactive.push(enemy)
-        }
+// get state on load
+let updatedState = store.getState()
+let gameState = updatedState.gameReducer
+let enemiesState = updatedState.enemiesReducer
+
+
+export default class EnemyPool {
+    constructor(context, maxSize, maxOnScreen) {
+        this.context = context
+        this.active = []
+        this.inactive = []
+        this.maxSize = maxSize
+        this.numOnScreen = maxOnScreen
+        this.waveSize = maxSize
+
+        this.getEnemy = this.getEnemy.bind(this)
+        this.storeEnemy = this.storeEnemy.bind(this)
+        this.init = this.init.bind(this)
+        this.spawnEnemy = this.spawnEnemy.bind(this)
+        this.update = this.update.bind(this)
+        this.draw = this.draw.bind(this)
     }
 
-    this.spawnEnemy = function(x,y,orientation) {
-        if (active.length < numOnScreen) {
-            let enemy = getEnemy()
-            if (!enemy) return 
+    // returns an enemy unless all enemies in wave have been killed
+    getEnemy() {
+         return this.waveSize > 1 ? this.inactive.shift() : false
+        }
+
+    // moves enemy from active array to inactive array 
+    storeEnemy(enemy) {
+            this.inactive.push(enemy)
+        }
+
+    // move enemy from inactive array to active array
+    spawnEnemy() {
+        if (this.active.length < this.numOnScreen ) {
+            let enemy = this.getEnemy()
+            if (enemy) {
             enemy.isAlive = true
-            active.push(enemy)
+            this.active.push(enemy)
+            this.waveSize--
+            }
         }
     }
 
-    this.getActive = function() {
-        return active
-    }
 
-    this.update = function() {
-        if (active.length < 1) return
-        for (let i = 0; i < active.length; i++) {
-            active[i].update()
-            !active[i].isAlive || active[i].x === context.canvas.width / 2 ? storeEnemy(active.splice(i,1)) : null
+    // before game loop: create a new pool with the input enemy type and populate the inactive and active pools
+    init(EnemyType, image) {
+        for (let i = 0; i < this.maxSize; i++) {
+            let enemy = new EnemyType(this.context, image)
+            this.inactive.push(enemy)
+        }
+        for (let i = 0; i < this.numOnScreen; i++ ) {
+            this.spawnEnemy()
         }
     }
 
-    this.draw = function() {
-    if (active.length > 0) {
-        for (let i = 0; i < active.length; i++) {
-            active[i].draw()
+    // update each enemy in active pool. if an enemy is dead, remove from the 
+    update() {
+        for (let i = 0; i < this.active.length; i++) {
+            this.active[i].update()
+            if (!this.active[i].isAlive) {
+                this.storeEnemy(this.active.splice(i,1)[0]) 
+                this.spawnEnemy()
+            }
+        }
+    }
+    
+
+    draw() {
+    if (this.active.length > 0) {
+        for (let i = 0; i < this.active.length; i++) {
+            this.active[i].draw()
             }
         }
     }

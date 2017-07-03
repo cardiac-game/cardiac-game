@@ -15,4 +15,4 @@ const combinedReducer = combineReducers({
     enemiesReducer 
 });
 
-export default createStore(combinedReducer, applyMiddleware(promiseMiddleware()) );
+export default createStore( combinedReducer, applyMiddleware(promiseMiddleware()) );
