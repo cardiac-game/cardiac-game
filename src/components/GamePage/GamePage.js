@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import store from '../../store/store'
 import { setContext } from '../../store/ducks/gameReducer'
-import {Modal} from './LeaderBoard/leaderBoard'
+import {Modal} from './Leaderboard/leaderBoard'
 
 import Game from './GameLogic/gameObj'
 import Player from './GameLogic/player'
@@ -66,7 +66,7 @@ class GamePage extends Component {
 
     const collision = new CollisionDetector()
 
-    
+
     virusPool.init(spriteAnimation, images.virus)
     bacteriaPool.init(Bacteria, images.bacteria)
 
@@ -92,7 +92,7 @@ class GamePage extends Component {
       virusPool.update()
       heart.update()
       bacteriaPool.update()
-   
+
 
 
       // check collisions
@@ -102,7 +102,7 @@ class GamePage extends Component {
 
       collision.checkObjToArray(player, virusPool.active, function(bulletPool,enemy) {
       })
-      
+
       collision.checkArrayToArray(virusPool.active,bulletPool.active, function(virus,bullet) {
         virus.healthDown()
         bullet.isAlive = false

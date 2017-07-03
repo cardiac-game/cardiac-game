@@ -2,19 +2,22 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import './leaderBoard.css';
+import { pushRank,  getCurrentRank, getTopScores } from './../../../services/user.service';
 
-export class Modal extends React.Component {
+export class Modal extends Component {
   constructor(props) {
     super(props)
     this.state =
-    { isModalOpen: false }
+    { isModalOpen: false,
+      topTenScores: [''] }
   }
 
   submitButton() {
     this.showScores()
     this.hideNickname()
-    this.pushNickname()
-    this.getScores()
+    // pushRank()
+    getTopScores().then( response => this.setState({topTenScores : response}))
+    // getCurrentRank()
   }
 
   showScores() {
@@ -25,19 +28,31 @@ export class Modal extends React.Component {
     this.refs.nicknameHeight.style.visibility = 'hidden'
   }
 
-  // pushNickname() {
-  //   this.state.pushRank(this.state.user, this.state.score)
+  // componentDidMount: function() {
+  //   this.serverRequest = axios.get( 'http://localhost:8000/api/rank/top' )
   // }
 
-  getScores() {
-    this.state.getTopScores()
-    console.log(this.state)
-  }
+  // pushNickname() {
+  //   this.pushRank(this.user, this.score)
+  // }
+  //
+  // getScores() {
+  //   this.getTopScores()
+  //   console.log(this.state)
+  // }
 
   render () {
+    const topScores = this.state.topTenScores.map((c,i) => {
+      return (
+        <div>
+       <li key={i} className = 'score'>{c.nickname}<a>{c.score}</a></li>
+
+       </div>
+      )
+    })
     return (
       <div>
-        <button onClick={ () => this.openModal() }>Leaderboard</button>
+        <button className='leaderboardOpen' onClick={ () => this.openModal() }>Leaderboard</button>
         <Leaderboard isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
           <div className='nickname-height' ref='nicknameHeight'>
             <h1>ENTER NICKNAME</h1>
@@ -47,6 +62,7 @@ export class Modal extends React.Component {
           <div className='modal-height' ref='modalHeight'>
             <h1>Leaderboard</h1>
             <p>top ten scores</p>
+            {topScores}
           </div>
           <p><button classname='modal-height' onClick={ () => this.closeModal() }>Close</button></p>
         </Leaderboard>

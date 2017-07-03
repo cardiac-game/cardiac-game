@@ -1,3 +1,9 @@
+.leaderboardOpen {
+  position: absolute;
+  bottom: 25px;
+  left: 0;
+}
+
 .nickname {
   position: absolute;
   top: 50%;
@@ -34,7 +40,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   height: 10vh;
-  transition: 1s;
+  transition: 0s;
   visibility: visible;
 }
 
@@ -42,4 +48,8 @@
   height: 50vh;
   transition: 1s;
   visibility: hidden;
+}
+
+.score {
+  text-align: center;
 }
