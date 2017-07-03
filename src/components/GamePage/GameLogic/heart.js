@@ -7,7 +7,7 @@ export default class Heart {
     this.context = context
     this.sprite = images.heart
     this.currentFrame = 0
-    this.frameWidth = this.sprite.width / this.sprite.frames
+    this.frameWidth = 97.35
     this.frameSpeed = 4
     this.frameCount = 0
     this.x = context.canvas.width / 2
@@ -24,6 +24,7 @@ export default class Heart {
     this.update = this.update.bind(this)
     this.draw = this.draw.bind(this)
    	this.healthDown = this.healthDown.bind(this)
+       console.log(this.frameWidth)
 
     }
 

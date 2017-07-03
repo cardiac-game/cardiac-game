@@ -1,7 +1,7 @@
 export default function CollisionDetector() {
     
-    //box - obj x (top left corner) , y, width, height
-    //use imgCenterX and imCenterY props on box
+    // box - obj x (top left corner) , y, width, height
+    // use imgCenterX and imCenterY props on box
     // convert to circles
     
     function checkBoxOverlap (box1, box2){
@@ -21,14 +21,6 @@ export default function CollisionDetector() {
             return false
         }
     }
-
-    // need access to objects/arrays
-    // need to be able to destroy objects
-    // need to be able to update score
-    // where should checks be run? I think on the game object. 
-        //  we can pass in the objects/arrays with getter functions on the 
-        //  objects/pools. callback functions on the game object will then 
-        //  handle destroying enemies, triggering visual cues, and changing score
 
 
     this.checkObjToArray = function(obj,arr,callback) {
