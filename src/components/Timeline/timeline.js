@@ -623,7 +623,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">2008</div>
-					<div className="timeLineEvent">estimated annual medical cost obesity in Americans was $147 billion. Medical costs for $14,29 higher than those of normal weight.</div>
+					<div className="timeLineEvent">Estimated annual medical cost obesity in Americans was $147 billion. Medical costs for $14,29 higher than those of normal weight.</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">2009</div>

@@ -2,7 +2,7 @@
 
 .timeline-body {
 height: calc(100vh - 40px);
-overflow:hidden;
+overflow: auto;
 }
 
  .cd-container{
@@ -16,21 +16,26 @@ overflow:hidden;
  }
 
  .timeLineContainer{
-   width:19100px;
+   width:24830px;
    height:35vh;
    background:wheat;
    overflow:hidden;
+   font-family: 'Josefin Sans';
+
  }
 .yearTextContainer{
  display:table-cell;
 }
 .timeLineTime{
   height: 40px;
-  width: 100px;
+  width: 130px;
   border-right: 1px solid black;
   text-align: center;
+  padding-top: 5px;
   overflow-y:hidden;
   overflow:hidden;
+  /*font-family: 'Josefin Sans';*/
+
 }
 ::-webkit-scrollbar {
   width: 1px;
@@ -46,7 +51,12 @@ overflow:hidden;
 }*/
 .timeLineEvent{
   /*display:table-cell;*/
-  padding-left:20px;
+  padding:5px;
   text-align: center;
+  border: 1px solid black;
+  margin: 5px;
+  font-size: 12px;
+  /*font-family: 'Josefin Sans';*/
+
   /*text-transform: uppercase;*/
 }
