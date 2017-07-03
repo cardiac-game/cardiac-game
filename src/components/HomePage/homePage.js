@@ -32,9 +32,9 @@ render() {
 <div className="text-back-1">
 <div className="text">WELCOME TO CARDIAC
 <hr/>
-We’ve used proven nutritional data and correlated this with the phenomenon that is the human body to bring you the ultimate immune system simulator.
+Diet and exercise play a crucial role in the longevity and quality of life. Our bodies are constantly fighting to keep us alive using only the resources we consume and the infrastructure built by exercise.
 <br/><br/>
-Cardiac raises awareness and educates in the form of a fun and informative video game. A game that only proves its point the more challenging it gets.
+Cardiac uses a fun and interactive video game to emphasize the importance of a healthy diet and active lifestyle. A game that only proves its point the more challenging it gets.
 <br/><br/>
 Take command of your immune system, and fight the battle your body fights every single day.
 </div>
@@ -47,9 +47,9 @@ Take command of your immune system, and fight the battle your body fights every 
 <div className="section-3">
 <div className="text-back-2">
 
-<div className="quote">"This website changed my life. I'm new to the internet, but this is the only reason I ever go on. It warms my heart to see young people these days care so much about their health.
-    <br/><br/>As someone with a lot of life experience, I endorse this website as a good source of motivation."
-<br/><br/><hr/>
+<div className="quote">"Nutrition is so important. It can't be stressed enough." - Dwayne Johnson
+    <br></br><br></br>
+    "Developing a diet that is healthful, balanced, and appropriate for your particular caloric needs is easy enough and is absolutely critical to establishing a healthful lifestyle that incorporates proper nutrition, adequate fitness, and mental resilience."<br/>- Daphne Oz <br/><br/><hr/>
 </div>
 
     <div className="pic-one anatomy-pic">
@@ -74,9 +74,11 @@ Take command of your immune system, and fight the battle your body fights every 
 
 
 <div className="home-filler">
-    <div className="quote">"This website has changed my soul.
-        <br></br><br></br>I'm not new to health, and so I know how bad looking other health websites look. This one is beautiful. I've bookmarked, favorited and made this website my homepage.
-        <br></br><br></br>You can trust me. I'm a professional and finding websites like this helps keep the pounds off." - Dr. El-ix
+    <div className="quote">"In our fast-forward culture, we have lost the art of eating well.
+        <br></br><br></br>
+        Food is often little more than fuel to pour down the hatch while doing other stuff - surfing the Web, driving, walking along the street. Dining al desko is now the norm in many workplaces. All of this speed takes a toll.
+        <br></br><br></br>
+        Obesity, eating disorders and poor nutrition are rife." - Carl Honore
 <br></br><br></br><hr/>
 </div>
 </div>
@@ -96,8 +98,8 @@ Take command of your immune system, and fight the battle your body fights every 
 
 
 <div className="footer-about foot-toes">ABOUT</div>
-<Link to="/about"><div className="footer-about1">· Developers</div></Link>
-<Link to="/about"><div className="footer-about2">· Technology</div></Link>
+<Link to="/about"><div className="footer-about1">· Technology</div></Link>
+<Link to="/about"><div className="footer-about2">· Developers</div></Link>
 
 <div className="footer-contact foot-toes">CONTACT</div>
 </div>
