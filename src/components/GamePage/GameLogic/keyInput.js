@@ -27,6 +27,7 @@ export default function keyListeners() {
     document.onkeydown = (e) => {
         let currCode = (e.keyCode) ? e.keyCode : e.charCode
         if (KeyCodes[currCode]) {
+            e.preventDefault()
             KeyStatus[KeyCodes[currCode]] = true
             store.dispatch(setKeys(KeyStatus))
         }
