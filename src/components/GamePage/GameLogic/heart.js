@@ -24,8 +24,6 @@ export default class Heart {
     this.update = this.update.bind(this)
     this.draw = this.draw.bind(this)
    	this.healthDown = this.healthDown.bind(this)
-       console.log(this.frameWidth)
-
     }
 
     healthDown() {

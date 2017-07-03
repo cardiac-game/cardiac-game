@@ -14,7 +14,6 @@ this.scroll=this.scroll.bind(this)
 
 	scroll(e) {
 		var target =this.refs.timeLineContainer;
-		console.log(target.scrollWidth)
 		this.setState({scrollPosition: this.state.scrollPosition + e.deltaY})
 		if( this.state.scrollPosition <0 ){
 			this.setState({scrollPosition:0})
@@ -27,13 +26,9 @@ this.scroll=this.scroll.bind(this)
 
 	}
 
-
 componentDidMount(){
-
-
 	window.onwheel = this.scroll
-
-	};
+	}
 
 
 

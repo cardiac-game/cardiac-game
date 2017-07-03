@@ -33,8 +33,8 @@ export default function CollisionDetector() {
         return false
     },
 
-    // array of "bullets" and array of "enemies" check if any one object on arr1 colides with any one object on arr2
 
+    // array of "bullets" and array of "enemies" check if any one object on arr1 colides with any one object on arr2
     this.checkArrayToArray = function(arr1,arr2, callback) {
         for (let i = 0; i < arr1.length; i++) {
             for (let j = 0; j < arr2.length; j++) {
@@ -45,5 +45,4 @@ export default function CollisionDetector() {
             }
         }
     }
-
 }

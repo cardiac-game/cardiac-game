@@ -17,9 +17,8 @@ import Virus from './GameLogic/virus'
 import Bacteria from './GameLogic/bacteria'
 import Heart from './GameLogic/heart'
 import { images } from './GameLogic/mediaRepos'
-import spriteAnimation from './GameLogic/spriteAnimation'
 import CollisionDetector from './GameLogic/collisionDetection'
-import keyListeners from './GameLogic/keyInput'
+import KeyListeners from './GameLogic/keyInput'
 
 // code for moving cells in background
 import Bloody from '../HomePage/bloody'
@@ -60,7 +59,7 @@ class GamePage extends Component {
 
 
     // invoke keyboard event listeners for player controlls
-    keyListeners()
+    KeyListeners()
 
     // create player object. pass in gameState to initialize player with proper params
     const player = new Player(ctx)
@@ -77,7 +76,7 @@ class GamePage extends Component {
     const collision = new CollisionDetector()
 
     // initialize the enemy pools 
-    virusPool.init(spriteAnimation, images.virus)
+    virusPool.init(Virus, images.virus)
     bacteriaPool.init(Bacteria, images.bacteria)
 
 
@@ -109,28 +108,33 @@ class GamePage extends Component {
 
       // check collisions
       ///////////////////
-      collision.checkObjToArray(player, bacteriaPool.active, function(bulletPool,enemy) {
-        enemy.isAlive = false
-      })
+      // collision.checkObjToArray(player, bacteriaPool.active, function(bulletPool,enemy) {
+      //   enemy.isAlive = false
+      // })
 
-      collision.checkObjToArray(player, virusPool.active, function(bulletPool,enemy) {
-      })
+      // collision.checkObjToArray(player, virusPool.active, function(bulletPool,enemy) {
+      // })
       
-      collision.checkArrayToArray(virusPool.active,bulletPool.active, function(virus,bullet) {
-        virus.healthDown()
-        bullet.isAlive = false
-      })
+      // collision.checkArrayToArray(virusPool.active,bulletPool.active, function(virus,bullet) {
+      //   virus.healthDown()
+      //   bullet.isAlive = false
+      // })
 
-      collision.checkArrayToArray(bacteriaPool.active,bulletPool.active, function(bacteria,bullet) {
-        bacteria.healthDown()
-        bullet.isAlive = false
-      })
+      // collision.checkArrayToArray(bacteriaPool.active,bulletPool.active, function(bacteria,bullet) {
+      //   bacteria.healthDown()
+      //   bullet.isAlive = false
+      // })
 
-      collision.checkObjToArray(heart,bacteriaPool.active, function(heart,bacteria) {
-        heart.healthDown()
-        bacteria.healthDown()
-        bacteria.healthDown()
-        bacteria.healthDown()
+      // collision.checkObjToArray(heart,bacteriaPool.active, function(heart,bacteria) {
+      //   heart.healthDown()
+      //   bacteria.healthDown()
+      //   bacteria.healthDown()
+      //   bacteria.healthDown()
+      // })
+
+      collision.checkObjToArray(heart,bulletPool.active, function(heart, bullet) {
+        bullet.isAlive = false
+        console.log('hit')
       })
 
       requestAnimationFrame(gameLoop)
