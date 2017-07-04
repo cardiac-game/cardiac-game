@@ -27,10 +27,14 @@ this.scroll=this.scroll.bind(this)
 	}
 
 componentDidMount(){
-	window.onwheel = this.scroll
+	window.addEventListener('wheel', this.scroll)
+	console.log(window)
 	}
 
-
+componentWillUnmount() {
+	window.removeEventListener('wheel', this.scroll)
+	console.log(window);
+}
 
 
 render() {

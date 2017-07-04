@@ -18,7 +18,7 @@ export const images = new function() {
   // need to require images in React
   this.ship.src = require('../images/ship.png')
   this.bg.src = require('../images/bg.png')
-  this.bullet.src = require('../images/bullet.png')
+  this.bullet.src = require('../images/round-bullet.png')
   this.enemy.src = require('../images/enemy.png')
 
   // sprites
