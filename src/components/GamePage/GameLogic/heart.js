@@ -7,15 +7,16 @@ export default class Heart {
     this.context = context
     this.sprite = images.heart
     this.currentFrame = 0
-    this.frameWidth = 97.35
+    this.frameWidth = this.sprite.width / images.heart.frames
     this.frameSpeed = 4
     this.frameCount = 0
-    this.x = context.canvas.width / 2
-    this.y = context.canvas.height / 2
     this.width = this.frameWidth
     this.height = this.sprite.height
     this.imgCenterX = this.frameWidth / 2
     this.imgCenterY = this.sprite.height / 2
+    this.x = context.canvas.width / 2 - this.imgCenterX
+    this.y = context.canvas.height / 2 - this.imgCenterY
+
 
     this.maxHealth = 30
     this.health = this.maxHealth
@@ -31,7 +32,8 @@ export default class Heart {
         if (this.health < 1) {
             this.health = this.maxHealth
         }
-        this.contrast = (100 * (this.maxHealth - this.health) / this.maxHealth)
+        this.contrast = ~~(100 * (this.maxHealth - this.health) / this.maxHealth)
+        console.log('heart', this.contrast);
     }
 
     update() {
@@ -49,7 +51,8 @@ export default class Heart {
 
     draw() {
         this.context.save()
-        this.context.translate(this.x, this.y)
+        this.context.filter = "contrast(" + this.contrast + "%)"
+        this.context.translate(this.x + this.imgCenterX, this.y + this.imgCenterY)
         this.context.drawImage(this.sprite,(this.frameWidth*this.currentFrame),0,this.frameWidth,this.sprite.height,-this.imgCenterX,-this.imgCenterY,this.frameWidth,this.sprite.height)
         this.context.restore()
     }

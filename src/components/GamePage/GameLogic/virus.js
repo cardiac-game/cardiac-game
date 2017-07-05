@@ -41,7 +41,6 @@ export default class spriteAnimation {
     }
 
     update() {
-
         this.frameCount++
 
         this.x += this.dx

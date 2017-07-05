@@ -22,8 +22,6 @@ this.scroll=this.scroll.bind(this)
 			this.setState({scrollPosition: target.scrollWidth})
 		}
 		target.scrollLeft = this.state.scrollPosition
-
-
 	}
 
 componentDidMount(){
