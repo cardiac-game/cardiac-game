@@ -56,11 +56,11 @@ export default class Player {
 
         // strafe left/right
         if (playerState.keys.strafeRight) {
-            this.x += (this.speed * Math.cos((this.orientation + 90) * Math.PI / 180)) / 2
-            this.y += (this.speed * Math.sin((this.orientation + 90) * Math.PI / 180)) / 2
+            this.x += (this.speed * Math.cos((this.orientation + 90) * Math.PI / 180)) 
+            this.y += (this.speed * Math.sin((this.orientation + 90) * Math.PI / 180)) 
         } else if (playerState.keys.strafeLeft) {
-            this.x -= (this.speed * Math.cos((this.orientation + 90) * Math.PI / 180)) / 2
-            this.y -= (this.speed * Math.sin((this.orientation + 90) * Math.PI / 180)) / 2
+            this.x -= (this.speed * Math.cos((this.orientation + 90) * Math.PI / 180)) 
+            this.y -= (this.speed * Math.sin((this.orientation + 90) * Math.PI / 180)) 
         }
 
         // bounds checking
