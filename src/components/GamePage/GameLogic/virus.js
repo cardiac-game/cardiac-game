@@ -2,33 +2,32 @@ import store from '../../../store/store'
 
 
 
-export default class spriteAnimation {
+export default class Virus {
 
     constructor(context, sprite) {
-    this.context = context
-    this.sprite = sprite
-    this.currentFrame = 0
-    this.frameWidth = this.sprite.width / this.sprite.frames
-    this.frameSpeed = 5
-    this.frameCount = 0
-    this.x = Math.random() * context.canvas.width
-    this.y = Math.random() * context.canvas.height
-    this.dx = Math.random() * 2 + 0.5
-    this.dy = Math.random() * 2 + 0.5
-    this.width = this.frameWidth
-    this.height = this.sprite.height
-    this.imgCenterX = this.frameWidth / 2
-    this.imgCenterY = this.sprite.height / 2
-    this.rotationSpeed = Math.random() * 360
+        this.context = context
+        this.sprite = sprite
+        this.currentFrame = 0
+        this.frameWidth = this.sprite.width / this.sprite.frames
+        this.frameSpeed = 5
+        this.frameCount = 0
+        this.x = Math.random() * this.context.canvas.width
+        this.y = Math.random() * this.context.canvas.height
+        this.dx = Math.random() * 2 + 0.5
+        this.dy = Math.random() * 2 + 0.5
+        this.width = this.frameWidth
+        this.height = this.sprite.height
+        this.imgCenterX = this.frameWidth / 2
+        this.imgCenterY = this.sprite.height / 2
+        this.rotationSpeed = Math.random() * 360
 
-    this.maxHealth = 30
-    this.health = this.maxHealth
-    this.contrast = 0
+        this.maxHealth = 30
+        this.health = this.maxHealth
+        this.contrast = 0
 
-    this.update = this.update.bind(this)
-    this.draw = this.draw.bind(this)
-   	this.healthDown = this.healthDown.bind(this)
-
+        this.update = this.update.bind(this)
+        this.draw = this.draw.bind(this)
+        this.healthDown = this.healthDown.bind(this)
     }
 
     healthDown() {

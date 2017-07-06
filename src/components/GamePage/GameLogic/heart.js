@@ -1,10 +1,16 @@
+import store from '../../../store/store'
 import { images } from './mediaRepos'
 
 
+let gameState = store.getState().gameReducer
+
+store.subscribe(function() {
+    gameState = store.getState().gameReducer
+})
 export default class Heart {
 
-    constructor(context) {
-    this.context = context
+    constructor() {
+    this.context = gameState.context
     this.sprite = images.heart
     this.currentFrame = 0
     this.frameWidth = this.sprite.width / images.heart.frames
@@ -14,11 +20,11 @@ export default class Heart {
     this.height = this.sprite.height
     this.imgCenterX = this.frameWidth / 2
     this.imgCenterY = this.sprite.height / 2
-    this.x = context.canvas.width / 2 - this.imgCenterX
-    this.y = context.canvas.height / 2 - this.imgCenterY
+    this.x = this.context.canvas.width / 2 - this.imgCenterX
+    this.y = this.context.canvas.height / 2 - this.imgCenterY
 
 
-    this.maxHealth = 30
+    this.maxHealth = gameState.maxHeartHealth
     this.health = this.maxHealth
     this.contrast = 0
 
@@ -51,7 +57,7 @@ export default class Heart {
 
     draw() {
         this.context.save()
-        this.context.filter = "contrast(" + this.contrast + "%)"
+        this.context.filter = "invert(" + this.contrast + "%)"
         this.context.translate(this.x + this.imgCenterX, this.y + this.imgCenterY)
         this.context.drawImage(this.sprite,(this.frameWidth*this.currentFrame),0,this.frameWidth,this.sprite.height,-this.imgCenterX,-this.imgCenterY,this.frameWidth,this.sprite.height)
         this.context.restore()
