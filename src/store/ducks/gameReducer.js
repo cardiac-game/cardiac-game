@@ -4,8 +4,9 @@ const initialState = {
       context: null,
       level: 1,
       levels: [],
+      maxHeartHealth: 30,
       heartHealth: 0,
-      currentScore: 0,
+      currentScore: 0
 }
   
 

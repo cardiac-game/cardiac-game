@@ -20,11 +20,8 @@ for (let code in KeyCodes) {
     KeyStatus[KeyCodes[code]] = false
 }
 
-
-export default function keyListeners() {
-
+   function handleKeyDown(e) {
     // listener to change key status to true when key is pressed
-    document.onkeydown = (e) => {
         let currCode = (e.keyCode) ? e.keyCode : e.charCode
         if (KeyCodes[currCode]) {
             e.preventDefault()
@@ -33,8 +30,8 @@ export default function keyListeners() {
         }
     }
 
+    function handleKeyUp(e) {
     // listener to change key status to false when key is release
-    document.onkeyup = (e) => {
         e.preventDefault()
         let currCode = (e.keyCode) ? e.keyCode : e.charCode
         if (KeyCodes[currCode]) {
@@ -43,4 +40,12 @@ export default function keyListeners() {
         }
     }
 
-}
+
+export function startListening() {
+            window.addEventListener('keydown', handleKeyDown)
+            window.addEventListener('keyup', handleKeyUp)
+        }
+export function stopListening() {
+            window.addEventListener('keydown', handleKeyDown)
+            window.addEventListener('keyup', handleKeyUp)
+        }

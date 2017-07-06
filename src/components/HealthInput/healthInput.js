@@ -561,5 +561,3 @@ function mapStateToProps(state){
 }
 
 export default connect(mapStateToProps)(HealthInput);
-
-//fix break when invalid input.
