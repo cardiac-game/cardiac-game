@@ -347,12 +347,14 @@ constructor(){
                 A diet high in protein makes you strong and fast while a diet high in fat slows you down. Besides macronutrients, micronutrients like vitamins play a crucial role in the health of your body. Vitamins essential to cell growth and division provide opportunities to pick up powerups which heal the heart.
                 <br/><br/>
                 The key to victory in this game lies in properly proportioned macronutrients and a diverse assortment of all the necessary vitamins and minerals.
+                
                 {/*<br/><br/>
                 Use the arrow keys to turn the ship. Forward arrow accelerates and back arrow reverses.
                 <br/><br/>
                 'A' strafes left and 'D' strafes right.
                 <br/><br/>
                 Press 'SPACEBAR' to shoot, and 'B' to release a Cholesto-Bomb.*/}
+                
                 </span>
                 </div>
                 <div className="input-enemies"><span className="rules-title">

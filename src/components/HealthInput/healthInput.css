@@ -65,6 +65,7 @@ font-family: 'Josefin Sans';
 .rules-title {
 font-size: 3vh;
 color: white;
+text-shadow: 0 0 7px white;
 letter-spacing: 3px;
 font-family: 'Josefin Sans';
 }
