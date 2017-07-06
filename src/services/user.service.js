@@ -1,6 +1,5 @@
 // server call to user DB
 import axios from 'axios';
-import {  } from '../store/ducks/userReducer';
 import store from '../store/store';
 
 export function getTopScores() {
