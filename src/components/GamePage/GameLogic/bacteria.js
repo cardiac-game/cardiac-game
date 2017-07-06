@@ -105,7 +105,6 @@ export default class Bacteria {
 	    }
     // set contrast based on health
     this.contrast = 100 - ~~(100 * (this.maxHealth - this.health) / this.maxHealth)
-    console.log(this.contrast);
     }
 
 

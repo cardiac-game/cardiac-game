@@ -13,7 +13,7 @@ export default class Heart {
     this.context = gameState.context
     this.sprite = images.heart
     this.currentFrame = 0
-    this.frameWidth = this.sprite.width / images.heart.frames
+    this.frameWidth = 97
     this.frameSpeed = 4
     this.frameCount = 0
     this.width = this.frameWidth
@@ -39,7 +39,6 @@ export default class Heart {
             this.health = this.maxHealth
         }
         this.contrast = ~~(100 * (this.maxHealth - this.health) / this.maxHealth)
-        console.log('heart', this.contrast);
     }
 
     update() {

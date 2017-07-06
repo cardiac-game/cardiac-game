@@ -67,6 +67,8 @@ export default class Game {
     }
 
     checkCollisions() {
+
+        // player collisions
         this.collision.checkObjToArray(this.player, this.bacteriaPool.active, function(player,enemy) {
             enemy.isAlive = false
         })
@@ -74,6 +76,8 @@ export default class Game {
         this.collision.checkObjToArray(this.player, this.virusPool.active, function(player,enemy) {
         })
         
+
+        // player bullet collisions
         this.collision.checkArrayToArray(this.virusPool.active,this.bulletPool.active, function(virus,bullet) {
             virus.healthDown()
             bullet.isAlive = false
@@ -83,6 +87,13 @@ export default class Game {
             bacteria.healthDown()
             bullet.isAlive = false
         })
+
+        this.collision.checkArrayToArray([this.sugar], this.bulletPool.active, function(sugar,bullet) {
+            sugar.isAlive = false
+            bullet.isAlive = false
+        })
+
+
 
         this.collision.checkObjToArray(this.heart,this.bacteriaPool.active, function(heart,bacteria) {
             for(let i = 0; i < bacteria.health; i++) {

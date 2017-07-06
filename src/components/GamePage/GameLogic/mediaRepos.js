@@ -24,7 +24,7 @@ export const images = new function() {
   // sprites
   this.virus.src = require('../images/virus.png')
   this.bacteria.src = require('../images/bacteria.png')
-  this.heart.src = require('../images/heart.png')
+  this.heart.src = require('../images/heart2.png')
 
   this.heartgif.src = require('../images/hearty.gif')
 
