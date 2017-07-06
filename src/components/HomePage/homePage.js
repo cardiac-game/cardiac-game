@@ -57,7 +57,7 @@ Take command of your immune system, and fight the battle your body fights every 
     </div>
     
     <div className="pic-two anatomy-pic">
-        <Link to="/healthy"><div className="button-2">NUTRITION</div></Link>
+        <Link to="/nutrition"><div className="button-2">NUTRITION</div></Link>
     </div>
     
     <div className="pic-three anatomy-pic">
