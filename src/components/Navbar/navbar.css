@@ -2,7 +2,7 @@
 position: fixed;
 height: 50px;
 width: 100vw;
-opacity: .7 ;
+opacity: .9 ;
 background: -webkit-linear-gradient(right, #6b0000, black);
 box-shadow: 0 0 10px black;
 z-index: 50;

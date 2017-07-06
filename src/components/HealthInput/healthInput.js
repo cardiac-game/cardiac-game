@@ -453,7 +453,7 @@ constructor(){
                 </span>
                 <br/><br/>
                 <span className="input-info-title">Requirements: </span><span className="input-info-text">
-                Magnesium, Potassium, Riboflavin, Vitamin B6, Vitamin B12
+                Magnesium, Potassium, Riboflavin, Vitamin B-6, Vitamin B-12
                 </span>
                 <hr/>
                 <span className="little-title">CHOLESTO-BOMB</span>
@@ -466,7 +466,7 @@ constructor(){
                 </span>
                 <br/><br/>
                 <span className="input-info-title">Requirements: </span><span className="input-info-text">
-                Niancin
+                Niacin
                 </span>
                 </div>
 

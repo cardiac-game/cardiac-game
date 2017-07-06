@@ -12,6 +12,7 @@ import EnemyPool from './enemyPool'
 import Virus from './virus'
 import Bacteria from './bacteria'
 import Sugar from './sugar'
+import Cholesterol from './cholesterol'
 import Heart from './heart'
 import { images } from './mediaRepos'
 import CollisionDetector from './collisionDetection'
@@ -35,11 +36,13 @@ export default class Game {
         this.virusPool = new EnemyPool(this.context, 100, 3, 10)
         this.bacteriaPool = new EnemyPool(gameState.context, 100, 5, 20)
         this.sugar = new Sugar()
+        this.cholesterol = new Cholesterol()
         this.heart = new Heart(gameState.context) 
         this.collision = new CollisionDetector()
 
         this.virusPool.init(Virus, images.virus)
         this.bacteriaPool.init(Bacteria, images.bacteria)
+        this.cholesterol.init(12)
 
         this.draw = this.draw.bind(this)
         this.update = this.update.bind(this)
@@ -54,6 +57,7 @@ export default class Game {
         this.virusPool.draw()
 
         this.sugar.draw()
+        this.cholesterol.draw()
 
         this.heart.draw()
         this.bacteriaPool.draw()
@@ -65,12 +69,15 @@ export default class Game {
         this.virusPool.update()
 
         this.sugar.update()
+        this.cholesterol.update()
 
         this.heart.update()
         this.bacteriaPool.update()
     }
 
     checkCollisions() {
+
+        // player collisions
         this.collision.checkObjToArray(this.player, this.bacteriaPool.active, function(player,enemy) {
             enemy.isAlive = false
         })
@@ -78,6 +85,8 @@ export default class Game {
         this.collision.checkObjToArray(this.player, this.virusPool.active, function(player,enemy) {
         })
         
+
+        // player bullet collisions
         this.collision.checkArrayToArray(this.virusPool.active,this.bulletPool.active, function(virus,bullet) {
             virus.healthDown()
             bullet.isAlive = false
@@ -87,6 +96,13 @@ export default class Game {
             bacteria.healthDown()
             bullet.isAlive = false
         })
+
+        this.collision.checkArrayToArray([this.sugar], this.bulletPool.active, function(sugar,bullet) {
+            sugar.isAlive = false
+            bullet.isAlive = false
+        })
+
+
 
         this.collision.checkObjToArray(this.heart,this.bacteriaPool.active, function(heart,bacteria) {
             for(let i = 0; i < bacteria.health; i++) {

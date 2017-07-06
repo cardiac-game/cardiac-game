@@ -13,23 +13,15 @@ store.subscribe(function() {
 function generateVertices(num, radius) {
     let vertices = []
     let circle = Math.PI * 2
-    console.log(circle)
-    let angle = Math.random()*circle
+    let angle = Math.PI
 
     for (let i = 0; i < num; i++) {
-        angle += Math.random() + circle / num
-        console.log(angle);
-        if (angle > circle) {
-            angle -= circle
-        }
+        angle += Math.PI / (num / 2)
         vertices[i] = {
-            x: Math.cos(angle)*radius,
-            y: Math.sin(angle)*radius
+            x: Math.cos(angle) * (Math.random() * (radius * 0.2) + (radius - radius*0.2)),
+            y: Math.sin(angle) * (Math.random() * (radius * 0.2) + (radius - radius*0.2))
         }
-    }
-
-    vertices.sort((a,b) => a.x > b.x)
-    console.log(vertices)
+    } 
     return vertices
 }
 
@@ -44,25 +36,49 @@ export default class Sugar {
         this.width = Math.random() * 10 + 20
         this.height = this.width
         this.imgCenterX = this.width / 2
-        this.imgCenterY = this.height / 2
+        this.imgCenterY = this.width / 2
         this.rotation = 0
         this.rotationSpeed = Math.random() - 0.5
         this.score = (80 / this.radius)*5
-        this.vertices = generateVertices(12, this.width)
+        this.vertices = generateVertices(24, this.width)
 
         this.draw = this.draw.bind(this)
         this.update = this.update.bind(this) 
+
+
+    //         let tau = Math.PI*2;
+    //         let increment = tau / granularity;
+    //         let radius;
+    //         let x;
+    //         let y;
+    //         let points = [];
+    //         let offset = maxRadius;
+            
+    //         for (let ang = 0; ang < tau; ang += increment) {
+    //         radius = this.getRandom(minRadius, maxRadius);
+    //         x = offset + Math.sin(ang) * radius;
+    //         y = offset + Math.cos(ang) * radius;
+            
+
+    //   points.push({x, y});
+    // }
+
     }
 
     update() {
         this.x += this.dx
         this.y += this.dy
 
-        if (this.x > this.context.canvas.width + this.width) {
+        // keeps sugar on screen
+        if (this.x > this.context.canvas.width + this.width && this.dx > 0) {
             this.x = 0 - this.width
-        } else if (this.y > this.context.canvas.height + this.height) {
+        } else if (this.x < 0 - this.width && this.dx < 0) {
+            this.x = this.context.canvas.width + this.width
+        } else if (this.y > this.context.canvas.height + this.height && this.dy > 0) {
             this.y = 0 - this.height
-        }
+        } else if (this.y < 0 - this.height && this.dy < 0) {
+            this.y = this.context.canvas.height + this.height
+        } 
 
         this.rotation += this.rotationSpeed
         if (this.rotation > 360) {
