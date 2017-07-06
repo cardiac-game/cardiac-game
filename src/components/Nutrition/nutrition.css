@@ -2,21 +2,66 @@
 background-color: #fff9f2;
 padding-top: 50px;
 }
-
-.nutri-row-container {
-    height: calc(100vh - 90px)
+.nutrition-back {
+margin-top:-50px;
+height: 100vh;
+width: 100vw;
+background-image: url('./images/nutrition-back.jpg');
+background-size: cover;
+box-shadow: inset 0 0 20px black;
+}
+.nutrition-title {
+position: absolute;
+left: 50%;
+top: 35%;
+transform: translate(-50%, -50%);
+z-index: 5;
+font-family: 'Josefin Sans';
+font-size: 130px;
+color: white;
+text-shadow: 0px 0px 10px white;
+letter-spacing: 50px;
+}
+.nutrition-dark-curtain {
+    position: absolute;
+    width: 100vw;
+    height: 60vh;
+    opacity: 1;
+    background: -webkit-linear-gradient(top, black, transparent);
+    }
+.nutri-container {
+    /*height: calc(100vh - 90px)*/
+    width: 80%;
+    margin: 2% 10% 0% 10%;
+    padding-bottom: 3%;
 }
 
-.row {
-    height: 25%;
-    display: flex;
-    justify-content: center;
+.nutrition-headers {
+letter-spacing: 1.5px;
+line-height: 1.5;
+text-transform: uppercase;
+font-family: 'Josefin Sans';
+color: rgba(300, 100, 100, 1);
+}
+.nutrition-v-and-m {
+letter-spacing: 1.5px;
+line-height: 1.5;
+font-size: 30px;
+text-transform: uppercase;
+font-family: 'Josefin Sans';
+color: rgba(300, 100, 100, 1);
 }
 
-.cell-box {
-    height: 100%;
-    width: calc(100%/7);
-    background-color: rgba(150,150,150,.3);
-    border-radius: 15%;
-    border: 5px solid rgba(0,0,0,.1);
+li {
+letter-spacing: 1.1px;
+line-height: 1.1;
+font-size: 1.7vh;
+}
+.nutirtion-banner {
+width: 150vw;
+height: 45vh;
+margin-left: -20%;
+background-image: url('./images/nutrition-banner.jpg');
+box-shadow: inset 0 0 20px black;
+background-attachment: fixed;
 }

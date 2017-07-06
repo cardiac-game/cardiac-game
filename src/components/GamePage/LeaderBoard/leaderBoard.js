@@ -55,16 +55,16 @@ export class Modal extends Component {
         <button className='leaderboardOpen' onClick={ () => this.openModal() }>Leaderboard</button>
         <Leaderboard isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
           <div className='nickname-height' ref='nicknameHeight'>
-            <h1>ENTER NICKNAME</h1>
-            <input placeholder='Nickname'></input>
-            <button onClick={(e) => this.submitButton()} >Submit</button>
+            <h1 className='leaderboard-title'>ENTER NAME</h1><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <input placeholder='Name' className="leaderboard-input"></input>
+            <button className="submit-button" onClick={(e) => this.submitButton()} >SUBMIT</button>
           </div>
           <div className='modal-height' ref='modalHeight'>
-            <h1>Leaderboard</h1>
-            <p>top ten scores</p>
+            <h1>LEADERBOARD</h1>
+            <p>TOP TEN</p>
             {topScores}
           </div>
-          <p><button classname='modal-height' onClick={ () => this.closeModal() }>Close</button></p>
+          <p><button classname='modal-height submit-button' onClick={ () => this.closeModal() }>EXIT</button></p>
         </Leaderboard>
       </div>
     )

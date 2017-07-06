@@ -17,9 +17,6 @@ this.scroll=this.scroll.bind(this)
 
 	scroll(e) {
 		var target =this.refs.timeLineContainer;
-
-		if (target) {
-		// console.log(target.scrollWidth)
 		this.setState({scrollPosition: this.state.scrollPosition + e.deltaY})
 		if( this.state.scrollPosition < 0 ){
 			this.setState({scrollPosition:0})
@@ -28,23 +25,15 @@ this.scroll=this.scroll.bind(this)
 			this.setState({scrollPosition: target.scrollWidth})
 		}
 		target.scrollLeft = this.state.scrollPosition
-		}
-
-
 	}
 
-
 componentDidMount(){
-	if(this.props.location.pathname === "/timeline"){
+	window.addEventListener('wheel', this.scroll)
+	}
 
-	window.onwheel = this.scroll
-// 	console.log(window.location);
-
-// console.log(this.props.location.pathname);
-	};
+componentWillUnmount() {
+	window.removeEventListener('wheel', this.scroll)
 }
-
-
 
 
 render() {
