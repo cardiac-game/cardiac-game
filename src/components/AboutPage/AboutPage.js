@@ -273,7 +273,7 @@ export default class About extends Component {
                                         <br/>
                                         <p>
                                             <span className="bold">Background: </span>
-                                            
+                                            I'm a mystery.
                                         </p>
                                     </div>
                                 </div>
