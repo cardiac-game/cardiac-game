@@ -46,7 +46,7 @@ export default class About extends Component {
                     <div className="about-solidBG-container">
                         <div className="about-img-container">
                             <div className="about-headers">TECHNOLOGY</div>
-                            <div className="about-pic1"></div>         
+                            <div className="about-pic1"></div>
                         </div>
                         <div className="about-solidBG-content">
                             <div className="about-tech">
@@ -62,7 +62,7 @@ export default class About extends Component {
                                     <img className="about-logo-img" src={reduxLogo} alt="react logo"/>
                                 </div>
                                 <div className="about-logo-info">
-                                    Both application state and game state are managed with Redux. 
+                                    Both application state and game state are managed with Redux.
                                 </div>
                             </div>
                             <div className="about-tech">
@@ -113,12 +113,12 @@ export default class About extends Component {
                     <div className="about-parallax-gradient">
                         <div className="about-img-container">
                             <div className="about-pic2"></div>
-                        </div> 
+                        </div>
                         <div className="about-para-content">
                             <p className="about-para-content-p">"To keep the body in good health is a duty... otherwise we shall not be able to keep our mind strong and clear."</p>
                             <p className="about-para-content-p">- Buddha</p>
                         </div>
-                    </div>       
+                    </div>
                 </div>
 
                 <div className="about-solidBG">
@@ -126,60 +126,60 @@ export default class About extends Component {
                     <div className="about-solidBG-container">
                         <div className="about-img-container">
                             <div className="about-headers">DEVELOPERS</div>
-                            <div className="about-pic3"></div>         
+                            <div className="about-pic3"></div>
                         </div>
                         <div className="about-solidBG-content">
-                            <div className="about-spacer "></div>                            
-                            <div className="about-spacer "></div>                            
-                            <div className="about-spacer "></div>                            
+                            <div className="about-spacer "></div>
+                            <div className="about-spacer "></div>
+                            <div className="about-spacer "></div>
                             <div className="portrait-container">
                                 <div className="portrait">
                                     <div className="portrait-img-container">
-                                        <img 
-                                            onClick={() => this.onPortraitClick(1)} 
+                                        <img
+                                            onClick={() => this.onPortraitClick(1)}
                                             className={"portrait-img " + (this.state.selectedPortrait !== 1 ? 'portrait-gs' : 'portrait-no-gs')}
-                                            src={ericPortrait} 
+                                            src={ericPortrait}
                                             alt="Eric Patterson"/>
-                                    </div>   
+                                    </div>
                                 </div>
                                 <div className="portrait">
                                     <div className="portrait-img-container">
-                                        <img 
-                                            onClick={() => this.onPortraitClick(2)} 
+                                        <img
+                                            onClick={() => this.onPortraitClick(2)}
                                             className={"portrait-img " + (this.state.selectedPortrait !== 2 ? 'portrait-gs' : 'portrait-no-gs')}
-                                            src={juniorPortrait} 
+                                            src={juniorPortrait}
                                             alt="Ivor Anderson Jr."/>
-                                    </div>   
+                                    </div>
                                 </div>
                                 <div className="portrait">
                                     <div className="portrait-img-container">
-                                        <img 
-                                            onClick={() => this.onPortraitClick(3)} 
+                                        <img
+                                            onClick={() => this.onPortraitClick(3)}
                                             className={"portrait-img " + (this.state.selectedPortrait !== 3 ? 'portrait-gs' : 'portrait-no-gs')}
-                                            src={jessePortrait} 
+                                            src={jessePortrait}
                                             alt="Jesse Tenney"/>
                                     </div>
-                                    
+
                                 </div>
                                 <div className="portrait">
                                     <div className="portrait-img-container">
-                                        <img 
-                                            onClick={() => this.onPortraitClick(4)} 
-                                            className={"portrait-img " + (this.state.selectedPortrait !== 4 ? 'portrait-gs' : 'portrait-no-gs')} 
-                                            src={justicePortrait} 
+                                        <img
+                                            onClick={() => this.onPortraitClick(4)}
+                                            className={"portrait-img " + (this.state.selectedPortrait !== 4 ? 'portrait-gs' : 'portrait-no-gs')}
+                                            src={justicePortrait}
                                             alt="Justice Perez White"/>
                                     </div>
-                                    
+
                                 </div>
                                 <div className="portrait">
                                     <div className="portrait-img-container">
-                                        <img 
-                                            onClick={() => this.onPortraitClick(5)} 
-                                            className={"portrait-img " + (this.state.selectedPortrait !== 5 ? 'portrait-gs' : 'portrait-no-gs')} 
-                                            src={nickPortrait} 
+                                        <img
+                                            onClick={() => this.onPortraitClick(5)}
+                                            className={"portrait-img " + (this.state.selectedPortrait !== 5 ? 'portrait-gs' : 'portrait-no-gs')}
+                                            src={nickPortrait}
                                             alt="Nicholas Mueller"/>
-                                    </div> 
-                                </div>                
+                                    </div>
+                                </div>
                             </div>
                             <div className="portrait-text-container-row">
                                 <div className={"portrait-text-container " + (this.state.selectedPortrait === 1 ? "text-black" : "text-transparent")}>
@@ -192,7 +192,7 @@ export default class About extends Component {
                                 </div>
                                 <div className={"portrait-text-container " + (this.state.selectedPortrait === 3 ? "text-black" : "text-transparent")}>
                                     <div className="portrait-name-container">Jesse Tenney</div>
-                                    <div className="portrait-role-container">Backend Developer</div>
+                                    <div className="portrait-role-container">Fullstack Developer</div>
                                 </div>
                                 <div className={"portrait-text-container " + (this.state.selectedPortrait === 4 ? "text-black" : "text-transparent")}>
                                     <div className="portrait-name-container">Justice Perez White</div>
@@ -207,21 +207,21 @@ export default class About extends Component {
                                 <hr />
                             </div>
                             <div className="portrait-info">
-                                <div className={(this.state.selectedPortrait === 1 ? "display-block" : "display-none")}> 
+                                <div className={(this.state.selectedPortrait === 1 ? "display-block" : "display-none")}>
                                     <a className="about-a" target="_blank" href="https://www.linkedin.com/in/eric-patterson-00477966/"><i className="fa fa-linkedin-square about-icon" aria-hidden="true"></i></a>
                                     <a className="about-a" target="_blank" href="https://github.com/erpatterson11"><i className="fa fa-github-square about-icon" aria-hidden="true"></i></a>
                                     <div className="portrait-info-text">
                                         <p><span className="bold">Roles and Responsiblilities: </span>
-                                            Lead Game Developer in charge of technical design and development of the Cardiac game. Responsible for game logic, physics, and performance.  
+                                            Lead Game Developer in charge of technical design and development of the Cardiac game. Responsible for game logic, physics, and performance.
                                         </p>
                                         <br/>
                                         <p>
                                             <span className="bold">Background: </span>
-                                            Before building awesome interactive content for the web Eric was improving manufacturing processes as an engineer for a company that made brain implants.  
-                                        </p>                             
+                                            Before building awesome interactive content for the web Eric was improving manufacturing processes as an engineer for a company that made brain implants.
+                                        </p>
                                     </div>
                                 </div>
-                                <div className={(this.state.selectedPortrait === 2 ? "display-block" : "display-none")}> 
+                                <div className={(this.state.selectedPortrait === 2 ? "display-block" : "display-none")}>
                                     <a className="about-a" target="_blank" href="https://www.linkedin.com/in/ivor-anderson-824011b7/"><i className="fa fa-linkedin-square about-icon" aria-hidden="true"></i></a>
                                     <a className="about-a" target="_blank" href="https://github.com/elderandi"><i className="fa fa-github-square about-icon" aria-hidden="true"></i></a>
                                     <div className="portrait-info-text">
@@ -232,38 +232,38 @@ export default class About extends Component {
                                         <p>
                                             <span className="bold">Background: </span>
                                             Born and raised in New Zealand before moving to multiple countries aroung the world, Ivor found himself working in graphic design, animations, and character design/development for a TV show.
-                                        </p>                             
+                                        </p>
                                     </div>
                                 </div>
-                                <div className={(this.state.selectedPortrait === 3 ? "display-block" : "display-none")}> 
+                                <div className={(this.state.selectedPortrait === 3 ? "display-block" : "display-none")}>
                                     <a className="about-a" target="_blank" href="https://www.linkedin.com/in/jesse-tenney-5a0969139/"><i className="fa fa-linkedin-square about-icon" aria-hidden="true"></i></a>
                                     <a className="about-a" target="_blank" href="https://github.com/jesse10e"><i className="fa fa-github-square about-icon" aria-hidden="true"></i></a>
                                     <div className="portrait-info-text">
                                         <p><span className="bold">Roles and Responsiblilities: </span>
-                                            Backend Developer
+                                            Responsible for building the services and setting up the API calls. In charge of the leaderboard and configuring axios in both Reactjs and Nodejs. Lead troubleshooting of frontend bugs.
                                         </p>
                                         <br/>
                                         <p>
                                             <span className="bold">Background: </span>
-                                            From California or something
-                                        </p>                             
-                                    </div>  
+                                            Born in Yuba City, CA. Jesse moved to Utah in 2014 to work in the IT industry and started web development in 2017.
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className={(this.state.selectedPortrait === 4 ? "display-block" : "display-none")}> 
+                                <div className={(this.state.selectedPortrait === 4 ? "display-block" : "display-none")}>
                                     <a className="about-a" target="_blank" href="https://www.linkedin.com/in/justiceperezwhite/"><i className="fa fa-linkedin-square about-icon" aria-hidden="true"></i></a>
                                     <a className="about-a" target="_blank" href="https://github.com/Justiceleeg/"><i className="fa fa-github-square about-icon" aria-hidden="true"></i></a>
                                     <div className="portrait-info-text">
                                         <p><span className="bold">Roles and Responsiblilities: </span>
-                                            Lead Backend Developer and Frontend Developer in charge of building the Node.js server for API calls and queries to the PostgreSQL database on Heroku. Responsible for data exchange within the App and creating the About page on the frontend. 
+                                            Lead Backend Developer and Frontend Developer in charge of building the Node.js server for API calls and queries to the PostgreSQL database on Heroku. Responsible for data exchange within the App and creating the About page on the frontend.
                                         </p>
                                         <br/>
                                         <p>
                                             <span className="bold">Background: </span>
-                                            Military brat with a degree in Mechanical Engineering from Rice University. Previous work experience in healthcare includes Quality Engineering in biotherapeutics and Information Technology work with electronic health records. 
-                                        </p>                             
+                                            Military brat with a degree in Mechanical Engineering from Rice University. Previous work experience in healthcare includes Quality Engineering in biotherapeutics and Information Technology work with electronic health records.
+                                        </p>
                                     </div>
                                 </div>
-                                <div className={(this.state.selectedPortrait === 5 ? "display-block" : "display-none")}> 
+                                <div className={(this.state.selectedPortrait === 5 ? "display-block" : "display-none")}>
                                     <a className="about-a" target="_blank" href="https://www.linkedin.com/in/ndmueller/"><i className="fa fa-linkedin-square about-icon" aria-hidden="true"></i></a>
                                     <a className="about-a" target="_blank" href="https://github.com/NDMueller"><i className="fa fa-github-square about-icon" aria-hidden="true"></i></a>
                                     <div className="portrait-info-text">
@@ -274,8 +274,8 @@ export default class About extends Component {
                                         <p>
                                             <span className="bold">Background: </span>
                                             From Minnesota but actually Tennesee
-                                        </p>                             
-                                    </div>  
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
