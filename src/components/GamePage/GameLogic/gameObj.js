@@ -17,6 +17,10 @@ import { images } from './mediaRepos'
 import CollisionDetector from './collisionDetection'
 import { startListening, stopListening } from './keyInput'
 
+// get inputs from inputsObj on nutritionReducer from store
+let nutritionState = store.getState().nutritionReducer
+let {sugarAmount, cholesterolAmount, maxOnScreenEnemies} = nutritionState
+
 let gameState = store.getState().gameReducer
 
 store.subscribe(function() {

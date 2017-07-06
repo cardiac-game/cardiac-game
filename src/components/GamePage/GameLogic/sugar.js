@@ -3,6 +3,8 @@ import store from '../../../store/store'
 let state = store.getState()
 let gameState = state.gameReducer
 
+// get inputs from inputsObj on nutritionReducer from store
+let enemySpeed = state.nutritionReducer.enemySpeed;
 
 store.subscribe(function() {
     gameState = store.getState().gameReducer
@@ -37,8 +39,8 @@ export default class Sugar {
         this.isAlive = false
         this.x = Math.random() * this.context.canvas.width
         this.y = Math.random() * this.context.canvas.height
-        this.dx = Math.random() * 2 - 1
-        this.dy = Math.random() * 2 - 1
+        this.dx = (Math.random() * 2 - 1) * enemySpeed
+        this.dy = (Math.random() * 2 - 1) * enemySpeed
         this.width = Math.random() * 10 + 20
         this.height = this.width
         this.imgCenterX = this.width / 2

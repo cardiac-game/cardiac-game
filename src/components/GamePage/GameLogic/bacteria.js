@@ -1,6 +1,9 @@
 import store from '../../../store/store'
 import { images } from './mediaRepos'
 
+// get inputs from inputsObj on nutritionReducer from store
+let bacteriaSpeed = store.getState().nutritionReducer.enemySpeed;
+
 // get initial state from store
 let enemiesState = store.getState().enemiesReducer
 let bacteriaInitialState = enemiesState.bacteria
@@ -61,7 +64,7 @@ export default class Bacteria {
     // set enemy image/sprite
     this.sprite = images.bacteria
 
-    this.speed = 1
+    this.speed = 1 * bacteriaSpeed
     this.orientation = Math.random() * Math.PI
     this.turnSpeed = 1
     this.counter = 0

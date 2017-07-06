@@ -1,5 +1,7 @@
 import store from '../../../store/store'
 
+// get inputs from inputsObj on nutritionReducer from store
+let enemySpeed = store.getState().nutritionReducer.enemySpeed;
 
 
 export default class Virus {
@@ -13,8 +15,8 @@ export default class Virus {
         this.frameCount = 0
         this.x = Math.random() * this.context.canvas.width
         this.y = Math.random() * this.context.canvas.height
-        this.dx = Math.random() * 2 + 0.5
-        this.dy = Math.random() * 2 + 0.5
+        this.dx = (Math.random() * 2 + 0.5) * enemySpeed
+        this.dy = (Math.random() * 2 + 0.5) * enemySpeed
         this.width = this.frameWidth
         this.height = this.sprite.height
         this.imgCenterX = this.frameWidth / 2
