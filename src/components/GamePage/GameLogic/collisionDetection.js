@@ -5,12 +5,12 @@ export default function CollisionDetector() {
     // convert to circles
     
     function checkBoxOverlap (box1, box2){
-        const box1radius = ((box1.width + box1.height)/2)/2 // avg w and h then divide by 2 for r
-        const box2radius = ((box2.width + box2.height)/2)/2;
-        const centerpointX1 = box1.imgCenterX + box1.x;
-        const centerpointY1 = box1.imgCenterY + box1.y;
-        const centerpointX2 = box2.imgCenterX + box2.x;
-        const centerpointY2 = box2.imgCenterY + box2.y;
+        const box1radius = Math.min(box1.width,box1.height)/2 // avg w and h then divide by 2 for r
+        const box2radius = (Math.min(box2.width,box2.height))/2;
+        const centerpointX1 = box1.x + box1.imgCenterX / 2;
+        const centerpointY1 = box1.y + box1.imgCenterY;
+        const centerpointX2 = box2.x + box2.imgCenterX / 2;
+        const centerpointY2 = box2.y + box2.imgCenterY;
         
         const minNoCollideDistance = box1radius + box2radius;
         const distance = Math.sqrt(Math.pow((centerpointX2-centerpointX1),2) + Math.pow((centerpointY2-centerpointY1),2))
@@ -22,7 +22,6 @@ export default function CollisionDetector() {
         }
     }
 
-
     this.checkObjToArray = function(obj,arr,callback) {
         for (let i = 0; i < arr.length; i++) {
             if ( checkBoxOverlap(obj,arr[i]) ) {
@@ -33,8 +32,8 @@ export default function CollisionDetector() {
         return false
     },
 
-    // array of "bullets" and array of "enemies" check if any one object on arr1 colides with any one object on arr2
 
+    // array of "bullets" and array of "enemies" check if any one object on arr1 colides with any one object on arr2
     this.checkArrayToArray = function(arr1,arr2, callback) {
         for (let i = 0; i < arr1.length; i++) {
             for (let j = 0; j < arr2.length; j++) {
@@ -45,5 +44,4 @@ export default function CollisionDetector() {
             }
         }
     }
-
 }

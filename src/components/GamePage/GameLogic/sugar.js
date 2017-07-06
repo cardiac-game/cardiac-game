@@ -1,86 +1,157 @@
- function Asteriod() {
+import store from '../../../store/store'
 
-        this.position = args.position
-        this.velocity = {
-                x: randomNumBetween(-1.5, 1.5),
-                y: randomNumBetween(-1.5, 1.5)
-            }
-        this.rotation = 0
-        this.rotationSpeed = randomNumBetween(-1, 1)
-        this.radius = args.size
-        this.score = (80 / this.radius)*5
-        this.create = args.create
-        this.vertices = asteroidVertices(8, args.size)
+let state = store.getState()
+let gameState = state.gameReducer
 
-    destroy(){
-        this.delete = true
 
-        // Explode
-        for (let i = 0 i < this.radius i++) {
-            const particle = new Particle({
-                lifeSpan: randomNumBetween(60, 100),
-                size: randomNumBetween(1, 3),
-                position: {
-                x: this.position.x + randomNumBetween(-this.radius/4, this.radius/4),
-                y: this.position.y + randomNumBetween(-this.radius/4, this.radius/4)
-                },
-                velocity: {
-                x: randomNumBetween(-1.5, 1.5),
-                y: randomNumBetween(-1.5, 1.5)
-                }
-            })
-        this.create(particle, 'particles')
+store.subscribe(function() {
+    gameState = store.getState().gameReducer
+})
+
+function generateVertices(num, radius) {
+    let vertices = []
+    let circle = Math.PI * 2
+    console.log(circle)
+    let angle = Math.random()*circle
+
+    for (let i = 0; i < num; i++) {
+        angle += Math.random() + circle / num
+        console.log(angle);
+        if (angle > circle) {
+            angle -= circle
         }
-
-        // Break into smaller asteroids
-        if(this.radius > 10){
-            for (let i = 0 i < 2 i++) {
-                let asteroid = new Asteroid({
-
-                size: this.radius/2,
-                position: {
-                    x: randomNumBetween(-10, 20)+this.position.x,
-                    y: randomNumBetween(-10, 20)+this.position.y
-                },
-                create: this.create.bind(this),
-                addScore: this.addScore.bind(this)
-                })
-                this.create(asteroid, 'asteroids')
-            }
+        vertices[i] = {
+            x: Math.cos(angle)*radius,
+            y: Math.sin(angle)*radius
         }
     }
 
+    vertices.sort((a,b) => a.x > b.x)
+    console.log(vertices)
+    return vertices
+}
 
-        // Move
-        this.position.x += this.velocity.x
-        this.position.y += this.velocity.y
+export default class Sugar {
+    constructor() {
+        this.context = gameState.context
+        this.isAlive = false
+        this.x = Math.random() * this.context.canvas.width
+        this.y = Math.random() * this.context.canvas.height
+        this.dx = Math.random() * 2 - 1
+        this.dy = Math.random() * 2 - 1
+        this.width = Math.random() * 10 + 20
+        this.height = this.width
+        this.imgCenterX = this.width / 2
+        this.imgCenterY = this.height / 2
+        this.rotation = 0
+        this.rotationSpeed = Math.random() - 0.5
+        this.score = (80 / this.radius)*5
+        this.vertices = generateVertices(12, this.width)
 
-        // Rotation
+        this.draw = this.draw.bind(this)
+        this.update = this.update.bind(this) 
+    }
+
+    update() {
+        this.x += this.dx
+        this.y += this.dy
+
+        if (this.x > this.context.canvas.width + this.width) {
+            this.x = 0 - this.width
+        } else if (this.y > this.context.canvas.height + this.height) {
+            this.y = 0 - this.height
+        }
+
         this.rotation += this.rotationSpeed
-        if (this.rotation >= 360) {
-        this.rotation -= 360
+        if (this.rotation > 360) {
+            this.rotation -= 360
         }
         if (this.rotation < 0) {
-        this.rotation += 360
+            this.rotation += 360
+        }
+    }
+
+    draw() {
+        this.context.save()
+        this.context.translate(this.x + this.imgCenterX, this.y + this.imgCenterY)
+        this.context.rotate(this.rotation * Math.PI / 180)
+        this.context.strokeStyle = '#FFF'
+        this.context.fillStyle = 'rgba(220,220,220,0.5)'
+        this.context.lineWidth = 2
+        this.context.moveTo(0, -this.radius)
+        this.context.beginPath()
+
+        for (let i = 1; i < this.vertices.length -1; i++) {
+            this.context.lineTo(this.vertices[i].x, this.vertices[i].y)
         }
 
-        // Draw
-        const context = state.context
-        context.save()
-        context.translate(this.position.x, this.position.y)
-        context.rotate(this.rotation * Math.PI / 180)
-        context.strokeStyle = '#FFF'
-        context.lineWidth = 2
-        context.beginPath()
-        context.moveTo(0, -this.radius)
-        for (let i = 1 i < this.vertices.length i++) {
-            context.lineTo(this.vertices[i].x, this.vertices[i].y)
-        }
-        context.closePath()
-        context.stroke()
-        context.restore()
+        this.context.closePath()
+        this.context.stroke()
+        this.context.fill()
+        this.context.restore()
     }
- }
- 
- 
+
+
+
+
+}
+
+//     delete() {
+//         // Break into smaller asteroids
+//         if(this.radius > 10){
+//             for (let i = 0 i < 2 i++) {
+//                 let sugar = new Sugar({
+
+//                 radius: this.radius/2,
+//                 position: {
+//                     x: randomNumBetween(-10, 20)+this.position.x,
+//                     y: randomNumBetween(-10, 20)+this.position.y
+//                 },
+//                 create: this.create.bind(this),
+//                 addScore: this.addScore.bind(this)
+//                 })
+//                 this.create(asteroid, 'asteroids')
+//             }
+//         }
+//     }
+
+//     destroy(){
+
+//         this.delete = true
+
+//         // Explode
+//         for (let i = 0 i < this.radius i++) {
+//             const particle = new Particle({
+//                 lifeSpan: randomNumBetween(60, 100),
+//                 size: randomNumBetween(1, 3),
+//                 position: {
+//                 x: this.position.x + randomNumBetween(-this.radius/4, this.radius/4),
+//                 y: this.position.y + randomNumBetween(-this.radius/4, this.radius/4)
+//                 },
+//                 velocity: {
+//                 x: randomNumBetween(-1.5, 1.5),
+//                 y: randomNumBetween(-1.5, 1.5)
+//                 }
+//             })
+//         this.create(particle, 'particles')
+//         }
+
+//         // Break into smaller asteroids
+//         if(this.radius > 10){
+//             for (let i = 0 i < 2 i++) {
+//                 let asteroid = new Asteroid({
+
+//                 size: this.radius/2,
+//                 position: {
+//                     x: randomNumBetween(-10, 20)+this.position.x,
+//                     y: randomNumBetween(-10, 20)+this.position.y
+//                 },
+//                 create: this.create.bind(this),
+//                 addScore: this.addScore.bind(this)
+//                 })
+//                 this.create(asteroid, 'asteroids')
+//             }
+//         }
+//     }
+
  
