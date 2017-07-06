@@ -3,25 +3,22 @@
   bottom: 25px;
   left: 0;
 }
-
-.nickname {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  background: white
-}
-
 .modalStyle {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 50%;
+  width: 1100px;
   transform: translate(-50%, -50%);
   z-index: 9999;
-  background: white
+  opacity: .8;
+  background: lightgray;
+  text-align: center;
+  border: 2px solid black;
+}
+.modal-height {
+  height: 700px;
+  transition: 1s;
+  visibility: hidden;
 }
 
 .backdropStyle {
@@ -36,7 +33,7 @@
 
 .nickname-height {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   height: 10vh;
@@ -44,12 +41,38 @@
   visibility: visible;
 }
 
-.modal-height {
-  height: 50vh;
-  transition: 1s;
-  visibility: hidden;
-}
-
 .score {
-  text-align: center;
+text-align: center;
+}
+.leaderboard-title {
+font-size: 3vw;
+font-family: 'Josefin Sans';
+letter-spacing: 1px;
+outline: none;
+}
+.leaderboard-input {
+width: 400px;
+background-color: transparent;
+border: none;
+border-bottom: 1px solid black;
+text-transform: uppercase;
+color: black;
+letter-spacing: 1px;
+font-size: 17px;
+}
+.leaderboard-input:focus {
+outline: none;
+}
+.submit-button {
+cursor: pointer;
+width: 5vw;
+background-color: transparent;
+border: 1px solid black;
+font-size: .8vw;
+letter-spacing: 1px;
+margin-left: 10px;
+outline: none;
+}
+.submit-button:hover {
+background-color: gray;   
 }
