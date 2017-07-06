@@ -72,13 +72,8 @@ export default class Cholesterol {
         this.numOfCircles = 5
         this.dxAll = 5
         this.dyAll = 5
-<<<<<<< HEAD
-        this.dx = 1 * enemySpeed
-        this.dy = 1 * enemySpeed
-=======
-        this.dx = 0.25
-        this.dy = 0.25
->>>>>>> master
+        this.dx = 0.25 * enemySpeed
+        this.dy = 0.25 * enemySpeed
         this.shakeSpeed = 1
         this.circles = []
 
