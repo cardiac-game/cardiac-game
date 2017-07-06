@@ -3,7 +3,6 @@ import store from '../../../store/store'
 let state = store.getState()
 let gameState = state.gameReducer
 
-
 store.subscribe(function() {
     gameState = store.getState().gameReducer
 })
@@ -20,7 +19,6 @@ function generateVertices(num, radius) {
             y: Math.sin(angle) * (Math.random() * (radius * 0.2) + (radius - radius*0.2))
         }
     } 
-
     return vertices
 }
 

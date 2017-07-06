@@ -39,9 +39,9 @@ class GamePage extends Component {
     store.dispatch(setContext(ctx))
 
     // set background and canvas dimensions
-    bulletCanvas.style.background = `url(${images.bg.src})`
-    canvas.width = bulletCanvas.width = images.bg.width
-    canvas.height = bulletCanvas.height = images.bg.height
+    bulletCanvas.style.background = `url(${images.cancerousbg.src})`
+    canvas.width = bulletCanvas.width = images.cancerousbg.width
+    canvas.height = bulletCanvas.height = images.cancerousbg.height
 
     // makes images sharper
     ctx.imageSmoothingEnabled = false
