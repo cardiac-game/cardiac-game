@@ -13,17 +13,85 @@ margin-left: -1.6%;
 height: 100vh;
 border: 1px solid black;
 box-shadow: inset 0 0 10px black;
-opacity: .7;
+opacity: 1;
 background-image: url('./images/Cells - Blood.jpg');
 background-size: cover;
 width:103.3%;
+display: flex;
+}
+.input-gameplay {
+height: calc(100vh - 67px);
+width: 33vw;
+padding: 15px;
+margin-right: .5vw;
+margin-left: .5vw;
+margin-top: 57px;
+background-color: rgba(0, 0, 0, .7);
+border: 1px solid black;
+box-shadow: inset 0 0 100px black;
+z-index: 10;
+}
+.input-enemies {
+height: calc(100vh - 67px);
+margin-top: 57px;
+padding: 15px;
+width: 32vw;
+margin-right: .5vw;
+background-color: rgba(0, 0, 0, .7);
+border: 1px solid black;
+box-shadow: inset 0 0 100px black;
+z-index: 10;
+
+color: white;
+}
+.input-powerups {
+height: calc(100vh - 67px);
+margin-top: 57px;
+padding: 15px;
+width: 33vw;
+background-color: rgba(0, 0, 0, .7);
+border: 1px solid black;
+box-shadow: inset 0 0 100px black;
+z-index: 10;
+
+color: white;
+}
+.little-title {
+font-size: 1.7vh;
+color: rgba(300, 100, 100, 1);
+letter-spacing: 3px;
+font-family: 'Josefin Sans';
+}
+.rules-title {
+font-size: 3vh;
+color: white;
+letter-spacing: 3px;
+font-family: 'Josefin Sans';
+}
+.input-info-instruct {
+color: rgba(170, 150, 150, 1);
+font-size: 1.7vh;
+letter-spacing: 1.7px;
+line-height: 1.2;
+}
+.input-info-title{
+font-size: 1.7vh;
+letter-spacing: 2px;
+}
+.input-info-text {
+color: rgba(170, 150, 150, 1);
+font-style: italic;
+font-size: 1.7vh;
+letter-spacing: 1.5px;
+line-height: 1.2;
 }
 .input-curtain {
+position: absolute;
 height: 100%;
 width: 100%;
-background: -webkit-linear-gradient(top, rgba(190, 0, 0, .3), rgba(0, 0, 0, 1));
+z-index: 0;
+background: -webkit-linear-gradient(top, rgba(100, 0, 0, .3), rgba(0, 0, 0, 1));
 }
-
 .input-boxy-0 {
 height: 73vh;
 width: 100%;
@@ -266,7 +334,7 @@ margin-left: 5%;
 justify-content: center;
 height: 9vh;
 width:90%;
-font-size: 2.1vw;
+font-size: 3.3vh;
 border-bottom: 1px solid white;
 color: white;
 text-shadow: 0 0 7px white;
