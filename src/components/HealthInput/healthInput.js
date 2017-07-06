@@ -333,11 +333,145 @@ constructor(){
         <div className="input-input">
             <div className="input-intro">
 
-                <div className="input-enemies"></div>
-                <div className="input-powerups"></div>
-                <div className="input-gameplay"></div>
+                <div className="input-gameplay"><span className="rules-title">
+                HOW TO PLAY</span>
+                <hr/>
+                <span className="input-info-instruct">As an agent for your body and an ally to your immune system your mission is to pilot your ship and defend the heart from a myriad of enemies for ten increasingly difficult waves.
+                <br/><br/>
+                Each wave represents one day of eating nothing but the diet entered below. The macronutrients and vitamins consumed play a vital role in your body’s ability to fight against the various enemies encountered through everyday life.
+                <br/><br/>
+                Consume a healthy diet and the game will reflect the strength of your body against those threats, but consume a diet rife with junk food and the game will become nearly impossible.
+                <br/><br/>
+                In the body, use your skills and any advantages gained from your diet to counterattack the microbes and organic molecules encircling the heart.
+                <br/><br/>
+                A diet high in protein makes you strong and fast while a diet high in fat slows you down. Besides macronutrients, micronutrients like vitamins play a crucial role in the health of your body. Vitamins essential to cell growth and division provide opportunities to pick up powerups which heal the heart.
+                <br/><br/>
+                The key to victory in this game lies in properly proportioned macronutrients and a diverse assortment of all the necessary vitamins and minerals.
+                
+                {/*<br/><br/>
+                Use the arrow keys to turn the ship. Forward arrow accelerates and back arrow reverses.
+                <br/><br/>
+                'A' strafes left and 'D' strafes right.
+                <br/><br/>
+                Press 'SPACEBAR' to shoot, and 'B' to release a Cholesto-Bomb.*/}
+                
+                </span>
+                </div>
+                <div className="input-enemies"><span className="rules-title">
+                ENEMIES</span>
+                <hr/>
+                <span className="little-title">SUGAR</span>
+                <br/><br/>
+                <span className="input-info-title">Description: </span><span className="input-info-text">
+                A white, transperent, crystalline substance which tears artery walls on impact.
+                </span>
+                <br/><br/>
+                <span className="input-info-title">Attack Method: </span><span className="input-info-text">
+                It ricochets around the vains and arteries, it is just a matter of time before your heart gets in the way.
+                </span>
+                <hr/>
+                <span className="little-title">CHOLESTEROL</span>
+                <br/><br/>
+                <span className="input-info-title">Description: </span><span className="input-info-text">
+                A whitish or sometimes yellowish blob-like goo, with a habbit of getting stuck in the worst places.
+                </span>
+                <br/><br/>
+                <span className="input-info-title">Attack Method: </span><span className="input-info-text">
+                It carelessly floats around the body finding little crevasses and openings to clog.
+                </span>
+                 <hr/>
+                <span className="little-title">BACTERIA</span>
+                <br/><br/>
+                <span className="input-info-title">Description: </span><span className="input-info-text">
+                An odd, mustard colored creature that multiplies and speads wherever it can.
+                </span>
+                <br/><br/>
+                <span className="input-info-title">Attack Method: </span><span className="input-info-text">
+                Relentlessly honing in on the heart, bacteria amasses into a swarm, prime for attack.
+                </span>
+                <hr/>
+                <span className="little-title">VIRUS</span>
+                <br/><br/>
+                <span className="input-info-title">Description: </span><span className="input-info-text">
+                Nasty and green with the shape of a spikey sea urchin, this microbe should not be taken lightly.
+                </span>
+                <br/><br/>
+                <span className="input-info-title">Attack Method: </span><span className="input-info-text">
+                A virus spreads by shooting its DNA into other cells, corrupting them into another virus.
+                </span>
+                </div>
+                
+                <div className="input-powerups"><span className="rules-title">
+                POWER-UPS</span>
+                <hr/>
+                <span className="little-title">HEALTH PACK </span>
+                <span className="input-info-text">
+                - (Blue Orb)
+                </span>
+                <br/><br/>
+                <span className="input-info-title">Benefits: </span><span className="input-info-text">
+                Heals the heart by 50 points.
+                </span>
+                <br/><br/>
+                <span className="input-info-title">Requirements: </span><span className="input-info-text">
+                Calcium, Folate, Magnesium, Thiamin, Vitamin K, Zinc
+                </span>
+                <hr/>
+                <span className="little-title">MAX SHIELD </span>
+                <span className="input-info-text">
+                - (Yellow Orb)
+                </span>
+                <br/><br/>
+                <span className="input-info-title">Benefits: </span><span className="input-info-text">
+                Increases the ships max shield by 10%. (Game starts with a max shield of 10%.)
+                </span>
+                <br/><br/>
+                <span className="input-info-title">Requirements: </span><span className="input-info-text">
+                Potassium, Vitamin-A, Vitamin C, Vitamin D, Vitamin E
+                </span>
+                <hr/>
+                <span className="little-title">FIRE POWER </span>
+                <span className="input-info-text">
+                - (Red Orb)
+                </span>
+                <br/><br/>
+                <span className="input-info-title">Benefits: </span><span className="input-info-text">
+                Increases weapon damage by 1 point.
+                </span>
+                 <br/><br/>
+                <span className="input-info-title">Requirements: </span><span className="input-info-text">
+                Iron, Potassium, Vitamin A, Vitamin C, Vitamin D
+                </span>
+                <hr/>
+                <span className="little-title">FIRE RATE</span>
+                <span className="input-info-text">
+                - (Orange Orb)
+                </span>
+                <br/><br/>
+                <span className="input-info-title">Benefits: </span><span className="input-info-text">
+                Increase weapon fire rate by 100%.
+                </span>
+                <br/><br/>
+                <span className="input-info-title">Requirements: </span><span className="input-info-text">
+                Magnesium, Potassium, Riboflavin, Vitamin B6, Vitamin B12
+                </span>
+                <hr/>
+                <span className="little-title">CHOLESTO-BOMB</span>
+                <span className="input-info-text">
+                - (Green Orb)
+                </span>
+                <br/><br/>
+                <span className="input-info-title">Benefits: </span><span className="input-info-text">
+                Destroys all cholesterol currently on screen.
+                </span>
+                <br/><br/>
+                <span className="input-info-title">Requirements: </span><span className="input-info-text">
+                Niancin
+                </span>
+                </div>
 
                 <div className="input-curtain"></div>
+
             </div>
             
             <div className="input-boxy-0">
