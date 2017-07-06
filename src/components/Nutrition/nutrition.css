@@ -4,5 +4,7 @@ padding-top: 50px;
 }
 
 .nutri-container {
-    height: calc(100vh - 90px)
+    /*height: calc(100vh - 90px)*/
+    width: 80%;
+    margin: 2% 10% 2% 10%;
 }
