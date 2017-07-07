@@ -2,6 +2,7 @@ import store from '../../../store/store'
 import { setPlayer } from '../../../store/ducks/playerReducer'
 
 import { images } from './mediaRepos'
+
 import BulletPool from './bulletPool'
 import Bullet from './bullet'
 
@@ -74,7 +75,11 @@ export default class Player {
         } else if (this.y <= 0) {
             this.y = 0
         }
-        
+
+        // preven player from flying through heart
+        // if (this.x <= (this.context.canvas.width /2 - ) && villageMain.x <= (herohitboxX) && herohitboxY <= (villageMain.y + 200) && villageMain.y <= (herohitboxY) ) { console.log('inside bldg') }
+
+
         // shoot
         if (playerState.keys.space && Date.now() - this.lastShot > this.fireRate) {
             this.lastShot = Date.now()
@@ -82,7 +87,6 @@ export default class Player {
         } else {
             this.isFiring = false
         }
-
 
         store.dispatch(setPlayer(this))
     }

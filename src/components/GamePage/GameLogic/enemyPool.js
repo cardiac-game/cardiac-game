@@ -51,7 +51,7 @@ export default class EnemyPool {
     // before game loop: create a new pool with the input enemy type and populate the inactive and active pools
     init(EnemyType, image) {
         for (let i = 0; i < this.maxSize; i++) {
-            let enemy = new EnemyType(this.context, image)
+            let enemy = new EnemyType(image)
             this.inactive.push(enemy)
         }
         for (let i = 0; i < this.numOnScreen; i++ ) {

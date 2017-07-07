@@ -36,29 +36,10 @@ export default class Sugar {
         this.imgCenterY = this.width / 2
         this.rotation = 0
         this.rotationSpeed = Math.random() - 0.5
-        this.score = (80 / this.radius)*5
         this.vertices = generateVertices(24, this.width)
 
         this.draw = this.draw.bind(this)
         this.update = this.update.bind(this) 
-
-
-    //         let tau = Math.PI*2;
-    //         let increment = tau / granularity;
-    //         let radius;
-    //         let x;
-    //         let y;
-    //         let points = [];
-    //         let offset = maxRadius;
-            
-    //         for (let ang = 0; ang < tau; ang += increment) {
-    //         radius = this.getRandom(minRadius, maxRadius);
-    //         x = offset + Math.sin(ang) * radius;
-    //         y = offset + Math.cos(ang) * radius;
-            
-
-    //   points.push({x, y});
-    // }
 
     }
 

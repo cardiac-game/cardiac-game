@@ -1,12 +1,17 @@
 import store from '../../../store/store'
+import { images } from './mediaRepos'
 
+let gameState = store.getState().gameReducer
 
+store.subscribe(function() {
+    gameState = store.getState().gameReducer
+})
 
 export default class Virus {
 
-    constructor(context, sprite) {
-        this.context = context
-        this.sprite = sprite
+    constructor() {
+        this.context = gameState.context
+        this.sprite = images.virus
         this.currentFrame = 0
         this.frameWidth = this.sprite.width / this.sprite.frames
         this.frameSpeed = 5
