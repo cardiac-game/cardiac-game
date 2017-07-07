@@ -80,9 +80,39 @@ class GamePage extends Component {
       <div>
       <section className='game-page'>
         <div className="game-canvas-container">
+
+          
+
           <canvas className='game-canvas' ref='bulletCanvas'></canvas>
           <canvas className='game-canvas' ref="bloody"></canvas>
           <canvas className='game-canvas' ref="canvas"></canvas>
+
+          <div className='game-surface'>
+
+          <div className='game-weapons'>
+          FIRE POWER: 01
+          <br/>
+          FIRE RATE: 01
+          <br/>
+          C-BOMBS: 00
+          </div>
+          
+          <div className="health-bar">
+          <div className="game-health"></div>
+          </div>
+
+          <div className="shield-bar">
+          <div className="game-shield"></div>
+          </div>
+          <div className='game-pause'>
+          PAUSE
+          </div>
+          <div className='game-score'>
+          SCORE: 0
+          </div>
+
+          </div>
+
         </div>
       </section>
       <Modal />
