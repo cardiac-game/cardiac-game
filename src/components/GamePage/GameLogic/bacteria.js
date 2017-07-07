@@ -104,8 +104,8 @@ export default class Bacteria {
   }
 
   // decrease health by one
-  healthDown(bulletDamage) {
-	  this.health -= bulletDamage
+  healthDown(damage = 1) {
+	  this.health -= damage
     // kills enemy so it can be removed from the active enemy pool
 	  if (this.health < 0) {
 		  this.isAlive = false

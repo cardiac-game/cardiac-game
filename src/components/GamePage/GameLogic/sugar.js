@@ -29,21 +29,26 @@ export default class Sugar {
     constructor() {
         this.context = gameState.context
         this.isAlive = false
-        this.x = Math.random() * this.context.canvas.width
-        this.y = Math.random() * this.context.canvas.height
-        this.dx = (Math.random() * 2 - 1) * enemySpeed
-        this.dy = (Math.random() * 2 - 1) * enemySpeed
-        this.width = Math.random() * 10 + 20
+        this.rotation = 0
+        this.rotationSpeed = Math.random() - 0.5
+        this.vertices = []
+
+        this.setSize = this.setSize.bind(this)
+        this.draw = this.draw.bind(this)
+        this.update = this.update.bind(this) 
+    }
+
+    setSize(size = 3, spawnX, spawnY) {
+        this.size = size
+        this.x = spawnX || Math.random() * this.context.canvas.width
+        this.y = spawnY || Math.random() * this.context.canvas.height 
+        this.dx = (Math.random() * 2 - 1) * enemySpeed * 3 / size
+        this.dy = (Math.random() * 2 - 1) * enemySpeed * 3 / size
+        this.width = (Math.random() * 3 + 5) * size 
         this.height = this.width
         this.imgCenterX = this.width / 2
         this.imgCenterY = this.width / 2
-        this.rotation = 0
-        this.rotationSpeed = Math.random() - 0.5
         this.vertices = generateVertices(24, this.width)
-
-        this.draw = this.draw.bind(this)
-        this.update = this.update.bind(this) 
-
     }
 
     update() {

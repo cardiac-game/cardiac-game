@@ -11,6 +11,7 @@ import Bullet from './bullet'
 import EnemyPool from './enemyPool'
 import Virus from './virus'
 import Bacteria from './bacteria'
+import SugarPool from './sugarPool.js'
 import Sugar from './sugar'
 import Cholesterol from './cholesterol'
 import Heart from './heart'
@@ -36,7 +37,7 @@ export default class Game {
         this.bulletPool = new BulletPool(gameState.context)
         this.virusPool = new EnemyPool(this.context, 100, 3, 10)
         this.bacteriaPool = new EnemyPool(gameState.context, 100, 5, 20)
-        this.sugar = new Sugar()
+        this.sugarPool = new SugarPool(100, 5, 20)
         this.cholesterolPool = new EnemyPool(gameState.context, 100, 5, 20)
         this.heart = new Heart(gameState.context) 
         this.collision = new CollisionDetector()
@@ -45,6 +46,7 @@ export default class Game {
         this.virusPool.init(Virus, images.virus)
         this.bacteriaPool.init(Bacteria, images.bacteria)
         this.cholesterolPool.init(Cholesterol)
+        this.sugarPool.init(Sugar)
 
         this.draw = this.draw.bind(this)
         this.update = this.update.bind(this)
@@ -58,12 +60,12 @@ export default class Game {
         this.bulletPool.draw()
         this.virusPool.draw()
 
-        this.sugar.draw()
 
         this.heart.draw()
         this.bacteriaPool.draw()
 
         this.cholesterolPool.draw()
+        this.sugarPool.draw()
 
         this.powerup.draw()        
     }
@@ -73,12 +75,12 @@ export default class Game {
         this.bulletPool.update()
         this.virusPool.update()
 
-        this.sugar.update()
 
         this.heart.update()
         this.bacteriaPool.update()
 
         this.cholesterolPool.update()
+        this.sugarPool.update()
 
         this.powerup.update();        
     }
@@ -88,14 +90,23 @@ export default class Game {
         // player collisions
         this.collision.checkObjToArray(this.player, this.bacteriaPool.active, function(player,bacteria) {
             bacteria.healthDown()
+            player.shieldDown()
         })
 
         this.collision.checkObjToArray(this.player, this.virusPool.active, function(player,virus) {
             virus.healthDown()
+            player.shieldDown()
         })
 
         this.collision.checkObjToArray(this.player, this.cholesterolPool.active, function(player,cholesterol) {
             cholesterol.isAlive = false
+            player.shieldDown()
+        })
+
+        this.collision.checkObjToArray(this.player, this.sugarPool.active, function(player, sugar) {
+            sugar.isAlive = false
+            player.shieldDown(sugar.size)
+            sugar.size = 0
         })
 
 
@@ -112,7 +123,7 @@ export default class Game {
             bullet.isAlive = false
         })
 
-        this.collision.checkArrayToArray([this.sugar], this.bulletPool.active, function(sugar,bullet) {
+        this.collision.checkArrayToArray(this.sugarPool.active, this.bulletPool.active, function(sugar,bullet) {
             sugar.isAlive = false
             bullet.isAlive = false
         })
@@ -125,9 +136,7 @@ export default class Game {
 
         // heart collisions
         this.collision.checkObjToArray(this.heart,this.bacteriaPool.active, function(heart,bacteria) {
-            for(let i = 0; i < bacteria.health; i++) {
-            bacteria.healthDown()
-            }
+            bacteria.healthDown(bacteria.maxHealth)
             heart.healthDown()
         })
 
@@ -138,6 +147,12 @@ export default class Game {
         this.collision.checkObjToArray(this.heart,this.cholesterolPool.active, function(heart,cholesterol) {
             cholesterol.isOnHeart = true
             heart.healthDown()
+        })
+
+        this.collision.checkObjToArray(this.heart, this.sugarPool.active, function(heart, sugar) {
+            sugar.isAlive = false
+            heart.healthDown(sugar.size)
+            sugar.size = 0
         })
     }
 }
