@@ -1,5 +1,5 @@
 //Author: Brandon John-Freso
-export default function bloody(canv, particleSize = 20, particleCount = 110, W = window.innerWidth, H = window.innerHeight) {
+export default function bloody(canv, particleSize = 20, particleCount = 110, interval = 200, W = window.innerWidth, H = window.innerHeight) {
                 var ctx, //ctx stands for context and is the "curso" of our canvas element.
                     particleCount = particleCount,
                     particles = []; //this is an array which will hold our particles Object/Class
@@ -154,12 +154,12 @@ export default function bloody(canv, particleSize = 20, particleCount = 110, W =
                 function heartBeat(){
                 counter ++
 
-                if (counter < 200) return
-                if (counter >= 200 && counter < 215) {
+                if (counter < interval) return
+                if (counter >= interval && counter < interval + 15) {
                 for (var i = particleCount - 1; i >= 0; i--) {
                         var p = particles[i];
                         p.speedup(); }
-                } else if(counter >= 215 && counter < 290) {
+                } else if(counter >= interval + 15 && counter < interval + 90) {
                 for (var i = particleCount - 1; i >= 0; i--) {
                         var p = particles[i];
                         p.slowdown(); }

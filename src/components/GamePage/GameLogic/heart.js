@@ -1,6 +1,6 @@
 import store from '../../../store/store'
 import { images } from './mediaRepos'
-
+import { updateHeartHealth } from '../../../store/ducks/gameReducer'
 
 let gameState = store.getState().gameReducer
 
@@ -13,9 +13,10 @@ export default class Heart {
     this.context = gameState.context
     this.sprite = images.heart
     this.currentFrame = 0
-    this.frameWidth = 97
-    this.frameSpeed = 4
+    this.frameWidth = 97.5
+    this.frameSpeed = 3
     this.frameCount = 0
+    this.heartBeatCounter = 0
     this.width = this.frameWidth
     this.height = this.sprite.height
     this.imgCenterX = this.frameWidth / 2
@@ -33,6 +34,7 @@ export default class Heart {
    	this.healthDown = this.healthDown.bind(this)
     }
 
+
     poweredUp(){
         this.health += this.maxHealth/3
         if (this.health > this.maxHealth) {
@@ -40,24 +42,29 @@ export default class Heart {
         }
     }
 
-    healthDown() {
-        this.health--
-        if (this.health < 1) {
-            this.health = this.maxHealth
-        }
+    healthDown(damage = 1) {
+        this.health-=damage
         this.contrast = ~~(100 * (this.maxHealth - this.health) / this.maxHealth)
-    }
+       
+        store.dispatch(updateHeartHealth(this.contrast))
+}
 
     update() {
         this.frameCount++
+        this.heartBeatCounter++
 
-        // regulates frame speed
-        if (this.frameCount >= this.frameSpeed) {
-            this.currentFrame++
-            if (this.currentFrame >= this.sprite.frames) {
-                this.currentFrame = 0
+        if (this.heartBeatCounter < 2 * this.sprite.frames * this.frameSpeed) {
+            // regulates frame speed
+            if (this.frameCount >= this.frameSpeed) {
+                this.currentFrame++
+                if (this.currentFrame >= this.sprite.frames) {
+                    this.currentFrame = 0
+                }
+                this.frameCount = 0
             }
-            this.frameCount = 0
+        } 
+        if (this.heartBeatCounter > 80) {
+            this.heartBeatCounter = 0
         }
     }
 
@@ -65,7 +72,7 @@ export default class Heart {
         this.context.save()
         this.context.filter = "grayscale(" + this.contrast + "%)"
         this.context.translate(this.x + this.imgCenterX, this.y + this.imgCenterY)
-        this.context.drawImage(this.sprite,(this.frameWidth*this.currentFrame),0,this.frameWidth,this.sprite.height,-this.imgCenterX,-this.imgCenterY,this.frameWidth,this.sprite.height)
+        this.context.drawImage(this.sprite,(this.frameWidth*this.currentFrame),0,this.frameWidth - 1,this.sprite.height,-this.imgCenterX,-this.imgCenterY,this.frameWidth,this.sprite.height)
         this.context.restore()
     }
 

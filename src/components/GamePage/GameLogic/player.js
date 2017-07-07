@@ -82,6 +82,7 @@ export default class Player {
         if (!this.isAlive) {
             this.x = -500
             this.y = -500
+            this.hue = 100
             if (this.spawnCounter < 150) {
                 this.spawnCounter++
             } else {
@@ -89,6 +90,7 @@ export default class Player {
                 this.x = this.deadX
                 this.y = this.deadY
                 this.spawnCounter = 0
+                this.hue = 0
             }
             return
         } 
@@ -140,8 +142,8 @@ export default class Player {
         } else {
             this.isFiring = false
         }
-
-        store.dispatch(setPlayer(this))
+       
+       store.dispatch(setPlayer(this))
     }
     
     draw() {

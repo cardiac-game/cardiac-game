@@ -32,6 +32,21 @@
   width:100px;
 }
 
+
+
+/*--------------------------------------------- START MENU */
+
+.game-start-button {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 10000;
+}
+
+
+
+
 /* -------------------------------------------- GAME STATS */
 
 .game-surface {
@@ -102,13 +117,13 @@ box-shadow: 0 0 10px red;
 position: absolute;
 background-color: lightcoral;
 width: 10px;
-height: 500px; /* CHANGE THIS VALUE, WHEN HEART IS DEALT DAMAGE - 5PX = 1 HEALTH POINT*/
+height: 100%; /* CHANGE THIS VALUE, WHEN HEART IS DEALT DAMAGE - 5PX = 1 HEALTH POINT*/
 bottom: 0%;
 }
 .game-shield {
 position: absolute;
 background-color: white;
 width: 10px;
-height: 50px; /* 50PX = 10% */
+height: 100%; /* 50PX = 10% */
 bottom: 0%;
 }
