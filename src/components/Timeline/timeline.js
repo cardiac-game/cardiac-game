@@ -39,9 +39,9 @@ componentWillUnmount() {
 render() {
     return (
 <div className="timeline-body">
+	<div className="timelineheader">Timeline of American Eating Habits </div>
 
 <div id="cd-timeline" className="cd-container" ref='timeLineContainer'>
-	
 	
 	<div className="timeLineContainer" >
 		<div className="yearTextContainer">
@@ -497,7 +497,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1971</div>
-					<div className="timeLineEvent">1971 StarBucks is founded.</div>
+					<div className="timeLineEvent">Starbucks is founded.</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1972</div>
