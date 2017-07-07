@@ -4,6 +4,7 @@ import images from './mediaRepos'
 // get inputs from inputsObj on nutritionReducer from store
 let { bulletBonusDamage } = store.getState().nutritionReducer.inputsObj;
 
+
 let updatedState = store.getState().playerReducer
 let playerState = updatedState.player
 let bulletParams = updatedState.bulletParams

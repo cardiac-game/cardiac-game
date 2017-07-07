@@ -102,7 +102,7 @@ export default class Bacteria {
   healthDown(bulletDamage) {
 	  this.health -= bulletDamage
     // kills enemy so it can be removed from the active enemy pool
-	  if (this.health < 1) {
+	  if (this.health < 0) {
 		  this.isAlive = false
 		  this.health = this.maxHealth
 	    }

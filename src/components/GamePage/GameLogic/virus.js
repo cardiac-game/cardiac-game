@@ -34,7 +34,7 @@ export default class Virus {
 
     healthDown(bulletDamage) {
         this.health -= bulletDamage
-        if (this.health < 1) {
+        if (this.health < 0) {
             this.isAlive = false
             this.health = this.maxHealth
         }
