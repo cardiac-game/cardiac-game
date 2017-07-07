@@ -34,11 +34,16 @@ export default class Heart {
    	this.healthDown = this.healthDown.bind(this)
     }
 
-    healthDown(damage = 1) {
-        this.health -= damage
-        if (this.health < 1) {
+
+    poweredUp(){
+        this.health += this.maxHealth/3
+        if (this.health > this.maxHealth) {
             this.health = this.maxHealth
         }
+    }
+
+    healthDown(damage = 1) {
+        this.health-=damage
         this.contrast = ~~(100 * (this.maxHealth - this.health) / this.maxHealth)
        
         store.dispatch(updateHeartHealth(this.contrast))
