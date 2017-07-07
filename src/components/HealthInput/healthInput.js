@@ -277,9 +277,9 @@ constructor(){
         console.log(inputsObj)
 
         postGameInput(inputsObj)
-        // this.setState({
-        //     redirect: true
-        // })
+        this.setState({
+            redirect: true
+        })
     }
 
     handleMapChange(map){

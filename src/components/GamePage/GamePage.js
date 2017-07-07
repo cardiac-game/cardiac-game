@@ -109,6 +109,7 @@ class GamePage extends Component {
             <div className='game-pause' onClick={() => this.game.pause()}>PAUSE</div>
             <div className='game-score'>SCORE: {this.props.gameReducer.currentScore}</div>
 
+            <div className='game-wave'>WAVE: 01</div>
           </div>
 
         </div>
@@ -120,7 +121,7 @@ class GamePage extends Component {
          // otherwise some elements might not show up
          // feel free to make this look better/more functional
        }
-      <button className='game-start-button' onClick={ () => {this.game.loop(); this.setState({hideStartScreen: true})} } hidden={this.state.hideStartScreen} >Start Game</button>
+      <button className='game-start-button' onClick={ () => {this.game.loop(); this.setState({hideStartScreen: true})} } hidden={this.state.hideStartScreen} >START</button>
 
       <Modal />
       </div>
