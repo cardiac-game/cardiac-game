@@ -91,32 +91,6 @@ class GamePage extends Component {
 
           <div className='game-surface'>
 
-<<<<<<< HEAD
-          <div className='game-weapons'>
-          FIRE POWER: 01
-          <br/>
-          FIRE RATE: 01
-          <br/>
-          C-BOMBS: 00
-          </div>
-          
-          <div className="health-bar">
-          <div className="game-health"></div>
-          </div>
-
-          <div className="shield-bar">
-          <div className="game-shield"></div>
-          </div>
-          <div className='game-pause'>
-          PAUSE
-          </div>
-          <div className='game-score'>
-          SCORE: 0
-          </div>
-          <div className='game-wave'>
-          WAVE: 01
-          </div>
-=======
             <div className='game-weapons'>
               FIRE POWER: {this.props.nutritionReducer.bulletBonusDamage}
               <br/>
@@ -134,15 +108,12 @@ class GamePage extends Component {
             </div>
             <div className='game-pause' onClick={() => this.game.pause()}>PAUSE</div>
             <div className='game-score'>SCORE: {this.props.gameReducer.currentScore}</div>
->>>>>>> master
 
+            <div className='game-wave'>WAVE: 01</div>
           </div>
 
         </div>
       </section>
-<<<<<<< HEAD
-      {/*<Modal />*/}
-=======
 
       {
          // this is the button I added to start the game
@@ -150,10 +121,9 @@ class GamePage extends Component {
          // otherwise some elements might not show up
          // feel free to make this look better/more functional
        }
-      <button className='game-start-button' onClick={ () => {this.game.loop(); this.setState({hideStartScreen: true})} } hidden={this.state.hideStartScreen} >Start Game</button>
+      <button className='game-start-button' onClick={ () => {this.game.loop(); this.setState({hideStartScreen: true})} } hidden={this.state.hideStartScreen} >START</button>
 
       <Modal />
->>>>>>> master
       </div>
     )
   }

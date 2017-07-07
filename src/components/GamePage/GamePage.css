@@ -42,7 +42,28 @@
   left: 50%;
   transform: translate(-50%,-50%);
   z-index: 10000;
+  font-family: 'Josefin Sans';
+  padding: 20px;
+  padding-top: 30px;
+  border: 1px solid white;
+  background-color: transparent;
+  box-shadow: inset 0 0 200px black, 0 0 100px orangered;
+
+  cursor: pointer;
+  color: white;
+  font-size: 70px;
+  text-shadow: 0 0 20px white;
+  letter-spacing: 5px;
+  transition: box-shadow .5s ease-in-out;
 }
+
+  .game-start-button:hover {
+  box-shadow: inset 0 0 200px orange, 0 0 150px white;
+  }
+
+  .game-start-button:focus {
+  outline: none;
+  }
 
 
 
