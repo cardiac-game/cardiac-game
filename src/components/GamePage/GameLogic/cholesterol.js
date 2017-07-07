@@ -1,7 +1,7 @@
 import store from '../../../store/store'
 
 // get inputs from inputsObj on nutritionReducer from store
-let enemySpeed = store.getState().nutritionReducer.enemySpeed;
+let { enemySpeed } = store.getState().nutritionReducer.inputsObj;
 
 
 // get initial state from store

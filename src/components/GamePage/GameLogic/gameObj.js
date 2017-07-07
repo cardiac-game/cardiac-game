@@ -88,12 +88,12 @@ export default class Game {
 
         // player bullet collisions
         this.collision.checkArrayToArray(this.virusPool.active,this.bulletPool.active, function(virus,bullet) {
-            virus.healthDown()
+            virus.healthDown(Bullet.damage)
             bullet.isAlive = false
         })
 
         this.collision.checkArrayToArray(this.bacteriaPool.active,this.bulletPool.active, function(bacteria,bullet) {
-            bacteria.healthDown()
+            bacteria.healthDown(Bullet.damage)
             bullet.isAlive = false
         })
 

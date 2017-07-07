@@ -1,7 +1,7 @@
 import store from '../../../store/store'
 
 // get inputs from inputsObj on nutritionReducer from store
-let enemySpeed = store.getState().nutritionReducer.enemySpeed;
+let { enemySpeed } = store.getState().nutritionReducer.inputsObj;
 
 
 export default class Virus {
@@ -32,8 +32,8 @@ export default class Virus {
         this.healthDown = this.healthDown.bind(this)
     }
 
-    healthDown() {
-        this.health--
+    healthDown(bulletDamage) {
+        this.health -= bulletDamage
         if (this.health < 1) {
             this.isAlive = false
             this.health = this.maxHealth

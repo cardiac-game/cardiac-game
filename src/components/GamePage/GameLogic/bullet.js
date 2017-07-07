@@ -1,6 +1,9 @@
 import store from '../../../store/store'
 import images from './mediaRepos'
 
+// get inputs from inputsObj on nutritionReducer from store
+let { bulletBonusDamage } = store.getState().nutritionReducer.inputsObj;
+
 let updatedState = store.getState().playerReducer
 let playerState = updatedState.player
 let bulletParams = updatedState.bulletParams
@@ -21,6 +24,7 @@ export default class Bullet {
     this.imgCenterX = bulletParams.imgCenterX
     this.imgCenterY = bulletParams.imgCenterY
     this.speed = bulletParams.bulletSpeed
+    this.damage = 1 * bulletBonusDamage
 
     this.spawn = this.spawn.bind(this)
     this.checkInBounds = this.checkInBounds.bind(this)

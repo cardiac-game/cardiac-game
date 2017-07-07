@@ -4,7 +4,7 @@ let state = store.getState()
 let gameState = state.gameReducer
 
 // get inputs from inputsObj on nutritionReducer from store
-let enemySpeed = state.nutritionReducer.enemySpeed;
+let { enemySpeed } = state.nutritionReducer.inputsObj;
 
 store.subscribe(function() {
     gameState = store.getState().gameReducer

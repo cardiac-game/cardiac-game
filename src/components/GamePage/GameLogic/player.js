@@ -5,6 +5,17 @@ import { images } from './mediaRepos'
 import BulletPool from './bulletPool'
 import Bullet from './bullet'
 
+//
+///
+//
+//
+//
+//
+//
+//
+// get inputs from inputsObj on nutritionReducer from store
+let { playerInitialSpeed, playerOverallSpeed, playerFireRate, playerMaxShield, bulletBonusDamage} = store.getState().nutritionReducer.inputsObj;
+
 let playerState = store.getState().playerReducer
 
 // update state anytime it is changed
@@ -25,7 +36,7 @@ export default class Player {
         this.imgCenterX = playerState.player.imgCenterX
         this.imgCenterY = playerState.player.imgCenterY
         this.dx = playerState.player.dx
-        this.dy = playerState.player.dy
+        this.dy = playerState.player.dy 
         this.speed = playerState.player.speed
         this.orientation = playerState.player.orientation
         this.turnSpeed = playerState.player.turnSpeed
