@@ -1,6 +1,6 @@
 import store from '../../../store/store'
 import { images } from './mediaRepos'
-
+import { updateHeartHealth } from '../../../store/ducks/gameReducer'
 
 let gameState = store.getState().gameReducer
 
@@ -14,8 +14,9 @@ export default class Heart {
     this.sprite = images.heart
     this.currentFrame = 0
     this.frameWidth = 97
-    this.frameSpeed = 4
+    this.frameSpeed = 3
     this.frameCount = 0
+    this.heartBeatCounter = 0
     this.width = this.frameWidth
     this.height = this.sprite.height
     this.imgCenterX = this.frameWidth / 2
@@ -33,24 +34,32 @@ export default class Heart {
    	this.healthDown = this.healthDown.bind(this)
     }
 
-    healthDown() {
-        this.health--
+    healthDown(damage = 1) {
+        this.health -= damage
         if (this.health < 1) {
             this.health = this.maxHealth
         }
         this.contrast = ~~(100 * (this.maxHealth - this.health) / this.maxHealth)
-    }
+       
+        store.dispatch(updateHeartHealth(this.contrast))
+}
 
     update() {
         this.frameCount++
+        this.heartBeatCounter++
 
-        // regulates frame speed
-        if (this.frameCount >= this.frameSpeed) {
-            this.currentFrame++
-            if (this.currentFrame >= this.sprite.frames) {
-                this.currentFrame = 0
+        if (this.heartBeatCounter < 2 * this.sprite.frames * this.frameSpeed) {
+            // regulates frame speed
+            if (this.frameCount >= this.frameSpeed) {
+                this.currentFrame++
+                if (this.currentFrame >= this.sprite.frames) {
+                    this.currentFrame = 0
+                }
+                this.frameCount = 0
             }
-            this.frameCount = 0
+        } 
+        if (this.heartBeatCounter > 80) {
+            this.heartBeatCounter = 0
         }
     }
 

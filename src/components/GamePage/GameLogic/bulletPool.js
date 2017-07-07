@@ -69,10 +69,6 @@ export default class BulletPool {
       this.active[i].update()
       !this.active[i].isAlive ? this.storeBullet(this.active.splice(i,1)[0]) : null
     }
-
-    // update bulletPool in store
-    // move to game object before production
-    store.dispatch(setPlayerBulletPool(this))
 	}
 
   draw() {

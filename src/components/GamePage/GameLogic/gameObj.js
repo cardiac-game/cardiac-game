@@ -2,7 +2,7 @@
 // very important to maintain game performance
 // otherwise react will slow down the game
 import store from '../../../store/store'
-import { setContext } from '../../../store/ducks/gameReducer'
+import { setContext, updateScore } from '../../../store/ducks/gameReducer'
 
 // game logic files. if possible should move all actions to gameObject.js
 import Player from './player'
@@ -51,6 +51,11 @@ export default class Game {
         this.draw = this.draw.bind(this)
         this.update = this.update.bind(this)
         this.checkCollisions = this.checkCollisions.bind(this)
+
+        this.req 
+
+        this.loop = this.loop.bind(this)
+        this.pause = this.pause.bind(this)
 
         startListening()
     }
@@ -116,21 +121,26 @@ export default class Game {
         this.collision.checkArrayToArray(this.virusPool.active,this.bulletPool.active, function(virus,bullet) {
             virus.healthDown(bullet.damage)
             bullet.isAlive = false
+            store.dispatch(updateScore(1))
         })
 
         this.collision.checkArrayToArray(this.bacteriaPool.active,this.bulletPool.active, function(bacteria,bullet) {
             bacteria.healthDown(bullet.damage)
             bullet.isAlive = false
+            store.dispatch(updateScore(2))
         })
 
         this.collision.checkArrayToArray(this.sugarPool.active, this.bulletPool.active, function(sugar,bullet) {
             sugar.isAlive = false
             bullet.isAlive = false
+            let score = 6 / sugar.size
+            store.dispatch(updateScore(score))
         })
 
         this.collision.checkArrayToArray(this.cholesterolPool.active, this.bulletPool.active, function(cholesterol,bullet) {
             bullet.isAlive = false
             cholesterol.isAlive = false
+            store.dispatch(updateScore(1))
         })
 
 
@@ -146,7 +156,9 @@ export default class Game {
 
         this.collision.checkObjToArray(this.heart,this.cholesterolPool.active, function(heart,cholesterol) {
             cholesterol.isOnHeart = true
-            heart.healthDown()
+            let score = 1 / 120
+            heart.healthDown(score)
+            console.log(heart.health)
         })
 
         this.collision.checkObjToArray(this.heart, this.sugarPool.active, function(heart, sugar) {
@@ -154,6 +166,20 @@ export default class Game {
             heart.healthDown(sugar.size)
             sugar.size = 0
         })
+    }
+
+
+    loop() {
+        this.isPaused = false
+        this.context.clearRect(0,0,this.context.canvas.width,this.context.canvas.height)
+        this.draw()
+        this.update()
+        this.checkCollisions()
+        this.req = requestAnimationFrame(this.loop)
+    }
+
+    pause() {
+        cancelAnimationFrame(this.req)
     }
 }
 

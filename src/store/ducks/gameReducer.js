@@ -3,8 +3,13 @@
 const initialState = {
       context: null,
       level: 1,
-      levels: [],
-      maxHeartHealth: 30,
+      levels: [
+        {
+          level: 1,
+          
+        }
+        ],
+      maxHeartHealth: 100,
       heartHealth: 0,
       currentScore: 0
 }
@@ -16,6 +21,7 @@ const initialState = {
 
 const SET_CONTEXT = "SET_CONTEXT"
 const UPDATE_SCORE = "UPDATE_SCORE"
+const UPDATE_HEART_HEALTH = "UPDATE_HEART_HEALTH"
 const MOVE_TO_NEXT_LEVEL = "MOVE_TO_NEXT_LEVEL"
 
 const CONFIGURE_LEVELS = "CONFIGURE_LEVELS"
@@ -33,7 +39,7 @@ export default function gameReducer( state=initialState, action ) {
     case UPDATE_SCORE:
         return Object.assign({},{
             ...state,
-            currentScore: action.payload
+            currentScore: action.payload + state.currentScore
         })
     
     case SET_CONTEXT:
@@ -48,6 +54,12 @@ export default function gameReducer( state=initialState, action ) {
             context: action.payload
         })
 
+    case UPDATE_HEART_HEALTH:
+        return Object.assign({},{
+            ...state,
+            heartHealth: action.payload
+        })
+
     default: return state
   }
 }
@@ -56,10 +68,17 @@ export default function gameReducer( state=initialState, action ) {
 
 // ACTION CREATORS
 //////////////////
-export function updateKeys(score) {
+export function updateScore(score) {
   return {
     type: UPDATE_SCORE,
     payload: score
+  }
+}
+
+export function updateHeartHealth(health) {
+  return {
+    type: UPDATE_HEART_HEALTH,
+    payload: health
   }
 }
 

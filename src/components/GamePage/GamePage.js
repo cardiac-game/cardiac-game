@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 // connect component to store WITHOUT REACT REDUX
 // very important to maintain game performance
 // otherwise react will slow down the game
@@ -17,10 +18,25 @@ import {Modal} from './LeaderBoard/leaderBoard'
 import './GamePage.css'
 
 
+let gameState = store.getState().gameReducer
+
+
+
 //========================== React Component ================================
 
 
 class GamePage extends Component {
+  constructor() {
+    super()
+    this.state = {
+      score: 0,
+      fireRate: 1,
+      cBombs: 0
+    }
+
+ 
+  }
+
 
   // game loop will be run here
   componentDidMount() {
@@ -35,13 +51,13 @@ class GamePage extends Component {
     const bulletCanvas = this.refs.bulletCanvas
     const ctx = canvas.getContext('2d')
 
-    // set canvas context for game in state
-    store.dispatch(setContext(ctx))
-
     // set background and canvas dimensions
     bulletCanvas.style.background = `url(${images.cancerousbg.src})`
     canvas.width = bulletCanvas.width = images.cancerousbg.width
     canvas.height = bulletCanvas.height = images.cancerousbg.height
+
+    // set canvas context for game in state
+    store.dispatch(setContext(ctx))
 
     // makes images sharper
     ctx.imageSmoothingEnabled = false
@@ -51,23 +67,16 @@ class GamePage extends Component {
     Bloody(this.refs.bloody, 5, 200, canvas.width, canvas.height);
 
 
-
     // create game object
     const game = new Game()
 
-    // variable to reference animation frame. allows for pause and resume of game loop
-    let req
-    
-    function gameLoop() {
-      ctx.clearRect(0,0,canvas.width,canvas.height)
-      game.draw()
-      game.update()
-      game.checkCollisions()
-      req = requestAnimationFrame(gameLoop)
-    }
+    // store.subscribe(function() {
+    //   gameState = store.getState().gameReducer
+    //   this.updateState(gameState.currentScore)
+    // })
 
-    // kickoff game loop
-    gameLoop()
+    game.loop()
+
   }
 
   componentWillUnmount() {
@@ -89,27 +98,23 @@ class GamePage extends Component {
 
           <div className='game-surface'>
 
-          <div className='game-weapons'>
-          FIRE POWER: 01
-          <br/>
-          FIRE RATE: 01
-          <br/>
-          C-BOMBS: 00
-          </div>
-          
-          <div className="health-bar">
-          <div className="game-health"></div>
-          </div>
+            <div className='game-weapons'>
+              FIRE POWER: {this.props.nutritionReducer.bulletBonusDamage}
+              <br/>
+              FIRE RATE: {this.props.playerReducer.player.fireRate}
+              <br/>
+              C-BOMBS: 00
+            </div>
+            
+            <div className="health-bar">
+             <div className="game-health" style={{height: 100 - this.props.gameReducer.heartHealth + '%'}}></div>
+            </div>
 
-          <div className="shield-bar">
-          <div className="game-shield"></div>
-          </div>
-          <div className='game-pause'>
-          PAUSE
-          </div>
-          <div className='game-score'>
-          SCORE: 0
-          </div>
+            <div className="shield-bar">
+              <div className="game-shield" style={{height: 100 - this.props.playerReducer.player.hue + '%'}}></div>
+            </div>
+            <div className='game-pause'>PAUSE</div>
+            <div className='game-score'>SCORE: {this.props.gameReducer.currentScore}</div>
 
           </div>
 
@@ -121,4 +126,8 @@ class GamePage extends Component {
   }
 }
 
-export default GamePage
+function mapStateToProps(state) {
+  return state
+}
+
+export default connect(mapStateToProps)(GamePage)
