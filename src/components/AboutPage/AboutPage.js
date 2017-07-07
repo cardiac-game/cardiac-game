@@ -184,7 +184,7 @@ export default class About extends Component {
                             <div className="portrait-text-container-row">
                                 <div className={"portrait-text-container " + (this.state.selectedPortrait === 1 ? "text-black" : "text-transparent")}>
                                     <div className="portrait-name-container">Eric Patterson</div>
-                                    <div className="portrait-role-container">Game Developer</div>
+                                    <div className="portrait-role-container">Frontend Developer and Game Designer</div>
                                 </div>
                                 <div className={"portrait-text-container " + (this.state.selectedPortrait === 2 ? "text-black" : "text-transparent")}>
                                     <div className="portrait-name-container">Ivor Anderson</div>
