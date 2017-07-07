@@ -226,12 +226,12 @@ export default class About extends Component {
                                     <a className="about-a" target="_blank" href="https://github.com/elderandi"><i className="fa fa-github-square about-icon" aria-hidden="true"></i></a>
                                     <div className="portrait-info-text">
                                         <p><span className="bold">Roles and Responsiblilities: </span>
-                                            Lead Frontend Developer and Lead Designer, in charge of building the frontend, styling it and creating a beautiful overall experience. Also responsible for transforming complex API data into a user-friendly and clean display on the view.
+                                            Lead Frontend Developer and Lead Designer, in charge of building the frontend, styling it, aiding in designing the game and creating a beautiful overall experience.
                                         </p>
                                         <br/>
                                         <p>
                                             <span className="bold">Background: </span>
-                                            Born and raised in New Zealand before moving to multiple countries aroung the world, Ivor found himself working in graphic design, animations, and character design/development for a TV show.
+                                            Born and raised in New Zealand before moving to multiple countries aroung the world, Ivor found himself working in graphic design, animations, and character design/development for TV shows before finding his home in web-development.
                                         </p>
                                     </div>
                                 </div>
@@ -240,7 +240,7 @@ export default class About extends Component {
                                     <a className="about-a" target="_blank" href="https://github.com/jesse10e"><i className="fa fa-github-square about-icon" aria-hidden="true"></i></a>
                                     <div className="portrait-info-text">
                                         <p><span className="bold">Roles and Responsiblilities: </span>
-                                            Responsible for building the services and setting up the API calls. In charge of the leaderboard and configuring axios in both Reactjs and Nodejs. Lead troubleshooting of frontend bugs.
+                                            Responsible for building the services and setting up the API calls. In charge of the leaderboard and configuring axios in both React.js and Node.js. Lead troubleshooter for bugs and errors.
                                         </p>
                                         <br/>
                                         <p>
@@ -268,12 +268,12 @@ export default class About extends Component {
                                     <a className="about-a" target="_blank" href="https://github.com/NDMueller"><i className="fa fa-github-square about-icon" aria-hidden="true"></i></a>
                                     <div className="portrait-info-text">
                                         <p><span className="bold">Roles and Responsiblilities: </span>
-                                            Frontend Developer
+                                            Lead researcher and overall support for the team.
                                         </p>
                                         <br/>
                                         <p>
                                             <span className="bold">Background: </span>
-                                            From Minnesota but actually Tennesee
+                                            
                                         </p>
                                     </div>
                                 </div>

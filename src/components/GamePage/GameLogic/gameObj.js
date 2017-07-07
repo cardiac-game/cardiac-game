@@ -18,6 +18,10 @@ import { images } from './mediaRepos'
 import CollisionDetector from './collisionDetection'
 import { startListening, stopListening } from './keyInput'
 
+// get inputs from inputsObj on nutritionReducer from store
+let nutritionState = store.getState().nutritionReducer
+let {sugarAmount, cholesterolAmount, maxOnScreenEnemies} = nutritionState
+
 let gameState = store.getState().gameReducer
 
 store.subscribe(function() {
@@ -93,12 +97,12 @@ export default class Game {
 
         // player bullet collisions
         this.collision.checkArrayToArray(this.virusPool.active,this.bulletPool.active, function(virus,bullet) {
-            virus.healthDown()
+            virus.healthDown(bullet.damage)
             bullet.isAlive = false
         })
 
         this.collision.checkArrayToArray(this.bacteriaPool.active,this.bulletPool.active, function(bacteria,bullet) {
-            bacteria.healthDown()
+            bacteria.healthDown(bullet.damage)
             bullet.isAlive = false
         })
 

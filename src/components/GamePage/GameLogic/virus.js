@@ -1,7 +1,12 @@
 import store from '../../../store/store'
 import { images } from './mediaRepos'
 
+
 let gameState = store.getState().gameReducer
+
+// get inputs from inputsObj on nutritionReducer from store
+let { enemySpeed } = store.getState().nutritionReducer.inputsObj;
+
 
 store.subscribe(function() {
     gameState = store.getState().gameReducer
@@ -18,8 +23,8 @@ export default class Virus {
         this.frameCount = 0
         this.x = Math.random() * this.context.canvas.width
         this.y = Math.random() * this.context.canvas.height
-        this.dx = Math.random() * 2 + 0.5
-        this.dy = Math.random() * 2 + 0.5
+        this.dx = (Math.random() * 2 + 0.5) * enemySpeed
+        this.dy = (Math.random() * 2 + 0.5) * enemySpeed
         this.width = this.frameWidth
         this.height = this.sprite.height
         this.imgCenterX = this.frameWidth / 2
@@ -35,9 +40,9 @@ export default class Virus {
         this.healthDown = this.healthDown.bind(this)
     }
 
-    healthDown() {
-        this.health--
-        if (this.health < 1) {
+    healthDown(bulletDamage) {
+        this.health -= bulletDamage
+        if (this.health < 0) {
             this.isAlive = false
             this.health = this.maxHealth
         }

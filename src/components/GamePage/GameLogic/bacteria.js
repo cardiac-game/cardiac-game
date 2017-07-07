@@ -1,6 +1,9 @@
 import store from '../../../store/store'
 import { images } from './mediaRepos'
 
+// get inputs from inputsObj on nutritionReducer from store
+let bacteriaSpeed = store.getState().nutritionReducer.inputsObj.enemySpeed;
+
 // get initial state from store
 let state = store.getState()
 let gameState = state.gameReducer
@@ -66,7 +69,7 @@ export default class Bacteria {
     // set enemy image/sprite
     this.sprite = images.bacteria
 
-    this.speed = 1
+    this.speed = 1 * bacteriaSpeed
     this.orientation = Math.random() * Math.PI
     this.turnSpeed = 1
     this.counter = 0
@@ -101,10 +104,10 @@ export default class Bacteria {
   }
 
   // decrease health by one
-  healthDown() {
-	  this.health--
+  healthDown(bulletDamage) {
+	  this.health -= bulletDamage
     // kills enemy so it can be removed from the active enemy pool
-	  if (this.health < 1) {
+	  if (this.health < 0) {
 		  this.isAlive = false
 		  this.health = this.maxHealth
 	    }
