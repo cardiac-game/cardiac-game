@@ -100,13 +100,13 @@ class GamePage extends Component {
             </div>
             
             <div className="health-bar">
-             <div className="game-health" style={{height: 100 - this.props.gameReducer.heartHealth + '%'}}></div>
+             <div className="game-health" style={{height: 100 - (this.props.gameReducer.heartHealth) + '%'}}></div>
             </div>
 
             <div className="shield-bar">
               <div className="game-shield" style={{height: 100 - this.props.playerReducer.player.hue + '%'}}></div>
             </div>
-            <div className='game-pause'>PAUSE</div>
+            <div className='game-pause' onClick={() => this.game.pause()}>PAUSE</div>
             <div className='game-score'>SCORE: {this.props.gameReducer.currentScore}</div>
 
           </div>

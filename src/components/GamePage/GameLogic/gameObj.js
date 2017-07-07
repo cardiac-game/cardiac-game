@@ -30,6 +30,8 @@ store.subscribe(function() {
     gameState = store.getState().gameReducer
 })
 
+let req
+
 export default class Game {
     constructor() {
         this.context = gameState.context
@@ -50,6 +52,8 @@ export default class Game {
         this.bacteriaPool.init(Bacteria, images.bacteria)
         this.cholesterolPool.init(Cholesterol)
         this.sugarPool.init(Sugar)
+    
+        this.powerupPool.init(Powerup)
 
         this.draw = this.draw.bind(this)
         this.update = this.update.bind(this)
@@ -75,7 +79,7 @@ export default class Game {
         this.cholesterolPool.draw()
         this.sugarPool.draw()
 
-        this.powerup.draw()        
+        // this.powerup.draw()        
     }
 
     update() {
@@ -90,7 +94,7 @@ export default class Game {
         this.cholesterolPool.update()
         this.sugarPool.update()
 
-        this.powerup.update();        
+        // this.powerup.update();        
     }
 
     checkCollisions() {
@@ -117,25 +121,25 @@ export default class Game {
             sugar.size = 0
         })
 
-        this.collision.checkObjToArray(this.player, [this.powerup], function(player, powerup){
-            // MS - max shield | FR - Fire Rate | FP - Fire Power | HP - Health Pack for Heart | CB - Cholesto-Bomb
-            switch (powerup.type){
-                case "MS":
-                case "FR":
-                player.poweredUp(powerup.type)
-                break;
-                case "FP":
-                // this.bullet.poweredUp() // broken maybe a speceial powerup collision function with multiple params?
-                break;
-                case "HP":
-                // this.heart.poweredUp() // broken 
-                break;       
-                case "CB":
-                // clear all currently active cholesterol on screen
-                break;         
-            }
-            powerup.isAlive = false;
-        })
+        // this.collision.checkObjToArray(this.player, [this.powerup], function(player, powerup){
+        //     // MS - max shield | FR - Fire Rate | FP - Fire Power | HP - Health Pack for Heart | CB - Cholesto-Bomb
+        //     switch (powerup.type){
+        //         case "MS":
+        //         case "FR":
+        //         player.poweredUp(powerup.type)
+        //         break;
+        //         case "FP":
+        //         // this.bullet.poweredUp() // broken maybe a speceial powerup collision function with multiple params?
+        //         break;
+        //         case "HP":
+        //         // this.heart.poweredUp() // broken 
+        //         break;       
+        //         case "CB":
+        //         // clear all currently active cholesterol on screen
+        //         break;         
+        //     }
+        //     powerup.isAlive = false;
+        // })
 
 
         
@@ -173,10 +177,6 @@ export default class Game {
             heart.healthDown()
         })
 
-        this.collision.checkObjToArray(this.heart,this.bulletPool.active, function(heart, bullet) {
-            bullet.isAlive = false
-        })
-
         this.collision.checkObjToArray(this.heart,this.cholesterolPool.active, function(heart,cholesterol) {
             cholesterol.isOnHeart = true
             let score = 1 / 120
@@ -192,16 +192,28 @@ export default class Game {
 
 
     loop() {
-        this.isPaused = false
+        this.paused = false
         this.context.clearRect(0,0,this.context.canvas.width,this.context.canvas.height)
         this.draw()
         this.update()
         this.checkCollisions()
-        this.req = requestAnimationFrame(this.loop)
+        console.log(gameState.heartHealth)
+        if (gameState.heartHealth < gameState.maxHeartHealth) {
+        req = requestAnimationFrame(this.loop)
+        } else {
+            cancelAnimationFrame(req)
+            alert('Game Over! Refresh to restart')
+        }
     }
 
     pause() {
-        cancelAnimationFrame(this.req)
+        console.log(this.paused)
+        if (!this.paused) {
+            cancelAnimationFrame(req)
+            this.paused = true
+        } else {
+            this.loop()
+        }
     }
 }
 
