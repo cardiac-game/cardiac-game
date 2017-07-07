@@ -81,7 +81,8 @@ export default class Cholesterol {
         this.dyAll = 5
         this.dx = 0.25 * enemySpeed
         this.dy = 0.25 * enemySpeed
-        this.shakeSpeed = 1
+        this.rotation = Math.random()
+        this.rotationSpeed = Math.random() * 0.5 + 0.25
         this.numOfCircles = 24
         this.circles = populateCircles(this)
 
@@ -97,8 +98,8 @@ export default class Cholesterol {
         this.targetX = this.context.canvas.width / 2,
         this.targetY = this.context.canvas.height / 2,
         // increase numbers to scale randomness of path to heart (lower numbers make enemy more difficult)
-        this.targetWidth = 40 * 20
-        this.targetHeight = 40 * 20
+        this.targetWidth = 40 * 10
+        this.targetHeight = 40 * 10
        
         this.moveToHeart = this.moveToHeart.bind(this)
         this.update = this.update.bind(this)
@@ -107,6 +108,8 @@ export default class Cholesterol {
 
 
   moveToHeart() {
+    this.rotation += this.rotationSpeed
+
       // homing behavior
       this.counter++ 
       if ( this.counter > 30) {
@@ -144,11 +147,23 @@ export default class Cholesterol {
     for (let i =0; i < this.circles.length; i++) {      
       this.circles[i].x += this.dx
       this.circles[i].y += this.dy
+
       if (this.circles[i].x > this.imgCenterX || this.circles[i].x < -this.imgCenterX) {
         this.dx = -this.dx
+        if (this.circles[i].x > this.imgCenterX) {
+          this.circles[i].x = this.imgCenterX
+        } else if (this.circles[i].x < -this.imgCenterX) {
+          this.circles[i].x = -this.imgCenterX
+        }
       }
+
       if (this.circles[i].y > this.imgCenterY || this.circles[i].y < -this.imgCenterY) {
-        this.dy = -this.dx
+        this.dy = -this.dy
+        if (this.circles[i].y > this.imgCenterY) {
+          this.circles[i].y = this.imgCenterY
+        } else if (this.circles[i].y < -this.imgCenterY) {
+          this.circles[i].y = -this.imgCenterY
+        }
       }
     }
 
@@ -157,26 +172,19 @@ export default class Cholesterol {
   draw() {
     this.context.save()
     this.context.translate(this.x + this.imgCenterX,this.y + this.imgCenterY)
-    this.context.rotate(this.orientation)
-    this.context.beginPath()
-    this.context.fillStyle = 'rgb(186, 218, 85)'
-    this.context.arc(this.imgCenterX,this.imgCenterY, this.height,0,Math.PI*2,false)
-    this.context.fill()
-    for (let i = 0; i < this.circles.length; i++) {
-      let circleCenterX = this.circles[i].x
-      let circleCenterY = this.circles[i].y 
-      let radius = this.circles[i].radius   
-      
-      let gradient = this.context.createLinearGradient(circleCenterX, circleCenterY, circleCenterX + radius, circleCenterY + radius);
-      gradient.addColorStop(0, 'rgb(186, 218, 85)')
-      gradient.addColorStop(1, 'rgb(86, 78, 85)')
-      
+    this.context.rotate(this.rotation*Math.PI / 180)
+    for (let i = 0; i < this.circles.length; i++) {     
       this.context.beginPath()
-      this.context.fillStyle = 'rgb(186, 218, 85)'
-      this.context.strokeStyle = 'rgb()'
-      this.context.arc(circleCenterX, circleCenterY, radius, 0, Math.PI * 2, false)
+      this.context.fillStyle = '#e8d8ab '
+      this.context.arc(this.circles[i].x, this.circles[i].y, this.circles[i].radius, 0, Math.PI * 2, false)
       this.context.fill()
     }
+
+    // this.context.beginPath()
+    // this.context.strokeStyle = 'black'
+    // this.context.rect(0,0,this.width,this.height)
+    // this.context.stroke()
+    
     this.context.restore()
   }
 

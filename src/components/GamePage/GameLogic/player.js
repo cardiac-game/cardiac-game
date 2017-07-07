@@ -46,38 +46,46 @@ export default class Player {
         this.fireRate = playerState.player.fireRate * playerFireRate
         this.isFiring = playerState.player.isFiring
 
-        this.maxShield = 25 * playerMaxShield
+        this.maxShield = 5 * playerMaxShield
         this.shield = this.maxShield
         this.hue = 0
-        this.isDead = false
+        this.isAlive = true
         this.spawnCounter = 0
 
         this.update = this.update.bind(this)
         this.draw = this.draw.bind(this)
     }
    
-      // decrease health by one
-    shieldDown(damage) {
+    // decrease health by one
+    shieldDown(damage = 1) {
 	  this.shield -= damage
     // ship is destroyed and respawn timer starts
 	  if (this.shield < 0) {
 		  this.isAlive = false
 		  this.shield = this.maxShield
+          this.deadX = this.x
+          this.deadY = this.y
 	    }
-    // set contrast based on health
-    // this.contrast = 100 - ~~(100 * (this.maxHealth - this.health) / this.maxHealth)
+        // set hue based on health
+        this.hue = ~~(100 * (this.maxShield - this.shield) / this.maxShield)
     }
 
     update() {
 
-        if (this.isDead) {
+        // respawn when dead
+        if (!this.isAlive) {
             this.x = -500
             this.y = -500
-            this.spawnCounter++
-        if (this.spawnCounter > 1000) {
-            
-        }
-        }
+            if (this.spawnCounter < 150) {
+                this.spawnCounter++
+            } else {
+                this.isAlive = true
+                this.x = this.deadX
+                this.y = this.deadY
+                this.spawnCounter = 0
+            }
+            return
+        } 
 
         // rotate character
         if (playerState.keys.right) {
@@ -119,7 +127,6 @@ export default class Player {
         // preven player from flying through heart
         // if (this.x <= (this.context.canvas.width /2 - ) && villageMain.x <= (herohitboxX) && herohitboxY <= (villageMain.y + 200) && villageMain.y <= (herohitboxY) ) { console.log('inside bldg') }
 
-
         // shoot
         if (playerState.keys.space && Date.now() - this.lastShot > this.fireRate) {
             this.lastShot = Date.now()
@@ -135,7 +142,7 @@ export default class Player {
         this.context.save()
         this.context.translate(this.x + this.imgCenterX, this.y + this.imgCenterY)
         this.context.rotate((this.orientation + 90) * Math.PI / 180)
-        this.context.filter = 'hue-rotate(' + this.hue + ')'
+        this.context.filter = 'hue-rotate(' + this.hue + 'deg)'
         this.context.drawImage(this.img, -this.imgCenterX, -this.imgCenterY, this.width, this.height)
         this.context.restore()
     }

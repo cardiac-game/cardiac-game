@@ -40,8 +40,8 @@ export default class Virus {
         this.healthDown = this.healthDown.bind(this)
     }
 
-    healthDown(bulletDamage) {
-        this.health -= bulletDamage
+    healthDown(damage = 1) {
+        this.health -= damage
         if (this.health < 0) {
             this.isAlive = false
             this.health = this.maxHealth
