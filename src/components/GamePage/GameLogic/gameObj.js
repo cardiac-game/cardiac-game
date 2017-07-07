@@ -41,7 +41,8 @@ export default class Game {
         this.cholesterolPool = new EnemyPool(gameState.context, 100, 5, 20)
         this.heart = new Heart(gameState.context) 
         this.collision = new CollisionDetector()
-        this.powerup = new Powerup();
+        this.powerup = new Powerup("FP");
+        this.powerupPool = new EnemyPool(this.context,1,1,1)
 
         this.virusPool.init(Virus, images.virus)
         this.bacteriaPool.init(Bacteria, images.bacteria)
@@ -107,6 +108,26 @@ export default class Game {
             sugar.isAlive = false
             player.shieldDown(sugar.size)
             sugar.size = 0
+        })
+
+        this.collision.checkObjToArray(this.player, [this.powerup], function(player, powerup){
+            // MS - max shield | FR - Fire Rate | FP - Fire Power | HP - Health Pack for Heart | CB - Cholesto-Bomb
+            switch (powerup.type){
+                case "MS":
+                case "FR":
+                player.poweredUp(powerup.type)
+                break;
+                case "FP":
+                // this.bullet.poweredUp() // broken maybe a speceial powerup collision function with multiple params?
+                break;
+                case "HP":
+                // this.heart.poweredUp() // broken 
+                break;       
+                case "CB":
+                // clear all currently active cholesterol on screen
+                break;         
+            }
+            powerup.isAlive = false;
         })
 
 

@@ -33,6 +33,10 @@ export default class Bullet {
     this.draw = this.draw.bind(this)
   }
 
+  poweredUp(){
+    this.damage += 1
+  }
+
   spawn() {
     this.isAlive = true
     this.x = playerState.x
