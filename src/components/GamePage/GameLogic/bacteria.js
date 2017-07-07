@@ -1,14 +1,22 @@
 import store from '../../../store/store'
 import { images } from './mediaRepos'
 
+// get inputs from inputsObj on nutritionReducer from store
+let bacteriaSpeed = store.getState().nutritionReducer.inputsObj.enemySpeed;
+
 // get initial state from store
-let enemiesState = store.getState().enemiesReducer
+let state = store.getState()
+let gameState = state.gameReducer
+let enemiesState = state.enemiesReducer
 let bacteriaInitialState = enemiesState.bacteria
 
 // subscribe to changes in redux state
 store.subscribe(function() {
-    enemiesState = store.getState().enemiesReducer
-})
+    state = store.getState()
+     gameState = state.gameReducer
+     enemiesState = state.enemiesReducer
+   bacteriaInitialState = enemiesState.bacteria
+  })
 
 // function to return random boolean
 function thisOrThat() {
@@ -48,20 +56,20 @@ export default class Bacteria {
   // initialize enemy 
   // randmized variables should be generated here
   // pre-determined values should come from state
-  constructor(context, sprite) {
+  constructor() {
     // generate random spawn coordinates
-    let spawnCoords = randomSpawn(context.canvas)
+    let spawnCoords = randomSpawn(gameState.context.canvas)
     // used to keep track of enemy status in enemy pool
     this.isAlive = false
     // drawing canvas context
-    this.context = context
+    this.context = gameState.context
     // set spawn coordinates
     this.x = spawnCoords.x
     this.y = spawnCoords.y
     // set enemy image/sprite
     this.sprite = images.bacteria
 
-    this.speed = 1
+    this.speed = 1 * bacteriaSpeed
     this.orientation = Math.random() * Math.PI
     this.turnSpeed = 1
     this.counter = 0
@@ -72,8 +80,8 @@ export default class Bacteria {
 
 
     // used to determine where enemy should move to
-    this.targetX = context.canvas.width / 2,
-    this.targetY = context.canvas.height / 2,
+    this.targetX = this.context.canvas.width / 2,
+    this.targetY = this.context.canvas.height / 2,
     // increase numbers to scale randomness of path to heart (lower numbers make enemy more difficult)
     this.targetWidth = 40 * 5
     this.targetHeight = 40 * 5
@@ -96,10 +104,10 @@ export default class Bacteria {
   }
 
   // decrease health by one
-  healthDown() {
-	  this.health--
+  healthDown(bulletDamage) {
+	  this.health -= bulletDamage
     // kills enemy so it can be removed from the active enemy pool
-	  if (this.health < 1) {
+	  if (this.health < 0) {
 		  this.isAlive = false
 		  this.health = this.maxHealth
 	    }

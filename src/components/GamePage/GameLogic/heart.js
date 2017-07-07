@@ -56,7 +56,7 @@ export default class Heart {
 
     draw() {
         this.context.save()
-        this.context.filter = "invert(" + this.contrast + "%)"
+        this.context.filter = "grayscale(" + this.contrast + "%)"
         this.context.translate(this.x + this.imgCenterX, this.y + this.imgCenterY)
         this.context.drawImage(this.sprite,(this.frameWidth*this.currentFrame),0,this.frameWidth,this.sprite.height,-this.imgCenterX,-this.imgCenterY,this.frameWidth,this.sprite.height)
         this.context.restore()

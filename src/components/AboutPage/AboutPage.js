@@ -184,7 +184,7 @@ export default class About extends Component {
                             <div className="portrait-text-container-row">
                                 <div className={"portrait-text-container " + (this.state.selectedPortrait === 1 ? "text-black" : "text-transparent")}>
                                     <div className="portrait-name-container">Eric Patterson</div>
-                                    <div className="portrait-role-container">Game Developer</div>
+                                    <div className="portrait-role-container">Frontend Developer and Game Designer</div>
                                 </div>
                                 <div className={"portrait-text-container " + (this.state.selectedPortrait === 2 ? "text-black" : "text-transparent")}>
                                     <div className="portrait-name-container">Ivor Anderson</div>
@@ -268,12 +268,12 @@ export default class About extends Component {
                                     <a className="about-a" target="_blank" href="https://github.com/NDMueller"><i className="fa fa-github-square about-icon" aria-hidden="true"></i></a>
                                     <div className="portrait-info-text">
                                         <p><span className="bold">Roles and Responsiblilities: </span>
-                                            Lead researcher and overall support for the team.
+                                            Lead researcher in charge of accurately depticing historical trends in American health for the timeline view.  In charge of design functionality and information on timeline.
                                         </p>
                                         <br/>
                                         <p>
                                             <span className="bold">Background: </span>
-                                            I'm a mystery.
+                                             Midwesterner living in Memphis.  Before getting into Web Development Nicholas was in Digital Marketing and analytical data. 
                                         </p>
                                     </div>
                                 </div>
