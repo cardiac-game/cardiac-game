@@ -82,14 +82,17 @@ export default class Game {
         // player collisions
         this.collision.checkObjToArray(this.player, this.bacteriaPool.active, function(player,bacteria) {
             bacteria.healthDown()
+            player.shieldDown()
         })
 
         this.collision.checkObjToArray(this.player, this.virusPool.active, function(player,virus) {
             virus.healthDown()
+            player.shieldDown()
         })
 
         this.collision.checkObjToArray(this.player, this.cholesterolPool.active, function(player,cholesterol) {
             cholesterol.isAlive = false
+            player.shieldDown()
         })
 
 
@@ -119,9 +122,7 @@ export default class Game {
 
         // heart collisions
         this.collision.checkObjToArray(this.heart,this.bacteriaPool.active, function(heart,bacteria) {
-            for(let i = 0; i < bacteria.health; i++) {
-            bacteria.healthDown()
-            }
+            bacteria.healthDown(bacteria.maxHealth)
             heart.healthDown()
         })
 

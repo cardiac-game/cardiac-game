@@ -144,11 +144,23 @@ export default class Cholesterol {
     for (let i =0; i < this.circles.length; i++) {      
       this.circles[i].x += this.dx
       this.circles[i].y += this.dy
+
       if (this.circles[i].x > this.imgCenterX || this.circles[i].x < -this.imgCenterX) {
         this.dx = -this.dx
+        if (this.circles[i].x > this.imgCenterX) {
+          this.circles[i].x = this.imgCenterX
+        } else if (this.circles[i].x < -this.imgCenterX) {
+          this.circles[i].x = -this.imgCenterX
+        }
       }
+
       if (this.circles[i].y > this.imgCenterY || this.circles[i].y < -this.imgCenterY) {
-        this.dy = -this.dx
+        this.dy = -this.dy
+        if (this.circles[i].y > this.imgCenterY) {
+          this.circles[i].y = this.imgCenterY
+        } else if (this.circles[i].y < -this.imgCenterY) {
+          this.circles[i].y = -this.imgCenterY
+        }
       }
     }
 
@@ -158,25 +170,19 @@ export default class Cholesterol {
     this.context.save()
     this.context.translate(this.x + this.imgCenterX,this.y + this.imgCenterY)
     this.context.rotate(this.orientation)
-    this.context.beginPath()
-    this.context.fillStyle = 'rgb(186, 218, 85)'
-    this.context.arc(this.imgCenterX,this.imgCenterY, this.height,0,Math.PI*2,false)
-    this.context.fill()
-    for (let i = 0; i < this.circles.length; i++) {
-      let circleCenterX = this.circles[i].x
-      let circleCenterY = this.circles[i].y 
-      let radius = this.circles[i].radius   
-      
-      let gradient = this.context.createLinearGradient(circleCenterX, circleCenterY, circleCenterX + radius, circleCenterY + radius);
-      gradient.addColorStop(0, 'rgb(186, 218, 85)')
-      gradient.addColorStop(1, 'rgb(86, 78, 85)')
-      
+
+    // this.context.arc(this.imgCenterX,this.imgCenterY, this.height,0,Math.PI*2,false)
+    // this.context.fill()
+    for (let i = 0; i < this.circles.length; i++) {     
       this.context.beginPath()
       this.context.fillStyle = 'rgb(186, 218, 85)'
-      this.context.strokeStyle = 'rgb()'
-      this.context.arc(circleCenterX, circleCenterY, radius, 0, Math.PI * 2, false)
+      this.context.arc(this.circles[i].x, this.circles[i].y, this.circles[i].radius, 0, Math.PI * 2, false)
       this.context.fill()
     }
+    this.context.beginPath()
+    this.context.strokeStyle = 'black'
+    this.context.rect(0,0,this.width,this.height)
+    this.context.stroke()
     this.context.restore()
   }
 
