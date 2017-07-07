@@ -39,9 +39,9 @@ componentWillUnmount() {
 render() {
     return (
 <div className="timeline-body">
+	<div className="timelineheader">Timeline of American Eating Habits </div>
 
 <div id="cd-timeline" className="cd-container" ref='timeLineContainer'>
-	
 	
 	<div className="timeLineContainer" >
 		<div className="yearTextContainer">
@@ -230,6 +230,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1890</div>
+					<div className="timeLineEvent">Americans advised to eat more</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1891</div>
@@ -264,6 +265,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1900</div>
+					<div className="timeLineEvent"> Average American ate 4 pounds of Cheese per year. Increased to 8 in 2000</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1901</div>
@@ -310,6 +312,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1915</div>
+					<div className="timeLineEvent">American Heart Association is founded</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1916</div>
@@ -317,6 +320,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1917</div>
+					<div className="timeLineEvent">USDA releases first pamphlet on "How to Select Foods," which contains its first set of dietary recommendations.</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1918</div>
@@ -329,6 +333,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1921</div>
+					<div className="timeLineEvent">Heart disease becomes the leading cause of death in the United States</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1922</div>
@@ -375,6 +380,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1936</div>
+					<div className="timeLineEvent">Jack LaLanne opens first health club</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1937</div>
@@ -424,12 +430,14 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1952</div>
+					
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1953</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1954</div>
+					<div className="timeLineEvent">Soda proportions increase to 12 ounce cans</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1955</div>
@@ -445,6 +453,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1958</div>
+					<div className="timeLineEvent">Pizza Hut is Founded</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1959</div>
@@ -454,6 +463,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1961</div>
+					<div className="timeLineEvent">Dominos begins delivering Pizzas</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1962</div>
@@ -487,7 +497,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1971</div>
-					<div className="timeLineEvent">1971 StarBucks is founded.</div>
+					<div className="timeLineEvent">Starbucks is founded.</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1972</div>
@@ -505,6 +515,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1976</div>
+					<div className="timeLineEvent">High-Fructose Corn Syrup technology advances, making it easier to mass produce</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1977</div>
@@ -518,7 +529,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1980</div>
-					<div className="timeLineEvent">America'Obesity epidemic begins.</div>
+					<div className="timeLineEvent">America's Obesity epidemic begins.</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1981</div>
@@ -561,6 +572,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1993</div>
+					<div className="timeLineEvent">Food Establishments begin adding Health sections to menus</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">1994</div>
@@ -609,6 +621,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">2007</div>
+					<div className="timeLineEvent">Taco Bell debuts "FourthMeal"</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">2008</div>
@@ -632,6 +645,7 @@ render() {
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">2013</div>
+					<div className="timeLineEvent">Researchers found that for every additional 150 calories of sugar per day, the prevalence of diabetes rose 1 percent.</div>
 			</div>
 			<div className="yearTextContainer">
 					<div className="timeLineTime">2014</div>
