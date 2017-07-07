@@ -6,14 +6,6 @@ import { images } from './mediaRepos'
 import BulletPool from './bulletPool'
 import Bullet from './bullet'
 
-//
-///
-//
-//
-//
-//
-//
-//
 // get inputs from inputsObj on nutritionReducer from store
 let { playerInitialSpeed, playerOverallSpeed, playerFireRate, playerMaxShield} = store.getState().nutritionReducer.inputsObj;
 
@@ -66,6 +58,20 @@ export default class Player {
 	    }
     // set contrast based on health
     // this.contrast = 100 - ~~(100 * (this.maxHealth - this.health) / this.maxHealth)
+    }
+
+    poweredUp(typeOfPowerup){
+        if (typeOfPowerup === "MS") {
+            this.maxShield+= 25 * playerMaxShield
+            if (this.maxShield > 250 * playerMaxShield) {
+                this.maxShield = 250
+            }
+        } else if (typeOfPowerup === "FR"){
+            this.fireRate -= 10
+            if (this.fireRate < 40) {
+                this.fireRate = 40
+            }
+        }
     }
 
     update() {

@@ -11,7 +11,27 @@ store.subscribe(function() {
 })
 
 export default class Powerup {
-    constructor() {
+    constructor(type) {
+        this.type = type // type of powerup
+
+        switch (this.type){
+            case "MS":
+            this.color = 'rgba(255,255,0,0.7)'
+            break;
+            case "FR":
+            this.color = 'rgba(255,128,0,0.7)'
+            break;
+            case "FP":
+            this.color = 'rgba(255,0,0,0.7)'
+            break;
+            case "HP":
+            this.color = 'rgba(0,128,255,0.7)'
+            break;       
+            case "CB":
+            this.color = 'rgba(0,0,204,0.7)'
+            break;         
+        }
+
         this.context = gameState.context
         this.isAlive = false
         this.direction = (Math.random() < 0.5) ? -1 : 1 // define the direction at which it floats across the screen 1 for left to right | -1 for right to left
@@ -47,7 +67,9 @@ export default class Powerup {
     draw() {
         this.context.save()
         this.context.translate(this.x + this.imgCenterX, this.y + this.imgCenterY)
-        this.context.fillStyle = 'rgba(220,220,220,0.5)' // change the color?
+
+        this.context.fillStyle = this.color //'rgba(220,220,220,0.5)' // change the color?
+
         this.context.beginPath()
         this.context.arc(this.imgCenterX,this.imgCenterY, this.height/2,0,Math.PI*2,false)
         this.context.fill()

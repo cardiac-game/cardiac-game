@@ -33,6 +33,13 @@ export default class Heart {
    	this.healthDown = this.healthDown.bind(this)
     }
 
+    poweredUp(){
+        this.health += this.maxHealth/3
+        if (this.health > this.maxHealth) {
+            this.health = this.maxHealth
+        }
+    }
+
     healthDown() {
         this.health--
         if (this.health < 1) {
