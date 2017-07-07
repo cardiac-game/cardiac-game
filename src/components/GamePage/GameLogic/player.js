@@ -6,14 +6,6 @@ import { images } from './mediaRepos'
 import BulletPool from './bulletPool'
 import Bullet from './bullet'
 
-//
-///
-//
-//
-//
-//
-//
-//
 // get inputs from inputsObj on nutritionReducer from store
 let { playerInitialSpeed, playerOverallSpeed, playerFireRate, playerMaxShield} = store.getState().nutritionReducer.inputsObj;
 
@@ -70,12 +62,27 @@ export default class Player {
         this.hue = ~~(100 * (this.maxShield - this.shield) / this.maxShield)
     }
 
+    poweredUp(typeOfPowerup){
+        if (typeOfPowerup === "MS") {
+            this.maxShield+= 25 * playerMaxShield
+            if (this.maxShield > 250 * playerMaxShield) {
+                this.maxShield = 250
+            }
+        } else if (typeOfPowerup === "FR"){
+            this.fireRate -= 10
+            if (this.fireRate < 40) {
+                this.fireRate = 40
+            }
+        }
+    }
+
     update() {
 
         // respawn when dead
         if (!this.isAlive) {
             this.x = -500
             this.y = -500
+            this.hue = 100
             if (this.spawnCounter < 150) {
                 this.spawnCounter++
             } else {
@@ -83,6 +90,7 @@ export default class Player {
                 this.x = this.deadX
                 this.y = this.deadY
                 this.spawnCounter = 0
+                this.hue = 0
             }
             return
         } 
@@ -134,8 +142,8 @@ export default class Player {
         } else {
             this.isFiring = false
         }
-
-        store.dispatch(setPlayer(this))
+       
+       store.dispatch(setPlayer(this))
     }
     
     draw() {

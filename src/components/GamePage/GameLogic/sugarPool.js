@@ -32,7 +32,7 @@ export default class SugarPool {
 
     // returns an enemy unless all enemies in wave have been killed
     getEnemy() {
-         return this.waveSize > 1 ? this.inactive.shift() : false
+         return this.inactive.shift()
         }
 
     // moves enemy from active array to inactive array 
