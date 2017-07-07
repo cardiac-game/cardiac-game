@@ -79,6 +79,17 @@ padding: 10px;
 text-shadow: 0 0 10px white;
 letter-spacing: 3px;
 }
+.game-wave {
+position: absolute;
+color: white;
+font-size: 20px;
+line-height: 1.7;
+right: 0px;
+bottom: 0px;
+padding: 10px;
+text-shadow: 0 0 10px white;
+letter-spacing: 3px;
+}
 .health-bar {
 height: 500px;
 width: 10px;
@@ -102,7 +113,7 @@ box-shadow: 0 0 10px red;
 position: absolute;
 background-color: lightcoral;
 width: 10px;
-height: 500px; /* CHANGE THIS VALUE, WHEN HEART IS DEALT DAMAGE - 5PX = 1 HEALTH POINT*/
+height: 500px; /* CHANGE THIS VALUE WHEN HEART IS DEALT DAMAGE - 5PX = 1 HEALTH POINT*/
 bottom: 0%;
 }
 .game-shield {

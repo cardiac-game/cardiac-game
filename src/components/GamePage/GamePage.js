@@ -110,12 +110,15 @@ class GamePage extends Component {
           <div className='game-score'>
           SCORE: 0
           </div>
+          <div className='game-wave'>
+          WAVE: 01
+          </div>
 
           </div>
 
         </div>
       </section>
-      <Modal />
+      {/*<Modal />*/}
       </div>
     )
   }

@@ -383,3 +383,6 @@ letter-spacing: 10px;
 font-family: 'Josefin Sans';
 transition: letter-spacing 1s ease-in-out;
 }
+.input-button-2:focus {
+outline: none;
+    }
