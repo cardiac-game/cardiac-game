@@ -1,5 +1,8 @@
 import store from '../../../store/store'
 
+// get inputs from inputsObj on nutritionReducer from store
+let { enemySpeed } = store.getState().nutritionReducer.inputsObj;
+
 
 // get initial state from store
 let state = store.getState()
@@ -69,8 +72,8 @@ export default class Cholesterol {
         this.numOfCircles = 5
         this.dxAll = 5
         this.dyAll = 5
-        this.dx = 0.25
-        this.dy = 0.25
+        this.dx = 0.25 * enemySpeed
+        this.dy = 0.25 * enemySpeed
         this.shakeSpeed = 1
         this.circles = []
 

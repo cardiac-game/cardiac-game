@@ -5,6 +5,17 @@ import { images } from './mediaRepos'
 import BulletPool from './bulletPool'
 import Bullet from './bullet'
 
+//
+///
+//
+//
+//
+//
+//
+//
+// get inputs from inputsObj on nutritionReducer from store
+let { playerInitialSpeed, playerOverallSpeed, playerFireRate, playerMaxShield} = store.getState().nutritionReducer.inputsObj;
+
 let playerState = store.getState().playerReducer
 
 // update state anytime it is changed
@@ -25,7 +36,7 @@ export default class Player {
         this.imgCenterX = playerState.player.imgCenterX
         this.imgCenterY = playerState.player.imgCenterY
         this.dx = playerState.player.dx
-        this.dy = playerState.player.dy
+        this.dy = playerState.player.dy 
         this.speed = playerState.player.speed
         this.orientation = playerState.player.orientation
         this.turnSpeed = playerState.player.turnSpeed
@@ -33,10 +44,26 @@ export default class Player {
         this.fireRate = playerState.player.fireRate
         this.isFiring = playerState.player.isFiring
 
+        this.shield = this.maxShield;
+        this.maxShield = 25 * playerMaxShield;
+        this.isAlive = false;
+
         this.update = this.update.bind(this)
         this.draw = this.draw.bind(this)
     }
    
+      // decrease health by one
+    shieldDown(damage) {
+	  this.shield -= damage
+    // ship is destroyed and respawn timer starts
+	  if (this.shield < 0) {
+		  this.isAlive = false
+		  this.shield = this.maxShield
+	    }
+    // set contrast based on health
+    // this.contrast = 100 - ~~(100 * (this.maxHealth - this.health) / this.maxHealth)
+    }
+
     update() {
         // rotate character
         if (playerState.keys.right) {
