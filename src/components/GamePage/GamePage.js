@@ -21,7 +21,6 @@ import './GamePage.css'
 let gameState = store.getState().gameReducer
 
 
-
 //========================== React Component ================================
 
 
@@ -29,13 +28,9 @@ class GamePage extends Component {
   constructor() {
     super()
     this.state = {
-      score: 0,
-      fireRate: 1,
-      cBombs: 0
+      startScreenHidden: false
     }
-
- 
-  }
+   }
 
 
   // game loop will be run here
@@ -64,18 +59,16 @@ class GamePage extends Component {
     ctx.imageSmoothingQuality = "high"
 
     // moving cells in background (canvas context, max particle size, total particles, canvas width, canvas height)
-    Bloody(this.refs.bloody, 5, 200, canvas.width, canvas.height);
+    Bloody(this.refs.bloody, 5, 200, 40, canvas.width, canvas.height);
 
 
     // create game object
-    const game = new Game()
+    this.game = new Game()
 
     // store.subscribe(function() {
     //   gameState = store.getState().gameReducer
     //   this.updateState(gameState.currentScore)
     // })
-
-    game.loop()
 
   }
 
@@ -120,6 +113,15 @@ class GamePage extends Component {
 
         </div>
       </section>
+
+      {
+         // this is the button I added to start the game
+         // I added so that you can wait a second for all of the images to load before you start the game
+         // otherwise some elements might not show up
+         // feel free to make this look better/more functional
+       }
+      <button className='game-start-button' onClick={ () => {this.game.loop(); this.setState({hideStartScreen: true})} } hidden={this.state.hideStartScreen} >Start Game</button>
+
       <Modal />
       </div>
     )

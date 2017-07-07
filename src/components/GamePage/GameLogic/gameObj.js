@@ -35,13 +35,13 @@ export default class Game {
         this.context = gameState.context
         this.player = new Player(gameState.context) // maxBullets, context
         this.bulletPool = new BulletPool(gameState.context)
-        this.virusPool = new EnemyPool(this.context, 100, 3, 10)
-        this.bacteriaPool = new EnemyPool(gameState.context, 100, 5, 20)
-        this.sugarPool = new SugarPool(100, 5, 20)
-        this.cholesterolPool = new EnemyPool(gameState.context, 100, 5, 20)
+        this.virusPool = new EnemyPool(this.context, 100, 1, 10)
+        this.bacteriaPool = new EnemyPool(gameState.context, 100, 3, 40)
+        this.sugarPool = new SugarPool(100, 3, 20)
+        this.cholesterolPool = new EnemyPool(gameState.context, 100, 5, 60)
         this.heart = new Heart(gameState.context) 
         this.collision = new CollisionDetector()
-        this.powerup = new Powerup();
+        this.powerup = new Powerup()
 
         this.virusPool.init(Virus, images.virus)
         this.bacteriaPool.init(Bacteria, images.bacteria)
@@ -61,14 +61,14 @@ export default class Game {
     }
 
     draw() {
-        this.player.draw()
         this.bulletPool.draw()
-        this.virusPool.draw()
-
 
         this.heart.draw()
-        this.bacteriaPool.draw()
 
+        this.player.draw()
+
+        this.virusPool.draw()
+        this.bacteriaPool.draw()
         this.cholesterolPool.draw()
         this.sugarPool.draw()
 
@@ -158,7 +158,6 @@ export default class Game {
             cholesterol.isOnHeart = true
             let score = 1 / 120
             heart.healthDown(score)
-            console.log(heart.health)
         })
 
         this.collision.checkObjToArray(this.heart, this.sugarPool.active, function(heart, sugar) {

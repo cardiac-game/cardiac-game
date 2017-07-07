@@ -32,6 +32,21 @@
   width:100px;
 }
 
+
+
+/*--------------------------------------------- START MENU */
+
+.game-start-button {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 10000;
+}
+
+
+
+
 /* -------------------------------------------- GAME STATS */
 
 .game-surface {

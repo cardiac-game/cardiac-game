@@ -26,8 +26,10 @@ export default class EnemyPool {
     }
 
     // returns an enemy unless all enemies in wave have been killed
+    
+    // ADD IN CHECK FOR WAVE SIZE BEFORE PUSHING TO PREVENT INFINITE ENEMY SPAWN 
     getEnemy() {
-         return this.waveSize > 1 ? this.inactive.shift() : false
+         return this.inactive.shift()
         }
 
     // moves enemy from active array to inactive array 

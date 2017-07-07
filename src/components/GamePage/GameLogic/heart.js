@@ -13,7 +13,7 @@ export default class Heart {
     this.context = gameState.context
     this.sprite = images.heart
     this.currentFrame = 0
-    this.frameWidth = 97
+    this.frameWidth = 97.5
     this.frameSpeed = 3
     this.frameCount = 0
     this.heartBeatCounter = 0
@@ -67,7 +67,7 @@ export default class Heart {
         this.context.save()
         this.context.filter = "grayscale(" + this.contrast + "%)"
         this.context.translate(this.x + this.imgCenterX, this.y + this.imgCenterY)
-        this.context.drawImage(this.sprite,(this.frameWidth*this.currentFrame),0,this.frameWidth,this.sprite.height,-this.imgCenterX,-this.imgCenterY,this.frameWidth,this.sprite.height)
+        this.context.drawImage(this.sprite,(this.frameWidth*this.currentFrame),0,this.frameWidth - 1,this.sprite.height,-this.imgCenterX,-this.imgCenterY,this.frameWidth,this.sprite.height)
         this.context.restore()
     }
 
