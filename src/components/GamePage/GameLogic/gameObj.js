@@ -14,6 +14,7 @@ import Bacteria from './bacteria'
 import Sugar from './sugar'
 import Cholesterol from './cholesterol'
 import Heart from './heart'
+import Powerup from './powerup'
 import { images } from './mediaRepos'
 import CollisionDetector from './collisionDetection'
 import { startListening, stopListening } from './keyInput'
@@ -39,6 +40,7 @@ export default class Game {
         this.cholesterolPool = new EnemyPool(gameState.context, 100, 5, 20)
         this.heart = new Heart(gameState.context) 
         this.collision = new CollisionDetector()
+        this.powerup = new Powerup();
 
         this.virusPool.init(Virus, images.virus)
         this.bacteriaPool.init(Bacteria, images.bacteria)
@@ -60,9 +62,10 @@ export default class Game {
 
         this.heart.draw()
         this.bacteriaPool.draw()
+
         this.cholesterolPool.draw()
 
-
+        this.powerup.draw()        
     }
 
     update() {
@@ -74,7 +77,10 @@ export default class Game {
 
         this.heart.update()
         this.bacteriaPool.update()
+
         this.cholesterolPool.update()
+
+        this.powerup.update();        
     }
 
     checkCollisions() {

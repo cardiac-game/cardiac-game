@@ -38,12 +38,12 @@ export default class Player {
         this.imgCenterY = playerState.player.imgCenterY
         this.dx = playerState.player.dx
         this.dy = playerState.player.dy 
-        this.speed = playerState.player.speed
+        this.speed = playerState.player.speed * playerOverallSpeed
         this.orientation = playerState.player.orientation
         this.turnSpeed = playerState.player.turnSpeed
 
         this.lastShot = Date.now()
-        this.fireRate = playerState.player.fireRate
+        this.fireRate = playerState.player.fireRate * playerFireRate
         this.isFiring = playerState.player.isFiring
 
         this.maxShield = 5 * playerMaxShield
