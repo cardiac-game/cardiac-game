@@ -68,7 +68,6 @@ export default class Player {
 	    }
         // set hue based on health
         this.hue = ~~(100 * (this.maxShield - this.shield) / this.maxShield)
-        console.log(this.hue)
     }
 
     update() {
@@ -85,6 +84,7 @@ export default class Player {
                 this.y = this.deadY
                 this.spawnCounter = 0
             }
+            return
         } 
 
         // rotate character
@@ -131,12 +131,11 @@ export default class Player {
         if (playerState.keys.space && Date.now() - this.lastShot > this.fireRate) {
             this.lastShot = Date.now()
             this.isFiring = true
-            console.log('fire')
         } else {
             this.isFiring = false
         }
 
-        // store.dispatch(setPlayer(this))
+        store.dispatch(setPlayer(this))
     }
     
     draw() {
