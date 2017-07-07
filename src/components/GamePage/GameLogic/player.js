@@ -2,8 +2,20 @@ import store from '../../../store/store'
 import { setPlayer } from '../../../store/ducks/playerReducer'
 
 import { images } from './mediaRepos'
+
 import BulletPool from './bulletPool'
 import Bullet from './bullet'
+
+//
+///
+//
+//
+//
+//
+//
+//
+// get inputs from inputsObj on nutritionReducer from store
+let { playerInitialSpeed, playerOverallSpeed, playerFireRate, playerMaxShield} = store.getState().nutritionReducer.inputsObj;
 
 let playerState = store.getState().playerReducer
 
@@ -25,19 +37,48 @@ export default class Player {
         this.imgCenterX = playerState.player.imgCenterX
         this.imgCenterY = playerState.player.imgCenterY
         this.dx = playerState.player.dx
-        this.dy = playerState.player.dy
+        this.dy = playerState.player.dy 
         this.speed = playerState.player.speed
         this.orientation = playerState.player.orientation
         this.turnSpeed = playerState.player.turnSpeed
+
         this.lastShot = Date.now()
         this.fireRate = playerState.player.fireRate
         this.isFiring = playerState.player.isFiring
+
+        this.maxShield = 25 * playerMaxShield
+        this.shield = this.maxShield
+        this.hue = 0
+        this.isDead = false
+        this.spawnCounter = 0
 
         this.update = this.update.bind(this)
         this.draw = this.draw.bind(this)
     }
    
+      // decrease health by one
+    shieldDown(damage) {
+	  this.shield -= damage
+    // ship is destroyed and respawn timer starts
+	  if (this.shield < 0) {
+		  this.isAlive = false
+		  this.shield = this.maxShield
+	    }
+    // set contrast based on health
+    // this.contrast = 100 - ~~(100 * (this.maxHealth - this.health) / this.maxHealth)
+    }
+
     update() {
+
+        if (this.isDead) {
+            this.x = -500
+            this.y = -500
+            this.spawnCounter++
+        if (this.spawnCounter > 1000) {
+            
+        }
+        }
+
         // rotate character
         if (playerState.keys.right) {
             this.orientation += this.turnSpeed
@@ -74,7 +115,11 @@ export default class Player {
         } else if (this.y <= 0) {
             this.y = 0
         }
-        
+
+        // preven player from flying through heart
+        // if (this.x <= (this.context.canvas.width /2 - ) && villageMain.x <= (herohitboxX) && herohitboxY <= (villageMain.y + 200) && villageMain.y <= (herohitboxY) ) { console.log('inside bldg') }
+
+
         // shoot
         if (playerState.keys.space && Date.now() - this.lastShot > this.fireRate) {
             this.lastShot = Date.now()
@@ -83,7 +128,6 @@ export default class Player {
             this.isFiring = false
         }
 
-
         store.dispatch(setPlayer(this))
     }
     
@@ -91,6 +135,7 @@ export default class Player {
         this.context.save()
         this.context.translate(this.x + this.imgCenterX, this.y + this.imgCenterY)
         this.context.rotate((this.orientation + 90) * Math.PI / 180)
+        this.context.filter = 'hue-rotate(' + this.hue + ')'
         this.context.drawImage(this.img, -this.imgCenterX, -this.imgCenterY, this.width, this.height)
         this.context.restore()
     }

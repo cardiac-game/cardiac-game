@@ -3,6 +3,9 @@ import store from '../../../store/store'
 let state = store.getState()
 let gameState = state.gameReducer
 
+// get inputs from inputsObj on nutritionReducer from store
+let { enemySpeed } = state.nutritionReducer.inputsObj;
+
 store.subscribe(function() {
     gameState = store.getState().gameReducer
 })
@@ -28,37 +31,18 @@ export default class Sugar {
         this.isAlive = false
         this.x = Math.random() * this.context.canvas.width
         this.y = Math.random() * this.context.canvas.height
-        this.dx = Math.random() * 2 - 1
-        this.dy = Math.random() * 2 - 1
+        this.dx = (Math.random() * 2 - 1) * enemySpeed
+        this.dy = (Math.random() * 2 - 1) * enemySpeed
         this.width = Math.random() * 10 + 20
         this.height = this.width
         this.imgCenterX = this.width / 2
         this.imgCenterY = this.width / 2
         this.rotation = 0
         this.rotationSpeed = Math.random() - 0.5
-        this.score = (80 / this.radius)*5
         this.vertices = generateVertices(24, this.width)
 
         this.draw = this.draw.bind(this)
         this.update = this.update.bind(this) 
-
-
-    //         let tau = Math.PI*2;
-    //         let increment = tau / granularity;
-    //         let radius;
-    //         let x;
-    //         let y;
-    //         let points = [];
-    //         let offset = maxRadius;
-            
-    //         for (let ang = 0; ang < tau; ang += increment) {
-    //         radius = this.getRandom(minRadius, maxRadius);
-    //         x = offset + Math.sin(ang) * radius;
-    //         y = offset + Math.cos(ang) * radius;
-            
-
-    //   points.push({x, y});
-    // }
 
     }
 

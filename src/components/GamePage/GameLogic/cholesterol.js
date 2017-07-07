@@ -1,5 +1,8 @@
 import store from '../../../store/store'
 
+// get inputs from inputsObj on nutritionReducer from store
+let { enemySpeed } = store.getState().nutritionReducer.inputsObj;
+
 
 // get initial state from store
 let state = store.getState()
@@ -11,9 +14,18 @@ store.subscribe(function() {
 })
 
 function Circle(rSmall, rLarge, boundX, boundY) {
-  this.x = Math.random() * boundX
-  this.y = Math.random() * boundY
+  this.x = Math.random() * boundX - boundX/2
+  this.y = Math.random() * boundY - boundY/2
   this.radius = Math.random() * (rLarge - rSmall) + rSmall
+}
+
+function populateCircles(obj) {
+  let arr = []
+  for (let i = 0; i < obj.numOfCircles; i++) {
+    let circle = new Circle(obj.rSmall, obj.rLarge, obj.width, obj.height)
+    arr.push(circle)
+  }
+  return arr
 }
 
 
@@ -56,27 +68,29 @@ export default class Cholesterol {
 
         let spawnCoords = randomSpawn(gameState.context.canvas)
 
-
         this.context = gameState.context
         this.x = spawnCoords.x
         this.y = spawnCoords.y
         this.width = 30
-        this.height = 5
+        this.height = 10
         this.imgCenterX = this.width / 2
         this.imgCenterY = this.height / 2
-        this.rSmall = 10
-        this.rLarge = 20
-        this.numOfCircles = 5
+        this.rSmall = 5
+        this.rLarge = 15
         this.dxAll = 5
         this.dyAll = 5
-        this.dx = 0.25
-        this.dy = 0.25
+        this.dx = 0.25 * enemySpeed
+        this.dy = 0.25 * enemySpeed
         this.shakeSpeed = 1
-        this.circles = []
+        this.numOfCircles = 24
+        this.circles = populateCircles(this)
 
-        this.speed = 1
+        this.isOnHeart = false
+        this.isAlive = false
+
+        this.speed = 0.5
         this.orientation = Math.random() * Math.PI
-        this.turnSpeed = 1
+        this.turnSpeed = 0.25
         this.counter = 0
 
         // used to determine where enemy should move to
@@ -85,33 +99,24 @@ export default class Cholesterol {
         // increase numbers to scale randomness of path to heart (lower numbers make enemy more difficult)
         this.targetWidth = 40 * 20
         this.targetHeight = 40 * 20
+       
+        this.moveToHeart = this.moveToHeart.bind(this)
+        this.update = this.update.bind(this)
+        this.draw = this.draw.bind(this)
     }
 
-  
-  init(numOfCircles) {
-    this.numOfCircles = numOfCircles
-    for (let i = 0; i < this.numOfCircles; i++) {
-      let circle = new Circle(this.rSmall, this.rLarge, this.width, this.height)
-      this.circles.push(circle)
-    }
-  }
-  
-  update = function() {
-        this.counter++ 
-      // every 30 frames, enemy will pick a new target to move to
-      // target is chosen at random but is always center on the heart to ensure
-      // each enemy will eventually get to the heart
-      // this helps make the enemy movement feel more natural and lifelike
+
+  moveToHeart() {
+      // homing behavior
+      this.counter++ 
       if ( this.counter > 30) {
         this.turnSpeed = Math.random() + 0.5
         this.targetX = this.context.canvas.width / 2 + (Math.random() * this.targetWidth - this.targetWidth/2)
         this.targetY = this.context.canvas.height / 2 + (Math.random() * this.targetHeight - this.targetHeight/2)
         this.counter = 0
       }    
-
       let x1 = this.x + this.imgCenterX
       let y1 = this.y + this.imgCenterY  
-      // determine the angle between enemy orientation and direction to target
       let angle = Math.atan2(this.targetY - y1, this.targetX - x1)  
       let theta = 0
         if (this.orientation !== angle) {        
@@ -128,19 +133,25 @@ export default class Cholesterol {
         this.x += Math.cos(this.orientation) * this.speed
         this.y += Math.sin(this.orientation) * this.speed
 
-   
+  }
 
-    // inner circles movement & bounds checking
+  update() {
+    if (!this.isOnHeart) {
+      this.moveToHeart()
+    } 
+
+    // inner circles movement & inner circles bounds checking
     for (let i =0; i < this.circles.length; i++) {      
-      this.circles[i].x += Math.random() * this.dx
-      this.circles[i].y += Math.random() * this.dy
-      if (this.circles[i].x > 100 || this.circles[i].x < 0) {
-        this.dx *= -1
+      this.circles[i].x += this.dx
+      this.circles[i].y += this.dy
+      if (this.circles[i].x > this.imgCenterX || this.circles[i].x < -this.imgCenterX) {
+        this.dx = -this.dx
       }
-      if (this.circles[i].y > 40 || this.circles[i].y < 0) {
-        this.dy *= -1
+      if (this.circles[i].y > this.imgCenterY || this.circles[i].y < -this.imgCenterY) {
+        this.dy = -this.dx
       }
     }
+
   }
   
   draw() {
@@ -148,8 +159,8 @@ export default class Cholesterol {
     this.context.translate(this.x + this.imgCenterX,this.y + this.imgCenterY)
     this.context.rotate(this.orientation)
     this.context.beginPath()
-    this.context.fillStyle = 'rgb(186,218,85)'
-    this.context.arc(this.imgCenterX,this.imgCenterY, this.height/2,0,Math.PI*2,false)
+    this.context.fillStyle = 'rgb(186, 218, 85)'
+    this.context.arc(this.imgCenterX,this.imgCenterY, this.height,0,Math.PI*2,false)
     this.context.fill()
     for (let i = 0; i < this.circles.length; i++) {
       let circleCenterX = this.circles[i].x
@@ -168,6 +179,7 @@ export default class Cholesterol {
     }
     this.context.restore()
   }
-    
+
+
 }
 
