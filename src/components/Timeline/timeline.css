@@ -9,7 +9,7 @@ padding-top: 50px;
 }
 
 .timelineheader{
-    color: white;
+  color: white;
    display: -webkit-flex;
    display: flex;
    -webkit-flex-direction: row;
