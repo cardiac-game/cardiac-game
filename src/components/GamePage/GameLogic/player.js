@@ -30,15 +30,32 @@ export default class Player {
         this.speed = playerState.player.speed
         this.orientation = playerState.player.orientation
         this.turnSpeed = playerState.player.turnSpeed
+
         this.lastShot = Date.now()
         this.fireRate = playerState.player.fireRate
         this.isFiring = playerState.player.isFiring
+
+        this.maxShield = 3
+        this.shield = this.maxShield
+        this.hue = 0
+        this.isDead = false
+        this.spawnCounter = 0
 
         this.update = this.update.bind(this)
         this.draw = this.draw.bind(this)
     }
    
     update() {
+
+        if (this.isDead) {
+            this.x = -500
+            this.y = -500
+            this.spawnCounter++
+        if (this.spawnCounter > 1000) {
+            
+        }
+        }
+
         // rotate character
         if (playerState.keys.right) {
             this.orientation += this.turnSpeed
@@ -95,6 +112,7 @@ export default class Player {
         this.context.save()
         this.context.translate(this.x + this.imgCenterX, this.y + this.imgCenterY)
         this.context.rotate((this.orientation + 90) * Math.PI / 180)
+        this.context.filter = 'hue-rotate(' + this.hue + ')'
         this.context.drawImage(this.img, -this.imgCenterX, -this.imgCenterY, this.width, this.height)
         this.context.restore()
     }
