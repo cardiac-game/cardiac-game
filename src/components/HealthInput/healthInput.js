@@ -32,7 +32,7 @@ constructor(){
     }
 
     getFoodsArray(item) {
-        axios.get('http://localhost:8000/api/foods?item='+item)
+        axios.get('/api/foods?item='+item)
             .then(response => {
                 // this block of code strips the , UPC: 1234567 from the name
                 let allFoodsArray = response.data.list.item
@@ -64,7 +64,7 @@ constructor(){
 
     // add the clicked item to the user's list of collected items
     addToUserList(ndbno) {
-        axios.get('http://localhost:8000/api/nutrition?ndbno='+ndbno)
+        axios.get('/api/nutrition?ndbno='+ndbno)
             .then(response => {
 
                 let singularUserFood = response.data.report.food
